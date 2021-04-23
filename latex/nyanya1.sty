@@ -42,8 +42,14 @@ hyperref,csquotes,mathtools,mdframed,imakeidx,xstring,xcolor}
 \newcommand{\solution}{\noindent\newline\textit{Solution. }}
 %---------------------------------------------
 %sections, etc
-\usepackage{titling,titlesec}
-\renewcommand{\section}[1]{\noindent\newline\textbf{\Large{\S\thesection\quad #1}}}
+\usepackage{titling,titlesec,setspace}
+\newcounter{sectionnum}[section]
+\newcounter{subsectionnum}[subsection]
+\renewcommand{\section}[1]{{\setstretch{1.5}
+    \stepcounter{sectionnum}\setcounter{subsectionnum}{0}
+    \noindent\newline\textbf{\Large{\S\thesectionnum\quad #1}}}}
+\renewcommand{\subsection}[1]{\stepcounter{subsectionnum}\noindent\newline\textbf{
+    \large{\thesectionnum.\thesubsectionnum\quad #1}}}
 %---------------------------------------------
 %colors, for tcolorbox
 \RequirePackage[most]{tcolorbox}
@@ -51,6 +57,7 @@ hyperref,csquotes,mathtools,mdframed,imakeidx,xstring,xcolor}
 \definecolor{white}{HTML}{FFFFFF}
 \definecolor{black}{HTML}{000000}
 \definecolor{green}{HTML}{00FF00}
+\definecolor{red}{HTML}{FF0000}
 %colorboxes for claim, problem, etc
 \newtcolorbox{problemBox}{
     colframe=cyan!80!black,
@@ -77,6 +84,6 @@ hyperref,csquotes,mathtools,mdframed,imakeidx,xstring,xcolor}
     \begin{claimBox}\textbf{Claim. }#1\end{claimBox}
     }
 \newcommand{\lemma}[1]{
-    \begin{lemmaBox}\textbf{Lemma. #1}\end{lemmaBox}
+    \begin{lemmaBox}\textbf{Lemma.} #1\end{lemmaBox}
     }
 %---------------------------------------------
