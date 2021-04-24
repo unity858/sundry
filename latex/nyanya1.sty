@@ -296,11 +296,12 @@ hyperref,csquotes,mathtools,mdframed,imakeidx,xstring,xcolor}
 \newcommand{\evalat}[2][]{\biggr|_{#2}^{#1}}
 \newcommand{\solution}{\noindent\newline\textit{Solution. }}
 %---------------------------------------------
-%fonts
+%fonts and formatting
 \usepackage{lmodern}
 \newcommand{\latinmodernsans}[1]{{\fontfamily{lmss}\selectfont #1}}
 \usepackage{courier}
 \newcommand{\courier}[1]{{\fontfamily{qcr}\selectfont #1}}
+\renewcommand{\emph}[1]{\textbf{\latinmodernsans{\textcolor{nyandarkblue}{#1}}}}
 %---------------------------------------------
 %sections, etc
 \usepackage{titling,titlesec,setspace}
