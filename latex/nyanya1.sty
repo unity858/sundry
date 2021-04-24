@@ -1,15 +1,9 @@
 %---------------------------------------------
 %info
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{nyanya}[2021/04/21]
+\ProvidesPackage{nyanya1}[2021/04/21]
 %---------------------------------------------
 %asymptote
-%
-% BELOW IS COPYPASTED OLYMPIAD.ASY THAT CAN BE FOUND AT https://math.berkeley.edu/~monks/images/olympiad.asy
-% 
-% AGAIN THE BELOW CODE FROM LINES 16-265 ARE COPYPASTED LOOLOLOL
-%
-%
 \RequirePackage[inline]{asymptote}
 \begin{asydef}
 size(6cm);
@@ -296,7 +290,7 @@ hyperref,csquotes,mathtools,mdframed,imakeidx,xstring,xcolor}
 \newcommand{\evalat}[2][]{\biggr|_{#2}^{#1}}
 \newcommand{\solution}{\noindent\newline\textit{Solution. }}
 %---------------------------------------------
-%fonts and formatting
+%fonts, text formatting
 \usepackage{lmodern}
 \newcommand{\latinmodernsans}[1]{{\fontfamily{lmss}\selectfont #1}}
 \usepackage{courier}
@@ -307,6 +301,7 @@ hyperref,csquotes,mathtools,mdframed,imakeidx,xstring,xcolor}
 \usepackage{titling,titlesec,setspace}
 \newcounter{sectionnum}[section]
 \newcounter{subsectionnum}[subsection]
+
 \renewcommand{\section}[1]{{
     \latinmodernsans{\textcolor{nyandarkblue}{
         \stepcounter{sectionnum}\setcounter{subsectionnum}{0}
