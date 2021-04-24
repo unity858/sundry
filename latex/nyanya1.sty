@@ -17,10 +17,11 @@ include geometry;
 \usetikzlibrary{calc}
 \RequirePackage{babel}
 \RequirePackage{amsmath,amssymb,amsthm,enumitem,fancyhdr,
-hyperref,csquotes,mathtools,mdframed,imakeidx,xstring,xcolor}
+hyperref,csquotes,mathtools,mdframed,imakeidx,xstring,xcolor,tgbonum}
 \RequirePackage[margin=1in]{geometry}
 \RequirePackage[utf8]{inputenc}
 \RequirePackage[symbol]{footmisc}
+\RequirePackage[T1]{fontenc}
 %---------------------------------------------
 %math commands
 \DeclarePairedDelimiter\floor{\lfloor}{\rfloor}
@@ -47,9 +48,11 @@ hyperref,csquotes,mathtools,mdframed,imakeidx,xstring,xcolor}
 \newcounter{subsectionnum}[subsection]
 \renewcommand{\section}[1]{{\setstretch{1.5}
     \stepcounter{sectionnum}\setcounter{subsectionnum}{0}
-    \noindent\newline\textbf{\Large{\S\thesectionnum\quad #1}}}}
-\renewcommand{\subsection}[1]{\stepcounter{subsectionnum}\noindent\newline\textbf{
-    \large{\thesectionnum.\thesubsectionnum\quad #1}}}
+    \noindent\newline{\fontfamily{qpl}\selectfont
+\textbf{\Large{\S\thesectionnum\quad #1}}}}}
+\renewcommand{\subsection}[1]{\stepcounter{subsectionnum}\noindent\newline
+{\fontfamily{qpl}\selectfont
+\textbf{\textbf{\large{\thesectionnum.\thesubsectionnum\quad #1}}}}
 %---------------------------------------------
 %colors, for tcolorbox
 \RequirePackage[most]{tcolorbox}
@@ -62,7 +65,7 @@ hyperref,csquotes,mathtools,mdframed,imakeidx,xstring,xcolor}
 \newtcolorbox{problemBox}{
     colframe=cyan!80!black,
     borderline west={6pt}{0pt}{cyan},
-    colback=cyan!35!white
+    colback=cyan!25!white
     }
 \newtcolorbox{claimBox}{
     colframe=red,
