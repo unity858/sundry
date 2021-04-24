@@ -17,7 +17,7 @@ include geometry;
 \usetikzlibrary{calc}
 \RequirePackage{babel}
 \RequirePackage{amsmath,amssymb,amsthm,enumitem,fancyhdr,
-hyperref,csquotes,mathtools,mdframed,imakeidx,xstring,xcolor,tgbonum}
+hyperref,csquotes,mathtools,mdframed,imakeidx,xstring,xcolor}
 \RequirePackage[margin=1in]{geometry}
 \RequirePackage[utf8]{inputenc}
 \RequirePackage[symbol]{footmisc}
@@ -42,17 +42,29 @@ hyperref,csquotes,mathtools,mdframed,imakeidx,xstring,xcolor,tgbonum}
 \newcommand{\evalat}[2][]{\biggr|_{#2}^{#1}}
 \newcommand{\solution}{\noindent\newline\textit{Solution. }}
 %---------------------------------------------
+%fonts
+\usepackage{lmodern}
+\newcommand{\latinmodernsans}[1]{{\fontfamily{lmss}\selectfont #1}}
+\usepackage{courier}
+\newcommand{\courier}[1]{{\fontfamily{qcr}\selectfont #1}}
+%---------------------------------------------
 %sections, etc
 \usepackage{titling,titlesec,setspace}
 \newcounter{sectionnum}[section]
 \newcounter{subsectionnum}[subsection]
-\renewcommand{\section}[1]{{\setstretch{1.5}
-    \stepcounter{sectionnum}\setcounter{subsectionnum}{0}
-    \noindent\newline{\fontfamily{qpl}\selectfont
-\textbf{\Large{\S\thesectionnum\quad #1}}}}}
-\renewcommand{\subsection}[1]{\stepcounter{subsectionnum}\noindent\newline
-{\fontfamily{qpl}\selectfont
-\textbf{\textbf{\large{\thesectionnum.\thesubsectionnum\quad #1}}}}
+\renewcommand{\section}[1]{{
+    \latinmodernsans{\textcolor{nyandarkblue}{
+        \stepcounter{sectionnum}\setcounter{subsectionnum}{0}
+        \noindent\newline 
+        \textbf{\Large{\S\thesectionnum\quad #1}
+        \newline\noindent
+    }}}}}
+\renewcommand{\subsection}[1]{
+    \latinmodernsans{\textcolor{nyandarkblue}{
+        \stepcounter{subsectionnum}\noindent\newline
+        \textbf{\large{\thesectionnum.\thesubsectionnum\quad #1}
+        \newline\noindent
+    }}}}
 %---------------------------------------------
 %colors, for tcolorbox
 \RequirePackage[most]{tcolorbox}
@@ -61,6 +73,7 @@ hyperref,csquotes,mathtools,mdframed,imakeidx,xstring,xcolor,tgbonum}
 \definecolor{black}{HTML}{000000}
 \definecolor{green}{HTML}{00FF00}
 \definecolor{red}{HTML}{FF0000}
+\definecolor{nyandarkblue}{HTML}{1B1384}
 %colorboxes for claim, problem, etc
 \newtcolorbox{problemBox}{
     colframe=cyan!80!black,
@@ -78,15 +91,17 @@ hyperref,csquotes,mathtools,mdframed,imakeidx,xstring,xcolor,tgbonum}
     colback=green!20!white
     }
 %commands using the tcolorboxes, im too lazy to def envs lul
-
 \newcommand{\problem}[2][source?]{
-    \begin{problemBox}{ 
-    \textbf{Problem(#1).}} #2 \end{problemBox}
+    \begin{problemBox}{
+    \latinmodernsans{
+        \textbf{Problem(#1).}}}
+    #2 \end{problemBox}
     }
 \newcommand{\claim}[1]{
-    \begin{claimBox}\textbf{Claim. }#1\end{claimBox}
+    \begin{claimBox}\latinmodernsans{\textbf{Claim. }}
+    #1\end{claimBox}
     }
 \newcommand{\lemma}[1]{
-    \begin{lemmaBox}\textbf{Lemma.} #1\end{lemmaBox}
+    \begin{lemmaBox}\latinmodernsans{\textbf{Lemma.}} #1\end{lemmaBox}
     }
 %---------------------------------------------
