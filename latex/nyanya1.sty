@@ -2,6 +2,13 @@
 %info
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{nyanya1}[2021/04/21]
+%% nyanya1.sty 
+%% Copyright 2021 tac-nayn06
+
+% This program can redistributed and/or modified under the terms 
+% of the LaTeX Project Public License Distributed from CTAN 
+% archives in directory macros/latex/base/lppl.txt; either 
+% version 1 of the License, or (at your option) any later version.
 %---------------------------------------------
 %asymptote
 \RequirePackage[inline]{asymptote}
@@ -265,7 +272,7 @@ picture pathticks(path g, int n=1, real r=.5, real spacing=6, real s=8, pen p=cu
 }
 \end{asydef}
 %---------------------------------------------
-%packages
+%essential packages
 \RequirePackage{tikz}
 \RequirePackage{tkz-euclide}
 \usetikzlibrary{calc}
@@ -295,6 +302,7 @@ hyperref,ifthen,mathtools,mdframed,imakeidx,xstring,xcolor}
 \newcommand{\Z}{\mathbb{Z}}
 \newcommand{\evalat}[2][]{\biggr|_{#2}^{#1}}
 \newcommand{\solution}{\noindent\newline\textit{Solution. }}
+\newcommand{\remark}{\noindent\newline\textit{Remark. }}
 %---------------------------------------------
 %fonts, text formatting
 \usepackage{lmodern}
@@ -307,22 +315,24 @@ hyperref,ifthen,mathtools,mdframed,imakeidx,xstring,xcolor}
 \usepackage{titling,titlesec,setspace}
 \newcounter{sectionnum}[section]
 \newcounter{subsectionnum}[subsection]
+\newcounter{subsubsectionnum}[subsubsection]
 \apptocmd{\maketitle}{\\\begin{center}
     \textit{Produced using nyanya1.sty}
     \end{center}}{}{}
 \renewcommand{\section}[1]{{
     \latinmodernsans{\textcolor{nyandarkblue}{
-        \stepcounter{sectionnum}\setcounter{subsectionnum}{0}
+        \stepcounter{sectionnum}\setcounter{subsectionnum}{0}\setcounter{subsubsectionnum}{0}
         \noindent\newline 
         \textbf{\Large{\S\thesectionnum\quad #1}
         \newline\noindent
     }}}}}
 \renewcommand{\subsection}[1]{
-    \latinmodernsans{\textcolor{nyandarkblue}{
+    \latinmodernsans{\textcolor{nyandarkblue}{\setcounter{subsubsectionnum}{0}
         \stepcounter{subsectionnum}\noindent\newline
         \textbf{\large{\thesectionnum.\thesubsectionnum\quad #1}
         \newline\noindent
     }}}}
+\renewcommand{\subsubsection}{\stepcounter{subsubsectionnum}\noindent\newline\emph{\thesectionnum.\thesubsectionnum.\thesubsubsectionnum}\newline\noindent}
 %---------------------------------------------
 %colors, for tcolorbox
 \RequirePackage[most]{tcolorbox}
