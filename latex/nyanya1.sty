@@ -6,6 +6,12 @@
 %asymptote
 \RequirePackage[inline]{asymptote}
 \begin{asydef}
+// OLYMPIAD.ASY; COPYPASTED FROM https://math.berkeley.edu/~monks/images/olympiad.asy
+///////////////////////////////////////////////////
+// Olympiad Asymptote Package
+// By Maria Monks and AoPS Community
+// Last Updated: 08/26/2007
+/////////////////////////////////////////////////////
 size(6cm);
 include graph;
 include math;
@@ -264,10 +270,10 @@ picture pathticks(path g, int n=1, real r=.5, real spacing=6, real s=8, pen p=cu
 \RequirePackage{tkz-euclide}
 \usetikzlibrary{calc}
 \RequirePackage{babel}
-\RequirePackage[utf8]{inputenc}
-\RequirePackage{amsmath,amssymb,amsthm,enumitem,fancyhdr,
-hyperref,csquotes,mathtools,mdframed,imakeidx,xstring,xcolor}
+\RequirePackage{amsmath,amssymb,amsthm,csquotes,enumitem,etoolbox,fancyhdr,
+hyperref,ifthen,mathtools,mdframed,imakeidx,xstring,xcolor}
 \RequirePackage[margin=1in]{geometry}
+\RequirePackage[utf8]{inputenc}
 \RequirePackage[symbol]{footmisc}
 \RequirePackage[T1]{fontenc}
 %---------------------------------------------
@@ -289,7 +295,6 @@ hyperref,csquotes,mathtools,mdframed,imakeidx,xstring,xcolor}
 \newcommand{\Z}{\mathbb{Z}}
 \newcommand{\evalat}[2][]{\biggr|_{#2}^{#1}}
 \newcommand{\solution}{\noindent\newline\textit{Solution. }}
-\newcommand{\remark}{\noindent\newline\textit{Remark. }}
 %---------------------------------------------
 %fonts, text formatting
 \usepackage{lmodern}
@@ -302,7 +307,9 @@ hyperref,csquotes,mathtools,mdframed,imakeidx,xstring,xcolor}
 \usepackage{titling,titlesec,setspace}
 \newcounter{sectionnum}[section]
 \newcounter{subsectionnum}[subsection]
-
+\apptocmd{\maketitle}{\\\begin{center}
+    \textit{Produced using nyanya1.sty}
+    \end{center}}{}{}
 \renewcommand{\section}[1]{{
     \latinmodernsans{\textcolor{nyandarkblue}{
         \stepcounter{sectionnum}\setcounter{subsectionnum}{0}
@@ -325,6 +332,7 @@ hyperref,csquotes,mathtools,mdframed,imakeidx,xstring,xcolor}
 \definecolor{green}{HTML}{00FF00}
 \definecolor{red}{HTML}{FF0000}
 \definecolor{nyandarkblue}{HTML}{1B1384}
+\definecolor{purple}{HTML}{800080}
 %colorboxes for claim, problem, etc
 \newtcolorbox{problemBox}{
     colframe=cyan!80!black,
@@ -341,12 +349,17 @@ hyperref,csquotes,mathtools,mdframed,imakeidx,xstring,xcolor}
     borderline west={6pt}{0pt}{green},
     colback=green!20!white
     }
+\newtcolorbox{exmpBox}{
+    colframe=purple,
+    borderline west={6pt}{0pt}{purple},
+    colback=purple!20!white
+    }
 %commands using the tcolorboxes, im too lazy to def envs lul
-\newcommand{\problem}[2][source?]{
+\newcommand{\problem}[2][]{
     \begin{problemBox}{
     \latinmodernsans{
-        \textbf{Problem(#1).}}}
-    #2 \end{problemBox}
+        \textbf{Problem(#1).}}} #2
+    \end{problemBox}
     }
 \newcommand{\claim}[1]{
     \begin{claimBox}\latinmodernsans{\textbf{Claim. }}
@@ -354,5 +367,8 @@ hyperref,csquotes,mathtools,mdframed,imakeidx,xstring,xcolor}
     }
 \newcommand{\lemma}[1]{
     \begin{lemmaBox}\latinmodernsans{\textbf{Lemma.}} #1\end{lemmaBox}
+    }
+\newcommand{\exmp}[1]{
+    \begin{exmpBox}\latinmodernsans{\textbf{Example.}} #1\end{exmpBox}
     }
 %---------------------------------------------
