@@ -285,6 +285,54 @@ hyperref,ifthen,mathtools,mdframed,imakeidx,xstring,xcolor}
 \RequirePackage[symbol]{footmisc}
 \RequirePackage[T1]{fontenc}
 %---------------------------------------------
+%colors, for tcolorbox
+\RequirePackage[most]{tcolorbox}
+\definecolor{cyan}{HTML}{00FFFF}
+\definecolor{white}{HTML}{FFFFFF}
+\definecolor{black}{HTML}{000000}
+\definecolor{green}{HTML}{00FF00}
+\definecolor{red}{HTML}{FF0000}
+\definecolor{nyandarkgrn}{HTML}{107657}
+\definecolor{purple}{HTML}{800080}
+%colorboxes for claim, problem, etc
+\newtcolorbox{problemBox}{
+    colframe=cyan!80!black,
+    borderline west={6pt}{0pt}{cyan},
+    colback=cyan!25!white
+    }
+\newtcolorbox{claimBox}{
+    colframe=red,
+    borderline west={6pt}{0pt}{red},
+    colback=red!25!white
+    }
+\newtcolorbox{lemmaBox}{
+    colframe=green,
+    borderline west={6pt}{0pt}{green},
+    colback=green!20!white
+    }
+\newtcolorbox{exmpBox}{
+    colframe=purple,
+    borderline west={6pt}{0pt}{purple},
+    colback=purple!20!white
+    }
+%commands using the tcolorboxes, im too lazy to def envs lul
+\newcommand{\problem}[2][source unknown]{
+    \begin{problemBox}{
+    \latinmodernsans{
+        \textbf{Problem(#1).}}} #2
+    \end{problemBox}
+    }
+\newcommand{\claim}[1]{
+    \begin{claimBox}\latinmodernsans{\textbf{Claim. }}
+    #1\end{claimBox}
+    }
+\newcommand{\lemma}[1]{
+    \begin{lemmaBox}\latinmodernsans{\textbf{Lemma.}} #1\end{lemmaBox}
+    }
+\newcommand{\exmp}[2][source unknown]{
+    \begin{exmpBox}\latinmodernsans{\textbf{Example(#1).}} #2\end{exmpBox}
+    }
+%---------------------------------------------
 %math commands
 \DeclarePairedDelimiter\floor{\lfloor}{\rfloor}
 \DeclarePairedDelimiter\bigfloor{\bigl\lfloor}{\bigr\rfloor}
@@ -311,7 +359,7 @@ hyperref,ifthen,mathtools,mdframed,imakeidx,xstring,xcolor}
 \newcommand{\latinmodernsans}[1]{{\fontfamily{lmss}\selectfont #1}}
 \usepackage{courier}
 \newcommand{\courier}[1]{{\fontfamily{qcr}\selectfont #1}}
-\renewcommand{\emph}[1]{\textbf{\latinmodernsans{\textcolor{nyandarkblue}{#1}}}}
+\renewcommand{\emph}[1]{\textbf{\latinmodernsans{\textcolor{nyandarkgrn}{#1}}}}
 %---------------------------------------------
 %sections, etc
 \usepackage{titling,titlesec,setspace}
@@ -340,52 +388,4 @@ hyperref,ifthen,mathtools,mdframed,imakeidx,xstring,xcolor}
 		\thesectionnum.\thesubsectionnum.\thesubsubsectionnum}
 	\newline\noindent
 	}
-%---------------------------------------------
-%colors, for tcolorbox
-\RequirePackage[most]{tcolorbox}
-\definecolor{cyan}{HTML}{00FFFF}
-\definecolor{white}{HTML}{FFFFFF}
-\definecolor{black}{HTML}{000000}
-\definecolor{green}{HTML}{00FF00}
-\definecolor{red}{HTML}{FF0000}
-\definecolor{nyandarkblue}{HTML}{1B1384}
-\definecolor{purple}{HTML}{800080}
-%colorboxes for claim, problem, etc
-\newtcolorbox{problemBox}{
-    colframe=cyan!80!black,
-    borderline west={6pt}{0pt}{cyan},
-    colback=cyan!25!white
-    }
-\newtcolorbox{claimBox}{
-    colframe=red,
-    borderline west={6pt}{0pt}{red},
-    colback=red!25!white
-    }
-\newtcolorbox{lemmaBox}{
-    colframe=green,
-    borderline west={6pt}{0pt}{green},
-    colback=green!20!white
-    }
-\newtcolorbox{exmpBox}{
-    colframe=purple,
-    borderline west={6pt}{0pt}{purple},
-    colback=purple!20!white
-    }
-%commands using the tcolorboxes, im too lazy to def envs lul
-\newcommand{\problem}[2][]{
-    \begin{problemBox}{
-    \latinmodernsans{
-        \textbf{Problem(#1).}}} #2
-    \end{problemBox}
-    }
-\newcommand{\claim}[1]{
-    \begin{claimBox}\latinmodernsans{\textbf{Claim. }}
-    #1\end{claimBox}
-    }
-\newcommand{\lemma}[1]{
-    \begin{lemmaBox}\latinmodernsans{\textbf{Lemma.}} #1\end{lemmaBox}
-    }
-\newcommand{\exmp}[1]{
-    \begin{exmpBox}\latinmodernsans{\textbf{Example.}} #1\end{exmpBox}
-    }
 %---------------------------------------------
