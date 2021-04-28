@@ -279,7 +279,7 @@ picture pathticks(path g, int n=1, real r=.5, real spacing=6, real s=8, pen p=cu
 \usetikzlibrary{calc}
 \RequirePackage{babel}
 \RequirePackage{amsmath,amssymb,amsthm,csquotes,enumitem,etoolbox,fancyhdr,
-hyperref,ifthen,mathtools,mdframed,imakeidx,xstring,xcolor}
+hyperref,ifthen,mathtools,mdframed,imakeidx,suffix,xstring,xcolor}
 \RequirePackage[margin=1in]{geometry}
 \RequirePackage[utf8]{inputenc}
 \RequirePackage[symbol]{footmisc}
@@ -294,6 +294,7 @@ hyperref,ifthen,mathtools,mdframed,imakeidx,xstring,xcolor}
 \definecolor{red}{HTML}{FF0000}
 \definecolor{nyandarkgrn}{HTML}{0D503C}
 \definecolor{purple}{HTML}{800080}
+\definecolor{yellow}{HTML}{FFFF00}
 %colorboxes for claim, problem, etc
 \newtcolorbox{problemBox}{
     colframe=cyan!80!black,
@@ -306,21 +307,38 @@ hyperref,ifthen,mathtools,mdframed,imakeidx,xstring,xcolor}
     colback=red!25!white
     }
 \newtcolorbox{lemmaBox}{
-    colframe=green,
-    borderline west={6pt}{0pt}{green},
-    colback=green!20!white
+    colframe=yellow,
+    borderline west={6pt}{0pt}{yellow},
+    colback=yellow!20!white
     }
 \newtcolorbox{exmpBox}{
     colframe=purple,
     borderline west={6pt}{0pt}{purple},
     colback=purple!20!white
     }
+\newtcolorbox{remarkBox}{
+    colframe=green,
+    borderline west={6pt}{0pt}{green},
+    colback=green!20!white
+    }
 %commands using the tcolorboxes, im too lazy to def envs lul
-\newcommand{\problem}[2][source unknown]{
+\newcounter{probnum}
+\newcommand{\problem}[2][source unknown]{\stepcounter{probnum}
     \begin{problemBox}{
     \latinmodernsans{
-        \textbf{Problem(#1).}}} #2
+        \textbf{Problem \theprobnum(#1).}}} #2
     \end{problemBox}
+    }
+\newcommand{\prob}[2]{\begin{problemBox}
+    \latinmodernsans{
+        \textbf{Problem (#1).}} #2
+    \end{problemBox}}
+\newcounter{exmpnum}
+\newcommand{\example}[2][source unknown]{\stepcounter{exmpnum}
+    \begin{exmpBox}\latinmodernsans{\textbf{Example \theexmpnum(#1).}} #2\end{exmpBox}
+    }
+\newcommand{\exmp}[2][source unknown]{
+    \begin{exmpBox}\latinmodernsans{\textbf{Example (#1).}} #2\end{exmpBox}
     }
 \newcommand{\claim}[1]{
     \begin{claimBox}\latinmodernsans{\textbf{Claim. }}
@@ -329,9 +347,10 @@ hyperref,ifthen,mathtools,mdframed,imakeidx,xstring,xcolor}
 \newcommand{\lemma}[1]{
     \begin{lemmaBox}\latinmodernsans{\textbf{Lemma.}} #1\end{lemmaBox}
     }
-\newcommand{\exmp}[2][source unknown]{
-    \begin{exmpBox}\latinmodernsans{\textbf{Example(#1).}} #2\end{exmpBox}
+\newcommand{\remark}[1]{
+    \begin{remarkBox}\latinmodernsans{\textit{Remark.}} #1\end{remarkBox}
     }
+\newcommand{\pro}[1]{\begin{proof}#1\end{proof}}
 %---------------------------------------------
 %math commands
 \DeclarePairedDelimiter\floor{\lfloor}{\rfloor}
@@ -346,14 +365,13 @@ hyperref,ifthen,mathtools,mdframed,imakeidx,xstring,xcolor}
 \DeclareMathOperator{\cyc}{\sum_{\text{cyc}}}
 \DeclareMathOperator{\sym}{\sum_{\text{sym}}}
 \DeclarePairedDelimiter\abs{|}{|}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
 \newcommand{\R}{\mathbb{R}}
 \newcommand{\C}{\mathbb{C}}
-\newcommand{\Q}{\mathbb{Q}}
-\newcommand{\Z}{\mathbb{Z}}
-\newcommand{\N}{\mathbb{N}}
 \newcommand{\evalat}[2][]{\biggr|_{#2}^{#1}}
 \newcommand{\solution}{\noindent\newline\textit{Solution. }}
-\newcommand{\remark}{\noindent\newline\textit{Remark. }}
 %---------------------------------------------
 %fonts, text formatting
 \usepackage{lmodern}
@@ -362,7 +380,7 @@ hyperref,ifthen,mathtools,mdframed,imakeidx,xstring,xcolor}
 \newcommand{\courier}[1]{{\fontfamily{qcr}\selectfont #1}}
 \renewcommand{\emph}[1]{\textbf{\latinmodernsans{\textcolor{nyandarkgrn}{#1}}}}
 %---------------------------------------------
-%sections, etc
+%sections, toc etc
 \usepackage{titling,titlesec,setspace}
 \newcounter{sectionnum}[section]
 \newcounter{subsectionnum}[subsection]
@@ -370,11 +388,18 @@ hyperref,ifthen,mathtools,mdframed,imakeidx,xstring,xcolor}
 \apptocmd{\maketitle}{\\\begin{center}
     \textit{Produced using nyanya1.sty}
     \end{center}}{}{}
+\newcommand{\toc}{\emph{\tableofcontents}}
 \renewcommand{\section}[1]{{
     \latinmodernsans{\textcolor{nyandarkgrn}{
         \stepcounter{sectionnum}\setcounter{subsectionnum}{0}\setcounter{subsubsectionnum}{0}
         \noindent\newline 
         \textbf{\Large{\S\thesectionnum\quad #1}
+        \newline\noindent
+    }}}}}
+\newcommand{\sctn}[1]{{
+    \latinmodernsans{\textcolor{nyandarkgrn}{
+        \noindent\newline 
+        \textbf{\Large{#1}
         \newline\noindent
     }}}}}
 \renewcommand{\subsection}[1]{
@@ -383,10 +408,19 @@ hyperref,ifthen,mathtools,mdframed,imakeidx,xstring,xcolor}
         \textbf{\large{\thesectionnum.\thesubsectionnum\quad #1}
         \newline\noindent
     }}}}
+\newcommand{\subsctn}[1]{
+    \latinmodernsans{\textcolor{nyandarkgrn}{\noindent\newline
+        \textbf{\large{#1}
+        \newline\noindent
+    }}}}
 \renewcommand{\subsubsection}[1]{
 	\stepcounter{subsubsectionnum}
 	\noindent\newline\emph{
 		\thesectionnum.\thesubsectionnum.\thesubsubsectionnum\quad #1}
+	\newline\noindent
+	}
+\newcommand{\subsubsctn}[1]{
+	\noindent\newline\emph{#1}
 	\newline\noindent
 	}
 %---------------------------------------------
