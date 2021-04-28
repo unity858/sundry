@@ -284,7 +284,6 @@ hyperref,ifthen,mathtools,mdframed,imakeidx,xstring,xcolor}
 \RequirePackage[utf8]{inputenc}
 \RequirePackage[symbol]{footmisc}
 \RequirePackage[T1]{fontenc}
-\RequirePackage{svg}
 %---------------------------------------------
 %colors, for tcolorbox
 \RequirePackage[most]{tcolorbox}
@@ -351,6 +350,7 @@ hyperref,ifthen,mathtools,mdframed,imakeidx,xstring,xcolor}
 \newcommand{\C}{\mathbb{C}}
 \newcommand{\Q}{\mathbb{Q}}
 \newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
 \newcommand{\evalat}[2][]{\biggr|_{#2}^{#1}}
 \newcommand{\solution}{\noindent\newline\textit{Solution. }}
 \newcommand{\remark}{\noindent\newline\textit{Remark. }}
@@ -383,10 +383,10 @@ hyperref,ifthen,mathtools,mdframed,imakeidx,xstring,xcolor}
         \textbf{\large{\thesectionnum.\thesubsectionnum\quad #1}
         \newline\noindent
     }}}}
-\renewcommand{\subsubsection}{
+\renewcommand{\subsubsection}[1]{
 	\stepcounter{subsubsectionnum}
 	\noindent\newline\emph{
-		\thesectionnum.\thesubsectionnum.\thesubsubsectionnum}
+		\thesectionnum.\thesubsectionnum.\thesubsubsectionnum\quad #1}
 	\newline\noindent
 	}
 %---------------------------------------------
