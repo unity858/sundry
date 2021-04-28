@@ -326,7 +326,7 @@ hyperref,ifthen,mathtools,mdframed,imakeidx,suffix,xstring,xcolor}
 \newcommand{\problem}[2][source unknown]{\stepcounter{probnum}
     \begin{problemBox}{
     \latinmodernsans{
-        \textbf{Problem \theprobnum(#1).}}} #2
+        \textbf{Problem \theprobnum (#1).}}} #2
     \end{problemBox}
     }
 \newcommand{\prob}[2][source unknown]{\begin{problemBox}
@@ -372,6 +372,10 @@ hyperref,ifthen,mathtools,mdframed,imakeidx,suffix,xstring,xcolor}
 \newcommand{\C}{\mathbb{C}}
 \newcommand{\evalat}[2][]{\biggr|_{#2}^{#1}}
 \newcommand{\solution}{\noindent\newline\textit{Solution. }}
+\newcounter{exercisenum}
+\newcommand{\exercise}[2][source unknown]{\newline\noindent\stepcounter{exercisenum}
+    \latinmodernsans{\textbf{Problem \theexercisenum (#1)}. }#2
+    }
 %---------------------------------------------
 %fonts, text formatting
 \usepackage{lmodern}
