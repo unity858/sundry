@@ -278,48 +278,49 @@ picture pathticks(path g, int n=1, real r=.5, real spacing=6, real s=8, pen p=cu
 \RequirePackage{tkz-euclide}
 \usetikzlibrary{calc}
 \RequirePackage{babel}
-\RequirePackage{amsmath,amssymb,amsthm,csquotes,enumitem,etoolbox,fancyhdr,
-hyperref,ifthen,mathtools,mdframed,imakeidx,suffix,xstring,xcolor}
-\RequirePackage[margin=1in]{geometry}
+\RequirePackage[margin=1in]{geometry} %keep before fancyhydr to make margins work
+\RequirePackage{amsmath,amssymb,amsthm,csquotes,enumitem,etoolbox,fancyhdr,ifthen,
+    mathtools,mdframed,imakeidx,suffix,xstring,xcolor}
+\RequirePackage[hypertexnames=false]{hyperref}
 \RequirePackage[utf8]{inputenc}
 \RequirePackage[symbol]{footmisc}
 \RequirePackage[T1]{fontenc}
 %---------------------------------------------
 %colors, for tcolorbox
 \RequirePackage[most]{tcolorbox}
-\definecolor{cyan}{HTML}{00FFFF}
-\definecolor{white}{HTML}{FFFFFF}
-\definecolor{black}{HTML}{000000}
-\definecolor{green}{HTML}{00FF00}
-\definecolor{red}{HTML}{FF0000}
-\definecolor{nyandarkgrn}{HTML}{0D503C}
-\definecolor{purple}{HTML}{800080}
-\definecolor{yellow}{HTML}{E6E600}
+\definecolor{probcolor}{HTML}{09A99E}%\problem color, needs change/improvement
+\definecolor{white}{HTML}{FFFFFF}%dont remove this one
+\definecolor{black}{HTML}{000000}% or this one
+\definecolor{remarkcolor}{HTML}{00FF00}%\remark color, needs change/improvement
+\definecolor{claimcolor}{HTML}{FF0000}%\claim color, needs change/improvement
+\definecolor{nyandarkgrn}{HTML}{0D503C}%personal color
+\definecolor{exmpcolor}{HTML}{800080}%\example color, needs change/improvement
+\definecolor{lemmacolor}{HTML}{E6E600}%\lemma color, needs change/improvement
+% (change hex codes to your taste to change box colors, its done rather automatically)
+%
 %colorboxes for claim, problem, etc
 \newtcolorbox{problemBox}{
-    colframe=cyan!80!black,
-    borderline west={6pt}{0pt}{cyan},
-    colback=cyan!25!white
+    colframe=probcolor,
+    colback=probcolor!25!white
     }
 \newtcolorbox{claimBox}{
-    colframe=red,
-    borderline west={6pt}{0pt}{red},
-    colback=red!25!white
+    colframe=claimcolor,
+    colback=claimcolor!25!white
     }
 \newtcolorbox{lemmaBox}{
     colframe=yellow,
-    borderline west={6pt}{0pt}{yellow},
-    colback=yellow!20!white
+    borderline west={6pt}{6pt}{yellow},
+    colback=yellow!25!white
     }
 \newtcolorbox{exmpBox}{
-    colframe=purple,
-    borderline west={6pt}{0pt}{purple},
-    colback=purple!20!white
+    colframe=exmpcolor,
+    borderline west={6pt}{0pt}{exmpcolor},
+    colback=exmpcolor!25!white
     }
 \newtcolorbox{remarkBox}{
-    colframe=green,
-    borderline west={6pt}{0pt}{green},
-    colback=green!20!white
+    colframe=remarkcolor,
+    borderline west={6pt}{0pt}{remarkcolor},
+    colback=remarkcolor!25!white
     }
 %commands using the tcolorboxes, im too lazy to def envs lul
 \newcounter{probnum}
@@ -353,26 +354,30 @@ hyperref,ifthen,mathtools,mdframed,imakeidx,suffix,xstring,xcolor}
 \newcommand{\pro}[1]{\begin{proof}#1\end{proof}}
 %---------------------------------------------
 %math commands
-\DeclarePairedDelimiter\floor{\lfloor}{\rfloor}
+%floor/ceil; im so smart idk what \left and \right are, smh
+\DeclarePairedDelimiter\floor{\left\lfloor}{\right\rfloor}
 \DeclarePairedDelimiter\bigfloor{\bigl\lfloor}{\bigr\rfloor}
 \DeclarePairedDelimiter\biggfloor{\biggl\lfloor}{\biggr\rfloor}
 \DeclarePairedDelimiter\Biggfloor{\Biggl\lfloor}{\Biggr\rfloor}
-\DeclarePairedDelimiter\ceil{\lceil}{\rceil}
+\DeclarePairedDelimiter\ceil{\left\lceil}{\right\rceil}
 \DeclarePairedDelimiter\bigceil{\bigl\lceil}{\bigr\rceil}
 \DeclarePairedDelimiter\biggceil{\biggl\lceil}{\biggr\rceil}
 \DeclarePairedDelimiter\Biggceil{\Biggl\lceil}{\Biggr\rceil}
+% operators, latter two from lucky.sty
 \DeclareMathOperator{\nequiv}{\not\equiv}
 \DeclareMathOperator{\cyc}{\sum_{\text{cyc}}}
 \DeclareMathOperator{\sym}{\sum_{\text{sym}}}
-\DeclarePairedDelimiter\abs{|}{|}
+\DeclarePairedDelimiter\abs{\left|}{\right|}
+%sets
 \newcommand{\N}{\mathbb{N}}
 \newcommand{\Z}{\mathbb{Z}}
 \newcommand{\Q}{\mathbb{Q}}
 \newcommand{\R}{\mathbb{R}}
 \newcommand{\C}{\mathbb{C}}
+% too lazy to use \left, \right here;
 \newcommand{\evalat}[2][]{\biggr|_{#2}^{#1}}
 \newcommand{\solution}{\noindent\newline\textit{Solution. }}
-\newcounter{exercisenum}
+\newcounter{exercisenum}%for psets at end of handouts
 \newcommand{\exercise}[2][source unknown]{\newline\noindent\stepcounter{exercisenum}
     \latinmodernsans{\textbf{Problem \theexercisenum (#1)}. }#2
     }
@@ -384,45 +389,44 @@ hyperref,ifthen,mathtools,mdframed,imakeidx,suffix,xstring,xcolor}
 \newcommand{\courier}[1]{{\fontfamily{qcr}\selectfont #1}}
 \renewcommand{\emph}[1]{\textbf{\latinmodernsans{\textcolor{nyandarkgrn}{#1}}}}
 %---------------------------------------------
-%sections, toc etc
+%sections, toc etc; thanks to chdenmathcounts for 
+%letting me copypaste parts of his sty lmao
+% toc w/ hyperrefs
+\setcounter{tocdepth}{3}
+\newcommand{\toc}{
+{\hypersetup{
+	citecolor=black,
+	filecolor=nyandarkgrn,
+	linkcolor=black,
+	urlcolor=black}
+\emph{\tableofcontents}\newpage % the numbers on RHS of toc are wrong font but who cares
+}}
+% section packages
 \usepackage{titling,titlesec,setspace}
-\newcounter{sectionnum}[section]
-\newcounter{subsectionnum}[subsection]
-\newcounter{subsubsectionnum}[subsubsection]
 \apptocmd{\maketitle}{\\\begin{center}
     \textit{Produced using nyanya1.sty}
-    \end{center}}{}{}
-\newcommand{\toc}{\emph{\tableofcontents}}
-\renewcommand{\section}[1]{{
-    \latinmodernsans{\textcolor{nyandarkgrn}{
-        \stepcounter{sectionnum}\setcounter{subsectionnum}{0}\setcounter{subsubsectionnum}{0}
-        \noindent\newline 
-        \textbf{\Large{\S\thesectionnum\quad #1}
-        \newline\noindent
-    }}}}}
+    \end{center}}{}{}% i'm too lazy to change font for \maketitle lol
+% regular sections
+\titleformat{\section}{\fontfamily{lmss}\selectfont\Large\bfseries\color{nyandarkgrn}}{
+    {\S\thesection}}{1em}{}
+
+\titleformat{\subsection}{\fontfamily{lmss}\large\bfseries\color{nyandarkgrn}}{
+    {\selectfont\thesubsection}}{1em}{}
+\titleformat{\subsubsection}{\fontfamily{lmss}\selectfont\bfseries\color{nyandarkgrn}}{
+    {\thesubsubsection}}{1em}{}
+
+% (sub)(sub)sections, unnumbered, THESE DO NOT APPEAR IN TOC!
 \newcommand{\sctn}[1]{{
     \latinmodernsans{\textcolor{nyandarkgrn}{
         \noindent\newline 
         \textbf{\Large{#1}
         \newline\noindent
     }}}}}
-\renewcommand{\subsection}[1]{
-    \latinmodernsans{\textcolor{nyandarkgrn}{\setcounter{subsubsectionnum}{0}
-        \stepcounter{subsectionnum}\noindent\newline
-        \textbf{\large{\thesectionnum.\thesubsectionnum\quad #1}
-        \newline\noindent
-    }}}}
 \newcommand{\subsctn}[1]{
     \latinmodernsans{\textcolor{nyandarkgrn}{\noindent\newline
         \textbf{\large{#1}
         \newline\noindent
     }}}}
-\renewcommand{\subsubsection}[1]{
-	\stepcounter{subsubsectionnum}
-	\noindent\newline\emph{
-		\thesectionnum.\thesubsectionnum.\thesubsubsectionnum\quad #1}
-	\newline\noindent
-	}
 \newcommand{\subsubsctn}[1]{
 	\noindent\newline\emph{#1}
 	\newline\noindent
