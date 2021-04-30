@@ -327,29 +327,28 @@ picture pathticks(path g, int n=1, real r=.5, real spacing=6, real s=8, pen p=cu
 \newcommand{\problem}[2][source unknown]{\stepcounter{probnum}
     \begin{problemBox}{
     \latinmodernsans{
-        \textbf{Problem \theprobnum (#1).}}} #2
+        \textbf{Problem \theprobnum (#1).\enskip}}}#2
     \end{problemBox}
     }
 \newcommand{\prob}[2][source unknown]{\begin{problemBox}
     \latinmodernsans{
-        \textbf{Problem (#1).}} #2
+        \textbf{Problem (#1).\enskip}}#2
     \end{problemBox}}
 \newcounter{exmpnum}
 \newcommand{\example}[2][source unknown]{\stepcounter{exmpnum}
-    \begin{exmpBox}\latinmodernsans{\textbf{Example \theexmpnum(#1).}} #2\end{exmpBox}
+    \begin{exmpBox}\latinmodernsans{\textbf{Example \theexmpnum(#1).\enskip}}#2\end{exmpBox}
     }
 \newcommand{\exmp}[2][source unknown]{
-    \begin{exmpBox}\latinmodernsans{\textbf{Example (#1).}} #2\end{exmpBox}
+    \begin{exmpBox}\latinmodernsans{\textbf{Example (#1).\enskip}}#2\end{exmpBox}
     }
 \newcommand{\claim}[1]{
-    \begin{claimBox}\latinmodernsans{\textbf{Claim. }}
-    #1\end{claimBox}
+    \begin{claimBox}\latinmodernsans{\textbf{Claim.\enskip}}#1\end{claimBox}
     }
 \newcommand{\lemma}[1]{
-    \begin{lemmaBox}\latinmodernsans{\textbf{Lemma.}} #1\end{lemmaBox}
+    \begin{lemmaBox}\latinmodernsans{\textbf{Lemma.\enskip}}#1\end{lemmaBox}
     }
 \newcommand{\remark}[1]{
-    \begin{remarkBox}\latinmodernsans{\textit{Remark.}} #1\end{remarkBox}
+    \begin{remarkBox}\latinmodernsans{\textit{Remark.\enskip}}#1\end{remarkBox}
     }
 \newcommand{\pro}[1]{\begin{proof}#1\end{proof}}
 %---------------------------------------------
