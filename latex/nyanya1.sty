@@ -285,37 +285,38 @@ picture pathticks(path g, int n=1, real r=.5, real spacing=6, real s=8, pen p=cu
 \RequirePackage[utf8]{inputenc}
 \RequirePackage[symbol]{footmisc}
 \RequirePackage[T1]{fontenc}
-%---------------------------------------------
+%---------------------------------------------------------------
 %colors, for tcolorbox
+% Theme: nyan cat colors
 \RequirePackage[most]{tcolorbox}
-\definecolor{probcolor}{HTML}{09A99E}%\problem color, needs change/improvement
+\definecolor{probcolor}{HTML}{FF0090}%\problem color, needs change/improvement
 \definecolor{white}{HTML}{FFFFFF}%dont remove this one
 \definecolor{black}{HTML}{000000}% or this one
-\definecolor{remarkcolor}{HTML}{0D503C}%\remark color, needs change/improvement
-\definecolor{claimcolor}{HTML}{FF0000}%\claim color, needs change/improvement
-\definecolor{nyandarkgrn}{HTML}{0D503C}%personal color
-\definecolor{exmpcolor}{HTML}{800080}%\example color, needs change/improvement
-\definecolor{lemmacolor}{HTML}{E6E600}%\lemma color, needs change/improvement
+\definecolor{remarkcolor}{HTML}{FF9898}%\remark color, needs change/improvement
+\definecolor{claimcolor}{HTML}{F5C596}%\claim color, needs change/improvement
+\definecolor{nyanblue}{HTML}{003366}%personal color, from nyan cat
+\definecolor{exmpcolor}{HTML}{FD99FD}%\example color, needs change/improvement
+\definecolor{lemmacolor}{HTML}{F5C596}%\lemma color, needs change/improvement
 % (change hex codes to your taste to change box colors, its done rather automatically)
 %
 %colorboxes for claim, problem, etc
 \newtcolorbox{problemBox}{
     colframe=probcolor,
-    colback=probcolor!25!white
+    colback=probcolor!20!white
     }
 \newtcolorbox{claimBox}{
     colframe=claimcolor,
     colback=claimcolor!25!white
     }
 \newtcolorbox{lemmaBox}{
-    colframe=yellow,
-    borderline west={6pt}{6pt}{yellow},
-    colback=yellow!25!white
+    colframe=lemmacolor,
+    borderline west={6pt}{6pt}{lemmacolor},
+    colback=lemmacolor!25!white
     }
 \newtcolorbox{exmpBox}{
     colframe=exmpcolor,
     borderline west={6pt}{0pt}{exmpcolor},
-    colback=exmpcolor!25!white
+    colback=exmpcolor!30!white
     }
 \newtcolorbox{remarkBox}{
     colframe=remarkcolor,
@@ -386,7 +387,7 @@ picture pathticks(path g, int n=1, real r=.5, real spacing=6, real s=8, pen p=cu
 \newcommand{\latinmodernsans}[1]{{\fontfamily{lmss}\selectfont #1}}
 \usepackage{courier}
 \newcommand{\courier}[1]{{\fontfamily{qcr}\selectfont #1}}
-\renewcommand{\emph}[1]{\textbf{\latinmodernsans{\textcolor{nyandarkgrn}{#1}}}}
+\renewcommand{\emph}[1]{\textbf{\latinmodernsans{\textcolor{nyanblue}{#1}}}}
 %---------------------------------------------
 %sections, toc etc; thanks to chdenmathcounts for 
 %letting me copypaste parts of his sty lmao
@@ -395,7 +396,7 @@ picture pathticks(path g, int n=1, real r=.5, real spacing=6, real s=8, pen p=cu
 \newcommand{\toc}{
 {\hypersetup{
 	citecolor=black,
-	filecolor=nyandarkgrn,
+	filecolor=nyanblue,
 	linkcolor=black,
 	urlcolor=black}
 \emph{\tableofcontents}\newpage % the numbers on RHS of toc are wrong font but who cares
@@ -406,23 +407,23 @@ picture pathticks(path g, int n=1, real r=.5, real spacing=6, real s=8, pen p=cu
     \textit{Produced using nyanya1.sty}
     \end{center}}{}{}% i'm too lazy to change font for \maketitle lol
 % regular sections
-\titleformat{\section}{\fontfamily{lmss}\selectfont\Large\bfseries\color{nyandarkgrn}}{
+\titleformat{\section}{\fontfamily{lmss}\selectfont\Large\bfseries\color{nyanblue}}{
     {\S\thesection}}{1em}{}
 
-\titleformat{\subsection}{\fontfamily{lmss}\large\bfseries\color{nyandarkgrn}}{
+\titleformat{\subsection}{\fontfamily{lmss}\large\bfseries\color{nyanblue}}{
     {\selectfont\thesubsection}}{1em}{}
-\titleformat{\subsubsection}{\fontfamily{lmss}\selectfont\bfseries\color{nyandarkgrn}}{
+\titleformat{\subsubsection}{\fontfamily{lmss}\selectfont\bfseries\color{nyanblue}}{
     {\thesubsubsection}}{1em}{}
 
 % (sub)(sub)sections, unnumbered, THESE DO NOT APPEAR IN TOC!
 \newcommand{\sctn}[1]{{
-    \latinmodernsans{\textcolor{nyandarkgrn}{
+    \latinmodernsans{\textcolor{nyanblue}{
         \noindent\newline 
         \textbf{\Large{#1}
         \newline\noindent
     }}}}}
 \newcommand{\subsctn}[1]{
-    \latinmodernsans{\textcolor{nyandarkgrn}{\noindent\newline
+    \latinmodernsans{\textcolor{nyanblue}{\noindent\newline
         \textbf{\large{#1}
         \newline\noindent
     }}}}
