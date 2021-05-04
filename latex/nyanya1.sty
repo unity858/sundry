@@ -289,13 +289,13 @@ picture pathticks(path g, int n=1, real r=.5, real spacing=6, real s=8, pen p=cu
 %colors, for tcolorbox
 % Theme: nyan cat colors
 \RequirePackage[most]{tcolorbox}
-\definecolor{probcolor}{HTML}{FF0090}%\problem color, needs change/improvement
+\definecolor{probcolor}{HTML}{FF0090}%\problem/example color, needs change/improvement
 \definecolor{white}{HTML}{FFFFFF}%dont remove this one
 \definecolor{black}{HTML}{000000}% or this one
 \definecolor{remarkcolor}{HTML}{FF9898}%\remark color, needs change/improvement
 \definecolor{claimcolor}{HTML}{F5C596}%\claim color, needs change/improvement
 \definecolor{nyanblue}{HTML}{003366}%personal color, from nyan cat
-\definecolor{exmpcolor}{HTML}{FD99FD}%\example color, needs change/improvement
+\definecolor{theocolor}{HTML}{FD99FD}%\theo color, needs change/improvement
 \definecolor{lemmacolor}{HTML}{F5C596}%\lemma color, needs change/improvement
 % (change hex codes to your taste to change box colors, its done rather automatically)
 %
@@ -313,10 +313,10 @@ picture pathticks(path g, int n=1, real r=.5, real spacing=6, real s=8, pen p=cu
     borderline west={6pt}{6pt}{lemmacolor},
     colback=lemmacolor!25!white
     }
-\newtcolorbox{exmpBox}{
-    colframe=exmpcolor,
-    borderline west={6pt}{0pt}{exmpcolor},
-    colback=exmpcolor!30!white
+\newtcolorbox{theoBox}{
+    colframe=theocolor,
+    borderline west={6pt}{0pt}{theocolor},
+    colback=theocolor!30!white
     }
 \newtcolorbox{remarkBox}{
     colframe=remarkcolor,
@@ -337,11 +337,14 @@ picture pathticks(path g, int n=1, real r=.5, real spacing=6, real s=8, pen p=cu
     \end{problemBox}}
 \newcounter{exmpnum}
 \newcommand{\example}[2][source unknown]{\stepcounter{exmpnum}
-    \begin{exmpBox}\latinmodernsans{\textbf{Example \theexmpnum(#1).\enskip}}#2\end{exmpBox}
+    \begin{problemBox}\latinmodernsans{\textbf{Example \theexmpnum(#1).\enskip}}#2\end{problemBox}
     }
 \newcommand{\exmp}[2][source unknown]{
-    \begin{exmpBox}\latinmodernsans{\textbf{Example (#1).\enskip}}#2\end{exmpBox}
+    \begin{problemBox}\latinmodernsans{\textbf{Example (#1).\enskip}}#2\end{problemBox}
     }
+\newcommand{\theo}[1]{
+	\begin{theoBox}\latinmodernsans{\textbf{Theorem.\enskip}}#1\end{theoBox}
+	}
 \newcommand{\claim}[1]{
     \begin{claimBox}\latinmodernsans{\textbf{Claim.\enskip}}#1\end{claimBox}
     }
