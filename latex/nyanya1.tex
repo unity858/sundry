@@ -2,14 +2,13 @@
 \usepackage{nyanya1}
 \title{nyanya1.sty Sample}
 \author{Neal Yan}
-\date{April 2021}
-% the tex code for a sample file, using nyanya1.sty
+\date{April 2021\\ Presenting the most garish color theme to ever exist}
 
 \begin{document}
 
 \maketitle
 
-
+\toc
 
 \section{This is a section header}
 \subsection{Subsection appearance}
@@ -33,7 +32,7 @@ After noticing the lack of absolute value bars and the evaluated-at thing, the f
 \courier{\textbackslash evalat[upper number]\{lower number\}}$\Rightarrow\evalat[\text{first argument}]{\text{second argument}}$.
 
 \subsection{Floors/ceilings}
-Due to personal need\footnote{Ross quiz, anyone?}, I've defined floor brackets because ``\courier{\textbackslash lfloor \dots \textbackslash  rfloor}" was too tedious to repeat.  Furthermore, the brackets can be of specified size. The basic commands are \courier{\textbackslash floor} and \courier{\textbackslash ceil}. They may be made larger by prefixing \courier{big}, \courier{bigg}, or \courier{Bigg} before \courier{floor\{...\}}/\courier{ceil\{...\}}:
+Due to personal need\footnote{Ross quiz, anyone?}, I've defined floor brackets because ``\courier{\textbackslash lfloor \dots \textbackslash  rfloor}" was too tedious to repeat.  Furthermore, the brackets can be of specified size. The basic commands are \courier{\textbackslash floor} and \courier{\textbackslash ceil}. They may be made larger by prefixing \courier{big}, \courier{bigg}, or \courier{Bigg} before \courier{floor\{...\}}/\courier{ceil\{...\}}, which already include \courier{\textbackslash left} and \courier{\textbackslash right} and will change size as according to what is within the floor/ceil bars:
 \begin{center}
 \begin{tabular}{c|c|c|c|c}
     \emph{Command} & \courier{\textbackslash floor} & \courier{\textbackslash bigfloor} & \courier{\textbackslash biggfloor} & \courier{\textbackslash Biggfloor}\\\hline
@@ -53,7 +52,7 @@ I also found typing \courier{\textbackslash mathbb\{R\}} for $\R$ too tedious to
 
 \section{Fonts/text formatting}
 
-Two fonts other than the default are provided: \courier{Courier New} and \latinmodernsans{Latin Modern Sans}, which are accessed by \courier{\textbackslash courier\{...\}} and \courier{\textbackslash latinmodernsans\{...\}}, respectively.
+Two commonly used fonts are provided: \courier{Courier New} and \latinmodernsans{Latin Modern Sans}, which are accessed by \courier{\textbackslash courier\{...\}} and \courier{\textbackslash latinmodernsans\{...\}}, respectively.
 To \emph{emphasize} a word, the command \courier{\textbackslash emph} is still used.
 
 As for the environments \courier{enumerate}, \courier{itemize}, and \courier{enumitem}, I'm too lazy to change those, lel.
@@ -65,28 +64,32 @@ Also, the command \courier{\textbackslash solution}(which compiles as "\textit{S
 
 \courier{\textbackslash problem[optional argument for source]\{problem text\}}. When the first argument is omitted, it will display ``source unknown" in place of a source.}
 \example{The appearance of an example. Its use and function is identical to that of \courier{problem}, but its command is differently-named and its appearance is different: \courier{\textbackslash example[...]\{...\}}.}
+\theorem{Theorems and definitions are this color. (\courier{\textbackslash theorem})}
+\definition{About the same. (\courier{\textbackslash definition})}
 \lemma{The boxes are all relatively similar, except for the different colors. Lemma boxes may be called by \courier{\textbackslash lemma\{lemma text\}}.}
 \claim{This box is similar to \courier{\textbackslash lemma}, but color-coded differently. The command for this box is \courier{\textbackslash claim\{...\}}.}
 \pro{I do not think proofs need their own box... at least not now. The command for proofs like this one is \courier{\textbackslash pro\{proof text\}}.}
 
-\remark{Remarks are called by \courier{\textbackslash remark\{...\}}.}
+\remark{The tasteless color theme is from Nyan Cat(excluding the rainbows), judge me. Oh, and remarks are called by \courier{\textbackslash remark\{...\}}. I'm also too lazy to choose different colors for \courier{lemma} and \courier{claim}.}
 
 Oh, and to remove the labeling numbers, use a shortened version of the original command:
 \begin{center}
-\begin{tabular}{c|c|c|c}
-    \emph{Original}& \courier{\textbackslash (sub)(sub)section} & \courier{\textbackslash problem} & \courier{\textbackslash example}\\\hline
-    \emph{Shortened}& \courier{\textbackslash (sub)(sub)sctn} & \courier{\textbackslash prob} & \courier{\textbackslash exmp}
+\begin{tabular}{c|c|c|c|c|c}
+    \emph{Original}& \courier{\textbackslash (sub)(sub)section} & \courier{\textbackslash problem} & \courier{\textbackslash example}&\courier{\textbackslash theorem}&\courier{definition}\\\hline
+    \emph{Shortened}& \courier{\textbackslash (sub)(sub)sctn} & \courier{\textbackslash prob} & \courier{\textbackslash exmp}&\courier{\textbackslash theo}&\courier{\textbackslash defn}
 \end{tabular}  
 \end{center}
 
 The other commands do not have abbreviated versions.
 
-\emph{Table of Contents: }Currently, for me, \courier{\textbackslash tableofcontents} doesn't work for some reason. Once it works, \courier{\textbackslash toc} will be defined.
+\emph{Table of Contents: }it finally worked!!!! Command is \courier{\textbackslash toc}.
 
 \section{Exercises}
 \noindent
-\exercise[orig]{Usage is identical to that of \courier{\textbackslash problem}, except that there is no shortened command for exclusion of the problem number. Command used for this is \courier{\textbackslash exercise[...]\{...\}}}
-\exercise[NARML]{Another exercise. (No, jk, this isn't from NARML...)}
+\exercise The bolded problem number and label is called by \courier{\textbackslash exercise}. (who needs inputs lol)
+\exercise Another exercise. (No, jk, this isn't from NARML...)
+\\[4pt]
+That's about all nyanya1.sty has to it!\\
 
-That's about all nyanya1.sty has to it!
+\remark{This is my first .sty, and in future stys I will improve the color theme and change up the fonts.}
 \end{document}
