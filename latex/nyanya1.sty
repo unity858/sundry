@@ -295,7 +295,7 @@ picture pathticks(path g, int n=1, real r=.5, real spacing=6, real s=8, pen p=cu
 \definecolor{remarkcolor}{HTML}{FF9898}%\remark color, needs change/improvement
 \definecolor{claimcolor}{HTML}{F5C596}%\claim color, needs change/improvement
 \definecolor{nyanblue}{HTML}{003366}%personal color, from nyan cat
-\definecolor{theocolor}{HTML}{FD99FD}%\theo color, needs change/improvement
+\definecolor{theocolor}{HTML}{FD99FD}%\example color, needs change/improvement
 \definecolor{lemmacolor}{HTML}{F5C596}%\lemma color, needs change/improvement
 % (change hex codes to your taste to change box colors, its done rather automatically)
 %
@@ -342,9 +342,6 @@ picture pathticks(path g, int n=1, real r=.5, real spacing=6, real s=8, pen p=cu
 \newcommand{\exmp}[2][source unknown]{
     \begin{problemBox}\latinmodernsans{\textbf{Example (#1).\enskip}}#2\end{problemBox}
     }
-\newcommand{\theo}[1]{
-	\begin{theoBox}\latinmodernsans{\textbf{Theorem.\enskip}}#1\end{theoBox}
-	}
 \newcommand{\claim}[1]{
     \begin{claimBox}\latinmodernsans{\textbf{Claim.\enskip}}#1\end{claimBox}
     }
@@ -353,6 +350,18 @@ picture pathticks(path g, int n=1, real r=.5, real spacing=6, real s=8, pen p=cu
     }
 \newcommand{\remark}[1]{
     \begin{remarkBox}\latinmodernsans{\textit{Remark.\enskip}}#1\end{remarkBox}
+    }
+\newcounter{theonum}
+\newcommand{\theorem}[1]{\stepcounter{theonum}
+    \begin{theoBox}\latinmodernsans{\textbf{Theorem \thetheonum.\enskip}}#1\end{theoBox}
+    }
+\newcommand{\theo}[1]{\begin{theoBox}\latinmodernsans{\textbf{Theorem.\enskip}}#1\end{theoBox}}
+\newcounter{defnum}
+\newcommand{\definition}[1]{\stepcounter{defnum}
+    \begin{theoBox}\latinmodernsans{\textbf{Definition \thedefnum.\enskip}}#1\end{theoBox}
+    }
+\newcommand{\defn}[1]{
+    \begin{theoBox}\latinmodernsans{\textbf{Definition.\enskip}}#1\end{theoBox}
     }
 \newcommand{\pro}[1]{\begin{proof}#1\end{proof}}
 %---------------------------------------------
@@ -392,8 +401,7 @@ picture pathticks(path g, int n=1, real r=.5, real spacing=6, real s=8, pen p=cu
 \newcommand{\courier}[1]{{\fontfamily{qcr}\selectfont #1}}
 \renewcommand{\emph}[1]{\textbf{\latinmodernsans{\textcolor{nyanblue}{#1}}}}
 %---------------------------------------------
-%sections, toc etc; thanks to chdenmathcounts for 
-%letting me copypaste parts of his sty lmao
+%sections, toc etc; thanks to chdenmathcounts for letting me copypaste parts of his sty lmao
 % toc w/ hyperrefs
 \setcounter{tocdepth}{3}
 \newcommand{\toc}{
@@ -402,17 +410,16 @@ picture pathticks(path g, int n=1, real r=.5, real spacing=6, real s=8, pen p=cu
 	filecolor=nyanblue,
 	linkcolor=black,
 	urlcolor=black}
-\emph{\tableofcontents}\newpage % the numbers on RHS of toc are wrong font but who cares
+\emph{\tableofcontents}\newpage
 }}
 % section packages
 \usepackage{titling,titlesec,setspace}
-\apptocmd{\maketitle}{\\\begin{center}
+\apptocmd{\maketitle}{\begin{center}
     \textit{Produced using nyanya1.sty}
     \end{center}}{}{}% i'm too lazy to change font for \maketitle lol
 % regular sections
 \titleformat{\section}{\fontfamily{lmss}\selectfont\Large\bfseries\color{nyanblue}}{
     {\S\thesection}}{1em}{}
-
 \titleformat{\subsection}{\fontfamily{lmss}\large\bfseries\color{nyanblue}}{
     {\selectfont\thesubsection}}{1em}{}
 \titleformat{\subsubsection}{\fontfamily{lmss}\selectfont\bfseries\color{nyanblue}}{
