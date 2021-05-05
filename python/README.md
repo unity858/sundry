@@ -1,5 +1,9 @@
-Hello! This is a compilation of original Python scripts I used to accelerate my math homework completion. 
+Hello! This is a compilation of original Python scripts.
 
-Anyone is free to use them, you don't even have to give me credit, they merely exist to make math homework take up less of one's time.
+hpc-scripts.py is for school, and other students may find it as an accelerator of their homework completion as well.
+
+nt-scripts.py is for number-theoretic procedures, in general, outside of school.
+
+Anyone is free to use them, you don't even have to give me credit, these scripts only exist to make repetitive tasks as simple as clicking "run"!
 
 (just pleeeeeaase don't get me into trouble lel)
