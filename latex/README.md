@@ -1,1 +1,1 @@
-definitely creating a new sty later; might create one for usamts lel
+definitely creating a new sty later; need a fancier one then the elementary nyanya.sty
