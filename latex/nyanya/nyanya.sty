@@ -416,9 +416,13 @@ picture pathticks(path g, int n=1, real r=.5, real spacing=6, real s=8, pen p=cu
     Problem \theexercisenum.\enskip}
     }
 %---------------------------------------------
-%sections, toc etc; thanks to chdenmathcounts for letting me copypaste parts of his sty lmao
+%sections, toc, title; thanks to chdenmathcounts for letting me copypaste parts of his sty lmao
 %title patches
-\patchcmd{\maketitle}{\@title}{\emph{\@title}}
+\usepackage{titling,titlesec,setspace}
+\apptocmd{\maketitle}{\begin{center}
+    \textit{Produced using nyanya1.sty}
+    \end{center}}{}{}
+\patchcmd{\@maketitle}{\@title}{\emph{\@title}}
 % toc w/ hyperrefs
 \setcounter{tocdepth}{3}
 \newcommand{\toc}{
@@ -429,11 +433,6 @@ picture pathticks(path g, int n=1, real r=.5, real spacing=6, real s=8, pen p=cu
 	urlcolor=black}
 \emph{\tableofcontents}\newpage
 }}
-% section packages
-\usepackage{titling,titlesec,setspace}
-\apptocmd{\maketitle}{\begin{center}
-    \textit{Produced using nyanya1.sty}
-    \end{center}}{}{}% i'm too lazy to change font for \maketitle lol
 % regular sections
 \titleformat{\section}{\fontfamily{lmss}\selectfont\Large\bfseries\color{nyanblue}}{
     {\S\thesection}}{1em}{}
