@@ -417,6 +417,8 @@ picture pathticks(path g, int n=1, real r=.5, real spacing=6, real s=8, pen p=cu
     }
 %---------------------------------------------
 %sections, toc etc; thanks to chdenmathcounts for letting me copypaste parts of his sty lmao
+%title patches
+\patchcmd{\maketitle}{\@title}{\emph{\@title}}
 % toc w/ hyperrefs
 \setcounter{tocdepth}{3}
 \newcommand{\toc}{
