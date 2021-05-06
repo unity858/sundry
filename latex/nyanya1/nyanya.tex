@@ -1,6 +1,6 @@
 \documentclass{article}
 \usepackage{nyanya}
-\title{nyanya1.sty Sample}
+\title{nyanya.sty Sample}
 \author{Neal Yan}
 \date{April 2021\\ Presenting the most garish color theme to ever exist}
 
@@ -13,81 +13,78 @@
 \section{This is a section header}
 \subsection{Subsection appearance}
 
-The command for (sub)(sub)section has not changed, although its appearance has: \courier{\textbackslash(sub)(sub)section}.
+The command for (sub)(sub)section has not changed, although its appearance has: \texttt{\textbackslash(sub)(sub)section}.
 
 \subsubsection{Just in case you need these.}
 
-There is a slight possibility of the necessity of this command, \courier{\textbackslash subsubsection}, I guess.
+There is a slight possibility of the necessity of this command, \texttt{\textbackslash subsubsection}, I guess.
 
 \section{Math commands}
 
-A few math commands have been defined, such as \courier{\textbackslash sym} and \courier{\textbackslash cyc}, which appear as $\sym$ and $\cyc$, respectively\footnote{Inspired by shootinglucky in his \emph{lucky.sty}}.
+A few math commands have been defined, such as \texttt{\textbackslash sym} and \texttt{\textbackslash cyc}, which appear as $\sym$ and $\cyc$, respectively\footnote{Inspired by shootinglucky in his \emph{lucky.sty}}.
 
 \subsection{Between bars}
 
 After noticing the lack of absolute value bars and the evaluated-at thing, the following were defined: 
 
-\courier{\textbackslash abs\{...\}}$\Rightarrow\abs{\dots}$;
+\texttt{\textbackslash abs\{...\}}$\Rightarrow\abs{\dots}$;
 
-\courier{\textbackslash evalat[upper number]\{lower number\}}$\Rightarrow\evalat[\text{first argument}]{\text{second argument}}$.
+\texttt{\textbackslash evalat[upper number]\{lower number\}}$\Rightarrow\evalat[\text{first argument}]{\text{second argument}}$.
 
 \subsection{Floors/ceilings}
-Due to personal need\footnote{Ross quiz, anyone?}, I've defined floor brackets because ``\courier{\textbackslash lfloor \dots \textbackslash  rfloor}" was too tedious to repeat.  Furthermore, the brackets can be of specified size. The basic commands are \courier{\textbackslash floor} and \courier{\textbackslash ceil}. They may be made larger by prefixing \courier{big}, \courier{bigg}, or \courier{Bigg} before \courier{floor\{...\}}/\courier{ceil\{...\}}, which already include \courier{\textbackslash left} and \courier{\textbackslash right} and will change size as according to what is within the floor/ceil bars:
+Due to personal need\footnote{Ross quiz, anyone?}, I've defined floor brackets because ``\texttt{\textbackslash lfloor \dots \textbackslash  rfloor}" was too tedious to repeat.  Furthermore, the brackets can be of specified size. The basic commands are \texttt{\textbackslash floor} and \texttt{\textbackslash ceil}. They may be made larger by prefixing \texttt{big}, \texttt{bigg}, or \texttt{Bigg} before \texttt{floor\{...\}}/\texttt{ceil\{...\}}, which already include \texttt{\textbackslash left} and \texttt{\textbackslash right} and will change size as according to what is within the floor/ceil bars:
 \begin{center}
 \begin{tabular}{c|c|c|c|c}
-    \emph{Command} & \courier{\textbackslash floor} & \courier{\textbackslash bigfloor} & \courier{\textbackslash biggfloor} & \courier{\textbackslash Biggfloor}\\\hline
+    \emph{Command} & \texttt{\textbackslash floor} & \texttt{\textbackslash bigfloor} & \texttt{\textbackslash biggfloor} & \texttt{\textbackslash Biggfloor}\\\hline
     \emph{Appearance} & $\floor{\enskip}$ & $\bigfloor{\enskip}$ & $\biggfloor{\enskip}$ & $\Biggfloor{\enskip}$ \\
 \end{tabular}  
 \end{center}
 
 \subsection{Sets}
 
-I also found typing \courier{\textbackslash mathbb\{R\}} for $\R$ too tedious to repeat, so I shortened it to \courier{\textbackslash R}. Similar commands exist for $\N,\Z,\Q$, and $\C$:
+I also found typing \texttt{\textbackslash mathbb\{R\}} for $\R$ too tedious to repeat, so I shortened it to \texttt{\textbackslash R}. Similar commands exist for $\N,\Z,\Q$, and $\C$:
 \begin{center}
 \begin{tabular}{c|c|c|c|c|c}
-\emph{Command}& \courier{\textbackslash N} & \courier{\textbackslash Z} & \courier{\textbackslash Q} & \courier{\textbackslash R} & \courier{\textbackslash C}\\\hline
+\emph{Command}& \texttt{\textbackslash N} & \texttt{\textbackslash Z} & \texttt{\textbackslash Q} & \texttt{\textbackslash R} & \texttt{\textbackslash C}\\\hline
 \emph{Appearance}& $\N$ & $\Z$ & $\Q$ & $\R$ & $\C$
 \end{tabular}  
 \end{center}
 
 \section{Fonts/text formatting}
 
-Two commonly used fonts are provided: \courier{Courier New} and \latinmodernsans{Latin Modern Sans}, which are accessed by \courier{\textbackslash courier\{...\}} and \courier{\textbackslash latinmodernsans\{...\}}, respectively.
-To \emph{emphasize} a word, the command \courier{\textbackslash emph} is still used.
+Two commonly used fonts are provided: \texttt{Courier New} and \latinmodernsans{Latin Modern Sans}, which are accessed by \texttt{\textbackslash texttt\{...\}} and \texttt{\textbackslash latinmodernsans\{...\}}, respectively.
+To \emph{emphasize} a word, the command \texttt{\textbackslash emph} is still used.
 
-As for the environments \courier{enumerate}, \courier{itemize}, and \courier{enumitem}, I'm too lazy to change those, lel.
+As for the environments \texttt{enumerate}, \texttt{itemize}, and \texttt{enumitem}, I'm too lazy to change those, lel.
 
-Also, the command \courier{\textbackslash solution}(which compiles as "\textit{Solution. }", because \courier{\textbackslash textit\{Solution. \}} is also rather long.
+Also, the command \texttt{\textbackslash solution}(which compiles as "\textit{Solution. }", because \texttt{\textbackslash textit\{Solution. \}} is also rather long.
 
 \section{Fancy stuff}
-\problem{The appearance of a problem. It is called by the command 
+\problem{The appearance of a problem/example. It is called by the command 
 
-\courier{\textbackslash problem[optional argument for source]\{problem text\}}. When the first argument is omitted, it will display ``source unknown" in place of a source.}
-\example{The appearance of an example. Its use and function is identical to that of \courier{problem}, but its command is differently-named and its appearance is different: \courier{\textbackslash example[...]\{...\}}.}
-\theorem{Theorems and definitions are this color. (\courier{\textbackslash theorem})}
-\definition{About the same. (\courier{\textbackslash definition})}
-\lemma{The boxes are all relatively similar, except for the different colors. Lemma boxes may be called by \courier{\textbackslash lemma\{lemma text\}}.}
-\claim{This box is similar to \courier{\textbackslash lemma}, but color-coded differently. The command for this box is \courier{\textbackslash claim\{...\}}.}
-\pro{I do not think proofs need their own box... at least not now. The command for proofs like this one is \courier{\textbackslash pro\{proof text\}}.}
+\texttt{\textbackslash problem/example[optional argument for source]\{problem text\}}. When the first argument is omitted, it will display ``source unknown" in place of a source.}
+\theorem{Theorems and definitions are this color. (\texttt{\textbackslash theorem/definition\{\}})}
+\lemma{Lemmas/claims are this color. (\texttt{\textbackslash lemma/claim\{\}})}
+\pro{I do not think proofs need their own box... at least not now. The command for proofs like this one is \texttt{\textbackslash pro\{proof text\}}.}
 
-\remark{The tasteless color theme is from Nyan Cat(excluding the rainbows), judge me. Oh, and remarks are called by \courier{\textbackslash remark\{...\}}. I'm also too lazy to choose different colors for \courier{lemma} and \courier{claim}.}
+\remark{The tasteless color theme is from Nyan Cat(excluding the rainbows), judge me. Oh, and remarks are called by \texttt{\textbackslash remark\{...\}}.}
 
 Oh, and to remove the labeling numbers, use a shortened version of the original command:
 \begin{center}
 \begin{tabular}{c|c|c|c|c|c}
-    \emph{Original}& \courier{\textbackslash (sub)(sub)section} & \courier{\textbackslash problem} & \courier{\textbackslash example}&\courier{\textbackslash theorem}&\courier{definition}\\\hline
-    \emph{Shortened}& \courier{\textbackslash (sub)(sub)sctn} & \courier{\textbackslash prob} & \courier{\textbackslash exmp}&\courier{\textbackslash theo}&\courier{\textbackslash defn}
+    \emph{Original}& \texttt{\textbackslash (sub)(sub)section} & \texttt{\textbackslash problem} & \texttt{\textbackslash example}&\texttt{\textbackslash theorem}&\texttt{definition}\\\hline
+    \emph{Shortened}& \texttt{\textbackslash (sub)(sub)sctn} & \texttt{\textbackslash prob} & \texttt{\textbackslash exmp}&\texttt{\textbackslash theo}&\texttt{\textbackslash defn}
 \end{tabular}  
 \end{center}
 
 The other commands do not have abbreviated versions.
 
-\emph{Table of Contents: }it finally worked!!!! Command is \courier{\textbackslash toc}.
+\emph{Table of Contents: }it finally worked!!!! Command is \texttt{\textbackslash toc}.
 
 \section{Exercises}
 \noindent
-\exercise The bolded problem number and label is called by \courier{\textbackslash exercise}. (who needs inputs lol)
-\exercise Another exercise. (No, jk, this isn't from NARML...)
+\exercise The bolded problem number and label is called by \texttt{\textbackslash exercise}. (who needs inputs lol)
+\exercise Another exercise. 
 \\[4pt]
 That's about all nyanya1.sty has to it!\\
 
