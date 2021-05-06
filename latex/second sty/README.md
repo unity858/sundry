@@ -1,1 +1,1 @@
-Second sty coming soon, with mdframed and fancier fonts.
+Seto.sty is not even complete, please don't try to use it.
