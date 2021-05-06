@@ -1,0 +1,383 @@
+%---------------------------------------------
+%info
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{seto}[2021/05/05]
+%% package name: seto.sty 
+%% Copyright 2021 by Neal Yan
+%
+% "shhhh im stealing a friend's name lolollololol"
+%
+% This program can redistributed and/or modified under the terms 
+% of the LaTeX Project Public License Distributed from CTAN 
+% archives in directory macros/latex/base/lppl.txt; either 
+% version 1 of the License, or (at your option) any later version.
+%
+%---------------------------------------------
+%asymptote
+\RequirePackage[inline]{asymptote}
+\begin{asydef}
+// OLYMPIAD.ASY; COPYPASTED FROM https://math.berkeley.edu/~monks/images/olympiad.asy
+///////////////////////////////////////////////////
+// Olympiad Asymptote Package
+// By Maria Monks and AoPS Community
+// Last Updated: 08/26/2007
+/////////////////////////////////////////////////////
+size(6cm);
+include graph;
+include math;
+real markscalefactor=0.03;
+
+// useful pts
+// (0,0)-> origin;
+pair origin;
+origin=(0,0);
+
+// The point r of the way along path p with respect to arc length, where r is a real value between 0 and 1 inclusive:
+pair waypoint(path p, real r)
+{ 
+	return point(p,reltime(p,r));
+}
+
+// The midpoint of path p:
+pair midpoint(path p){ return waypoint(p,.5);}
+
+// The foot of the perpendicular from P to line AB:
+pair foot(pair P,pair A, pair B)
+{ 
+	real s; 
+	s=dot(P-A,unit(B-A)); 
+	return (scale(s)*unit(B-A)+A);
+}
+
+// The point on the angle bisector of <ABC that is a unit distance from B.
+// If only two points A and B are specified, the function returns a point
+// on the perpendicular bisector of AB, a unit distance from the segment. 
+pair bisectorpoint(pair A ... pair[] BC)
+{
+	pair P,B,C,M; 
+	if (BC.length==1) 
+	{  
+		B=BC[0];  
+		M=midpoint(A--B);  
+		P=unit(rotate(90,M)*A-M)+M; 
+	} 
+	else if (BC.length==2) 
+	{  
+		B=BC[0];  
+		C=BC[1];  
+		P=unit(midpoint((unit(A-B)+B)--(unit(C-B)+B))-B)+B; 
+	} 
+	return P;
+}
+
+///////////////////////////////////////////
+// CIRCLES
+///////////////////////////////////////////
+
+// CIRCUMCIRCLE: //
+
+// The circumcenter of triangle ABC:
+pair circumcenter(pair A=(0,0), pair B=(0,0), pair C=(0,0))
+{ 
+	pair M,N,P,Q; 
+	M=midpoint(A--B); 
+	N=midpoint(B--C); 
+	P=rotate(90,M)*A; 
+	Q=rotate(90,N)*B; 
+	return extension(M,P,N,Q);
+}
+
+// The circumradius of triangle ABC:
+real circumradius(pair A,pair B,pair C)
+{ 
+	return abs(circumcenter(A,B,C)-A);
+}
+
+// The circumcircle of triangle ABC:
+guide circumcircle(pair A=(0,0), pair B=(0,0), pair C=(0,0))
+{ 
+	return Circle(circumcenter(A,B,C),circumradius(A,B,C));
+}
+
+// INCIRCLE: //
+
+// The incenter of triangle ABC:
+pair incenter(pair A=(0,0), pair B=(0,0), pair C=(0,0))
+{ 
+	pair P,Q; 
+	P=rotate((angle(C-A)-angle(B-A))*90/pi,A)*B; 
+	Q=rotate((angle(A-B)-angle(C-B))*90/pi,B)*C; 
+	return extension(A,P,B,Q);
+}
+
+// The inradius of triangle ABC:
+real inradius(pair A,pair B,pair C)
+{ 
+	real a,b,c,s; 
+	a=abs(B-C); 
+	b=abs(A-C); 
+	c=abs(B-A); 
+	s=(a+b+c)/2; 
+	return sqrt(s*(s-a)*(s-b)*(s-c))/s;}
+
+// The inscribed circle of triangle ABC:
+guide incircle(pair A=(0,0), pair B=(0,0), pair C=(0,0))
+{ 
+	return Circle(incenter(A,B,C),inradius(A,B,C));
+}
+
+// The nth point of tangency from a point P to the circle with center O and radius r
+// where n can be 1 or 2 - the points of tangency are labeled in counterclockwise order around the circle.
+// If P is inside the circle, the center of the circle is returned rather than an error.
+pair tangent(pair P, pair O, real r, int n=1)
+{  
+	real d,R;  
+	pair X,T;  
+	d=abs(P-O);  
+	if (d<r) return O;  
+	R=sqrt(d^2-r^2);  
+	X=intersectionpoint(circle(O,r),O--P);  
+	if (n==1)
+	{    
+		T=intersectionpoint(circle(P,R),Arc(O,r,degrees(X-O),degrees(X-O)+180));    
+	}  
+	else if (n==2)
+	{    
+		T=intersectionpoint(circle(P,R),Arc(O,r,degrees(X-O)+180,degrees(X-O)+360));    
+	}  
+	else {T=O;}  
+	return T;
+}
+
+// Returns true if ABCD is a cyclic quadrilateral
+// Tests if the circumcenters of ABC and ABD are equal within 10^(-5) 
+bool cyclic(pair A, pair B, pair C, pair D) 
+{ 
+	if (abs(circumcenter(A,B,C).x-circumcenter(A,B,D).x)<1/10^(5) && abs(circumcenter(A,B,C).y-circumcenter(A,B,D).y)<1/10^(5)) return true;
+    else return false; 
+}
+
+///////////////////////////////////////////
+// COLLINEARITY AND CONCURRENCY
+///////////////////////////////////////////
+
+// Returns true if the lines AB, CD, EF are concurrent 
+// within 10^(-5) (to avoid approximation errors),
+// or if AB, CD, EF are mutually parallel, intersecting at infinity.
+bool concurrent(pair A, pair B, pair C, pair D, pair E, pair F)
+{ 
+	if ( abs(extension(A,B,C,D).x-extension(C,D,E,F).x)<1/10^(5) &&       
+		 abs(extension(A,B,C,D).y-extension(C,D,E,F).y)<1/10^(5) ||     
+		 (extension(A,B,C,D)==(infinity,infinity) && 
+		 (infinity,infinity)==extension(C,D,E,F))) 
+	return true; 
+	else return false;
+}
+
+// Returns true if points A, B, and C are collinear.
+bool collinear(pair A, pair B, pair C)
+{ 
+	if (A==B || B==C || A==C || abs(unit(B-A)-unit(C-A))<1/10^5 || abs(unit(B-A)+unit(C-A))<1/10^5)  
+	return true; 
+	else return false;
+}
+
+///////////////////////////////////////////
+// TRIANGLES AND ASSOCIATED POINTS
+///////////////////////////////////////////
+
+// The centroid of triangle ABC:
+pair centroid(pair A, pair B, pair C)
+{ 
+	return (A+B+C)/3;
+}
+
+// The orthocenter of triangle ABC:
+pair orthocenter(pair A, pair B, pair C)
+{ 
+return extension(A,foot(A,B,C),B,foot(B,A,C));
+}
+
+///////////////////////////////////////////
+// TICKMARKS AND ANGLE MARKS
+///////////////////////////////////////////
+
+// Returns a right angle mark at B given a right angle ABC
+// The optional argument s specifies the side length of the mark in ps points:
+
+path rightanglemark(pair A, pair B, pair C, real s=8)
+{ 
+	pair P,Q,R; 
+	P=s*markscalefactor*unit(A-B)+B; 
+	R=s*markscalefactor*unit(C-B)+B; 
+	Q=P+R-B; 
+	return P--Q--R;
+}
+
+// Returns an angle mark on angle ABC consisting of several arcs centered at B.
+// The optional arguments t, s[] specify the radius of the arcs in increasing order:
+path anglemark(pair A, pair B, pair C, real t=8 ... real[] s)
+{ 
+	pair M,N,P[],Q[]; 
+	path mark; 
+	int n=s.length;
+	M=t*markscalefactor*unit(A-B)+B; 
+	N=t*markscalefactor*unit(C-B)+B; 
+	for (int i=0; i<n; ++i)  
+	{  
+		P[i]=s[i]*markscalefactor*unit(A-B)+B;  
+		Q[i]=s[i]*markscalefactor*unit(C-B)+B; 
+	} 
+	mark=arc(B,M,N); 
+	for (int i=0; i<n; ++i) 
+	{  
+		if (i%2==0)  
+		{   
+			mark=mark--reverse(arc(B,P[i],Q[i]));  
+		}  
+		else  
+		{   
+			mark=mark--arc(B,P[i],Q[i]);   
+		} 
+	} 
+	if (n%2==0 && n!=0) 
+	mark=(mark--B--P[n-1]); 
+	else if (n!=0) 
+	mark=(mark--B--Q[n-1]); 
+	else mark=(mark--B--cycle); 
+	return mark;
+}
+
+// A picture marking a path g with n ticks spaced spacing apart, with length s in ps points
+// such that the middle tick mark (or one of the two if n is even) is normal to g
+// and located r of the way along path g:
+picture pathticks(path g, int n=1, real r=.5, real spacing=6, real s=8, pen p=currentpen)
+{ 
+	picture pict; 
+	pair A,B,C,direct; 
+	real t,l=arclength(g), space=spacing*markscalefactor, halftick=s*markscalefactor/2, startpt; 
+	if (n>0) 
+	{  
+		direct=unit(dir(g,arctime(g,r*l)));  
+		startpt=r*l-(n-1)/2*space;  
+		for (int i=0; i<n; ++i)  
+		{  
+			t=startpt+i*space;  
+			B=point(g,arctime(g,t))+(0,1)*halftick*direct;  
+			C=B+2*(0,-1)*halftick*direct;  
+			draw(pict,B--C,p);  
+		} 
+	} 
+	return pict;
+}
+\end{asydef}
+%---------------------------------------------
+%essential packages/ tikz stuff
+% minor issue: for csquotes, error with "no style for language 'nil' "
+\RequirePackage{tikz,tkz-euclide}
+\usetikzlibrary{calc}
+\RequirePackage{babel}
+\RequirePackage[margin=1in]{geometry} %keep before fancyhdr to make margins work
+\RequirePackage[utf8]{inputenc} % inputenc b4 csquotes
+\RequirePackage{amsmath,amssymb,amsthm,csquotes,enumitem,etoolbox,fancyhdr,ifthen,
+    mathtools,,imakeidx,suffix,xstring,xcolor}
+\RequirePackage[hypertexnames=false]{hyperref}
+\RequirePackage[symbol]{footmisc}
+\RequirePackage[T1]{fontenc}
+%---------------------------------------------
+%fonts, text formatting
+\usepackage{roboto-mono}
+\usepackage{lato}
+\usepackage{Alegreya}
+\usepackage[light]{merriweather} % out of these packages, keep merriweather as last package out of these three, otherwise default font will change
+\renewcommand*\oldstylenums[1]{{\AlegreyaOsF #1}}
+\renewcommand{\emph}[1]{\textbf{{\lato\textcolor{nyandarkgrn}{#1}}}}
+%---------------------------------------------------------------
+%colors, for mdframed
+% Theme: forest? colors havent been changed yet
+\RequirePackage[framemethod=TikZ]{mdframed}
+% let's use mdframed already, its capabilities are a superset of those of tcolorbox
+\definecolor{probcolor}{HTML}{FF0090}
+\definecolor{white}{HTML}{FFFFFF}% do not remove
+\definecolor{black}{HTML}{000000}% do not remove
+\definecolor{remarkcolor}{HTML}{FF9898}
+\definecolor{claimcolor}{HTML}{F5C596}
+\definecolor{nyandarkgrn}{HTML}{0D534F}
+\definecolor{theocolor}{HTML}{FD99FD}
+\definecolor{lemmacolor}{HTML}{F5C596}
+% (change hex codes to your taste to change box colors, its done rather automatically)
+% box styles
+\global\mdfdefinestyle{probdefault}{% 
+    innerleftmargin=0.5cm,innertopmargin=0.25cm,innerbottommargin=0.25cm,linecolor=probcolor,linewidth=1.5pt,backgroundcolor=probcolor!25!white,roundcorner=5pt%
+    }
+\global\mdfdefinestyle{claimdefault}{% 
+    innerleftmargin=0.5cm,innertopmargin=0.25cm,innerbottommargin=0.25cm,
+    linecolor=claimcolor,linewidth=3pt,backgroundcolor=claimcolor!25!white,
+    topline=false,bottomline=false,rightline=false,leftline=true
+    }
+%cmds for convenience
+\newcounter{probnum}
+\newcommand{\problem}[2][source unknown]{\stepcounter{probnum}
+    \begin{mdframed}[style=probdefault]{\lato\bfseries Problem \theprobnum(#1).\enskip}#2\end{mdframed}
+    }
+\newcommand{\prob}[2][source unknown]{
+    \begin{mdframed}[style=probdefault]{\lato\bfseries Problem (#1).\enskip}#2\end{mdframed}
+    }
+\newcommand{\claim}[1]{
+    \begin{mdframed}[style=claimdefault]{\lato\bfseries Claim--\quad}#1\end{mdframed}
+    }
+%---------------------------------------------
+%math commands, from nyanya.sty
+%floor/ceil; im so smart idk what \left and \right are, smh
+\DeclarePairedDelimiter{\floor}{\left\lfloor}{\right\rfloor}
+\DeclarePairedDelimiter{\bigfloor}{\bigl\lfloor}{\bigr\rfloor}
+\DeclarePairedDelimiter{\biggfloor}{\biggl\lfloor}{\biggr\rfloor}
+\DeclarePairedDelimiter{\Biggfloor}{\Biggl\lfloor}{\Biggr\rfloor}
+\DeclarePairedDelimiter{\ceil}{\left\lceil}{\right\rceil}
+\DeclarePairedDelimiter{\bigceil}{\bigl\lceil}{\bigr\rceil}
+\DeclarePairedDelimiter{\biggceil}{\biggl\lceil}{\biggr\rceil}
+\DeclarePairedDelimiter{\Biggceil}{\Biggl\lceil}{\Biggr\rceil}
+% operators, middle two from lucky.sty
+\DeclareMathOperator{\nequiv}{\not\equiv}
+\DeclareMathOperator{\cyc}{\sum_{\text{cyc}}}
+\DeclareMathOperator{\sym}{\sum_{\text{sym}}}
+\DeclarePairedDelimiter\abs{\left|}{\right|}
+%sets
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+%---------------------------------------------
+%sections, theme undecided
+\setcounter{tocdepth}{3}
+\newcommand{\toc}{
+{\hypersetup{
+	citecolor=black,
+	filecolor=nyandarkgrn,
+	linkcolor=black,
+	urlcolor=black}
+\emph{\tableofcontents}\newpage
+}}
+% section packages
+\usepackage{titling,titlesec,setspace}
+\apptocmd{\maketitle}{\begin{center}
+    {\color{nyandarkgrn}\Alegreya Produced using seto.sty}
+    \end{center}}{}{} 
+\patchcmd{\@maketitle}{\@title}{{\AlegreyaMedium\color{nyandarkgrn}\@title}}{}{}
+\patchcmd{\@maketitle}{\@author}{{\Alegreya\color{nyandarkgrn}\@author}}{}{}
+\patchcmd{\@maketitle}{\@date}{{\Alegreya\color{nyandarkgrn}\@date}}{}{}
+
+% regular sections
+\titleformat{\section}{\AlegreyaMedium\Large\color{nyandarkgrn}}{
+    {\S\thesection}}{1em}{}
+\titleformat{\subsection}{\AlegreyaMedium\large\color{nyandarkgrn}}{
+    {\selectfont\thesubsection}}{1em}{}
+\titleformat{\subsubsection}{\AlegreyaMedium\color{nyandarkgrn}}{
+    {\thesubsubsection}}{1em}{}
+
+% (sub)(sub)sections, unnumbered, THESE DO NOT APPEAR IN TOC!
+\newcommand{\sctn}[1]{{\newline\noindent\Large\color{nyandarkgrn}\AlegreyaMedium #1\newline\noindent}}
+\newcommand{\subsctn}[1]{{\newline\noindent\AlegreyaMedium\large\color{nyandarkgrn} #1\newline\noindent}}
+\newcommand{\subsubsctn}[1]{{\newline\noindent\AlegreyaMedium\color{nyandarkgrn} #1\newline\noindent}}
+%---------------------------------------------
