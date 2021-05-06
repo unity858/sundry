@@ -422,7 +422,7 @@ picture pathticks(path g, int n=1, real r=.5, real spacing=6, real s=8, pen p=cu
 \apptocmd{\maketitle}{\begin{center}
     \textit{Produced using nyanya1.sty}
     \end{center}}{}{}
-\patchcmd{\@maketitle}{\@title}{\emph{\@title}}
+\patchcmd{\@maketitle}{\@title}{{\fontfamily{lmss}\selectfont\color{nyanblue}\@title}}{}{}
 % toc w/ hyperrefs
 \setcounter{tocdepth}{3}
 \newcommand{\toc}{
