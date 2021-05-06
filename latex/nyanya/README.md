@@ -1,4 +1,4 @@
-nyanya1.sty is an original open-source LaTeX package written by GitHub user tac-nayn06 in April 2021, intended for public as well as personal use.
+nyanya.sty is an original open-source LaTeX package written by GitHub user tac-nayn06 in April 2021, intended for public as well as personal use.
 
 Currently the package is rather simple and does not need a description.
 
