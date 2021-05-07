@@ -2,4 +2,4 @@ Seto.sty is a variant LaTeX package of nyanya.sty, with changed fonts and colors
 
 Also I want to see someone's reaction when I name a package after them lululul
 
-Edit: Heeeeeeeeyyyy!! The forest theme's my idea: https://github.com/chennisden/geometryexplorer/blob/gh-pages/texmf/tex/latex/forest.sty
+Edit: I'm proud to have my idea of a dark green sty appear in another package: https://github.com/chennisden/geometryexplorer/blob/gh-pages/texmf/tex/latex/forest.sty
