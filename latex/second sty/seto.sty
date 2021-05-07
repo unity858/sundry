@@ -324,14 +324,14 @@ picture pathticks(path g, int n=1, real r=.5, real spacing=6, real s=8, pen p=cu
 %cmds for convenience
 \newcounter{probnum}
 \newcommand{\problem}[2][source unknown]{\stepcounter{probnum}
-    \begin{mdframed}[style=probdefault]{\lato\bfseries Problem \theprobnum(#1).\enskip}#2\end{mdframed}
+    \begin{mdframed}[style=probdefault]{\lato\bfseries Problem \theprobnum (#1).\enskip}#2\end{mdframed}
     }
 \newcommand{\prob}[2][source unknown]{
     \begin{mdframed}[style=probdefault]{\lato\bfseries Problem (#1).\enskip}#2\end{mdframed}
     }
 \newcounter{exmpnum}
 \newcommand{\example}[2][source unknown]{\stepcounter{exmpnum}
-    \begin{mdframed}[style=probdefault]{\lato\bfseries Example \theexmpnum(#1).\enskip}#2\end{mdframed}
+    \begin{mdframed}[style=probdefault]{\lato\bfseries Example \theexmpnum (#1).\enskip}#2\end{mdframed}
     }
 \newcommand{\exmp}[2][source unknown]{
     \begin{mdframed}[style=probdefault]{\lato\bfseries Example (#1).\enskip}#2\end{mdframed}
