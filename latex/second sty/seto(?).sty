@@ -359,6 +359,7 @@ picture pathticks(path g, int n=1, real r=.5, real spacing=6, real s=8, pen p=cu
 \newcommand{\remark}[1]{\begin{mdframed}[style=remarkdefault]
     {\lato\itshape Remark.\enskip}#1
     \end{mdframed}}
+\newcommand{\pro}[1]{\begin{proof}#1\end{proof}}
 %---------------------------------------------
 %math commands, from nyanya.sty
 %floor/ceil; im so smart idk what \left and \right are, smh
@@ -374,6 +375,7 @@ picture pathticks(path g, int n=1, real r=.5, real spacing=6, real s=8, pen p=cu
 \DeclareMathOperator{\cyc}{\sum_{\text{cyc}}}
 \DeclareMathOperator{\sym}{\sum_{\text{sym}}}
 \DeclarePairedDelimiter\abs{\left|}{\right|}
+\newcommand{\solution}{\noindent\par {\lato\itshape Solution.\enskip}}
 %sets
 \newcommand{\N}{\mathbb{N}}
 \newcommand{\Z}{\mathbb{Z}}
@@ -404,7 +406,7 @@ picture pathticks(path g, int n=1, real r=.5, real spacing=6, real s=8, pen p=cu
 \titleformat{\section}{\AlegreyaMedium\Large\color{nyandarkgrn}}{
     {\S\thesection}}{1em}{}
 \titleformat{\subsection}{\lato\bfseries\large\color{nyandarkgrn}}{
-    {\selectfont\thesubsection}}{1em}{}
+    {\thesubsection}}{1em}{}
 \titleformat{\subsubsection}{\lato\bfseries\color{nyandarkgrn}}{
     {\thesubsubsection}}{1em}{}
 
