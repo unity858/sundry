@@ -5,7 +5,7 @@
 %% package name: seto.sty 
 %% Copyright 2021 by Neal Yan
 %
-% "shhhh im stealing a friend's name lolollololol"
+% *shhhh im stealing a friend's name lolollololol*
 %
 % This program can redistributed and/or modified under the terms 
 % of the LaTeX Project Public License Distributed from CTAN 
@@ -289,22 +289,22 @@ picture pathticks(path g, int n=1, real r=.5, real spacing=6, real s=8, pen p=cu
 \usepackage{roboto-mono}
 \usepackage{lato}
 \usepackage{Alegreya}
-\usepackage[light]{merriweather} % out of these packages, keep merriweather as last package out of these three, otherwise default font will change
 \renewcommand*\oldstylenums[1]{{\AlegreyaOsF #1}}
+\usepackage[cmintegrals,cmbraces]{newtxmath}
+\usepackage{ebgaramond-maths}
 \renewcommand{\emph}[1]{\textbf{{\lato\textcolor{nyandarkgrn}{#1}}}}
 %---------------------------------------------------------------
 %colors, for mdframed
 % Theme: forest? colors havent been changed yet
 \RequirePackage[framemethod=TikZ]{mdframed}
 % let's use mdframed already, its capabilities are a superset of those of tcolorbox
-\definecolor{probcolor}{HTML}{FF0090}
 \definecolor{white}{HTML}{FFFFFF}% do not remove
 \definecolor{black}{HTML}{000000}% do not remove
-\definecolor{remarkcolor}{HTML}{FF9898}
-\definecolor{claimcolor}{HTML}{F5C596}
 \definecolor{nyandarkgrn}{HTML}{0D534F}
-\definecolor{theocolor}{HTML}{FD99FD}
-\definecolor{lemmacolor}{HTML}{F5C596}
+\definecolor{probcolor}{HTML}{E5A29B}
+\definecolor{theocolor}{HTML}{9BCAE8}
+\definecolor{claimcolor}{HTML}{E6CE88}
+\definecolor{remarkcolor}{HTML}{0D534F}
 % (change hex codes to your taste to change box colors, its done rather automatically)
 % box styles
 \global\mdfdefinestyle{probdefault}{% 
@@ -315,6 +315,12 @@ picture pathticks(path g, int n=1, real r=.5, real spacing=6, real s=8, pen p=cu
     linecolor=claimcolor,linewidth=3pt,backgroundcolor=claimcolor!25!white,
     topline=false,bottomline=false,rightline=false,leftline=true
     }
+\global\mdfdefinestyle{theodefault}{%
+    innerleftmargin=0.5cm,innertopmargin=0.25cm,innerbottommargin=0.25cm,linecolor=theocolor,linewidth=1.5pt,backgroundcolor=theocolor!25!white,roundcorner=2pt
+    }
+\global\mdfdefinestyle{remarkdefault}{%
+    innerleftmargin=0.5cm,innertopmargin=0.25cm,innerbottommargin=0.25cm,linecolor=remarkcolor,linewidth=1.5pt,backgroundcolor=remarkcolor!20!white,roundcorner=2pt
+    }
 %cmds for convenience
 \newcounter{probnum}
 \newcommand{\problem}[2][source unknown]{\stepcounter{probnum}
@@ -323,9 +329,36 @@ picture pathticks(path g, int n=1, real r=.5, real spacing=6, real s=8, pen p=cu
 \newcommand{\prob}[2][source unknown]{
     \begin{mdframed}[style=probdefault]{\lato\bfseries Problem (#1).\enskip}#2\end{mdframed}
     }
-\newcommand{\claim}[1]{
-    \begin{mdframed}[style=claimdefault]{\lato\bfseries Claim--\quad}#1\end{mdframed}
+\newcounter{exmpnum}
+\newcommand{\example}[2][source unknown]{\stepcounter{exmpnum}
+    \begin{mdframed}[style=probdefault]{\lato\bfseries Example \theprobnum(#1).\enskip}#2\end{mdframed}
     }
+\newcommand{\exmp}[2][source unknown]{
+    \begin{mdframed}[style=probdefault]{\lato\bfseries Example (#1).\enskip}#2\end{mdframed}
+    }
+\newcommand{\claim}[1]{
+    \begin{mdframed}[style=claimdefault]{\lato\bfseries Claim---\quad}#1\end{mdframed}
+    }
+\newcommand{\lemma}[1]{
+    \begin{mdframed}[style=claimdefault]{\lato\bfseries Lemma---\quad}#1\end{mdframed}
+    }
+\newcounter{theonum}
+\newcommand{\theorem}[1]{\stepcounter{theonum}\begin{mdframed}[style=theodefault]
+    {\lato\bfseries Theorem \thetheonum.\enskip}#1\end{mdframed}
+    }
+\newcommand{\theo}[1]{\begin{mdframed}[style=theodefault]
+    {\lato\bfseries Definition.\enskip}#1\end{mdframed}
+    }
+\newcounter{defnum}
+\newcommand{\definition}[1]{\stepcounter{defnum}\begin{mdframed}[style=theodefault]
+    {\lato\bfseries Definition \thedefnum.\enskip}#1\end{mdframed}
+    }
+\newcommand{\defn}[1]{\begin{mdframed}[style=theodefault]
+    {\lato\bfseries Definition.\enskip}#1\end{mdframed}
+    }
+\newcommand{\remark}[1]{\begin{mdframed}[style=remarkdefault]
+    {\lato\itshape Remark.\enskip}#1
+    \end{mdframed}}
 %---------------------------------------------
 %math commands, from nyanya.sty
 %floor/ceil; im so smart idk what \left and \right are, smh
@@ -338,7 +371,6 @@ picture pathticks(path g, int n=1, real r=.5, real spacing=6, real s=8, pen p=cu
 \DeclarePairedDelimiter{\biggceil}{\biggl\lceil}{\biggr\rceil}
 \DeclarePairedDelimiter{\Biggceil}{\Biggl\lceil}{\Biggr\rceil}
 % operators, middle two from lucky.sty
-\DeclareMathOperator{\nequiv}{\not\equiv}
 \DeclareMathOperator{\cyc}{\sum_{\text{cyc}}}
 \DeclareMathOperator{\sym}{\sum_{\text{sym}}}
 \DeclarePairedDelimiter\abs{\left|}{\right|}
@@ -371,13 +403,17 @@ picture pathticks(path g, int n=1, real r=.5, real spacing=6, real s=8, pen p=cu
 % regular sections
 \titleformat{\section}{\AlegreyaMedium\Large\color{nyandarkgrn}}{
     {\S\thesection}}{1em}{}
-\titleformat{\subsection}{\AlegreyaMedium\large\color{nyandarkgrn}}{
+\titleformat{\subsection}{\lato\bfseries\large\color{nyandarkgrn}}{
     {\selectfont\thesubsection}}{1em}{}
-\titleformat{\subsubsection}{\AlegreyaMedium\color{nyandarkgrn}}{
+\titleformat{\subsubsection}{\lato\bfseries\color{nyandarkgrn}}{
     {\thesubsubsection}}{1em}{}
 
 % (sub)(sub)sections, unnumbered, THESE DO NOT APPEAR IN TOC!
-\newcommand{\sctn}[1]{{\newline\noindent\Large\color{nyandarkgrn}\AlegreyaMedium #1\newline\noindent}}
-\newcommand{\subsctn}[1]{{\newline\noindent\AlegreyaMedium\large\color{nyandarkgrn} #1\newline\noindent}}
-\newcommand{\subsubsctn}[1]{{\newline\noindent\AlegreyaMedium\color{nyandarkgrn} #1\newline\noindent}}
+\newcommand{\sctn}[1]{{\par\noindent\Large\color{nyandarkgrn}\AlegreyaMedium #1\par\noindent}}
+\newcommand{\subsctn}[1]{{\par\noindent\AlegreyaMedium\large\color{nyandarkgrn} #1\par\noindent}}
+\newcommand{\subsubsctn}[1]{{\par\noindent\AlegreyaMedium\color{nyandarkgrn} #1\par\noindent}}
+
+%exercises
+\newcounter{exenum}
+\newcommand{\exercise}{\stepcounter{exenum}\par\noindent{\lato Exercise \theexenum.\enskip}}
 %---------------------------------------------
