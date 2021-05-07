@@ -410,10 +410,10 @@ picture pathticks(path g, int n=1, real r=.5, real spacing=6, real s=8, pen p=cu
 % too lazy to use \left, \right here;
 \newcommand{\evalat}[2][]{\biggr|_{#2}^{#1}}
 \newcommand{\solution}{\noindent\newline\textit{Solution. }}
-\newcounter{exercisenum}%for psets at end of handouts
-\newcommand{\exercise}{\newline\noindent\stepcounter{exercisenum}
+\newcounter{exenum}%for psets at end of handouts
+\newcommand{\exercise}{\par\noindent\stepcounter{exenum}
     {\fontfamily{lmss}\selectfont\bfseries 
-    Problem \theexercisenum.\enskip}
+    Problem \theexenum.\enskip}
     }
 %---------------------------------------------
 %sections, toc, title; thanks to chdenmathcounts for letting me copypaste parts of his sty lmao
