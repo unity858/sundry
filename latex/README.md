@@ -1,1 +1,1 @@
-definitely creating a new sty later; need a fancier one than the elementary nyanya.sty
+xd finished the second sty, its more of a variant of the first for those who dislike the nyan cat color theme.
