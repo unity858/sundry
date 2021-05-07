@@ -295,7 +295,7 @@ picture pathticks(path g, int n=1, real r=.5, real spacing=6, real s=8, pen p=cu
 \renewcommand{\emph}[1]{\textbf{{\lato\textcolor{nyandarkgrn}{#1}}}}
 %---------------------------------------------------------------
 %colors, for mdframed
-% Theme: forest? colors havent been changed yet
+% Theme: big sur(?)
 \RequirePackage[framemethod=TikZ]{mdframed}
 % let's use mdframed already, its capabilities are a superset of those of tcolorbox
 \definecolor{white}{HTML}{FFFFFF}% do not remove
@@ -309,7 +309,8 @@ picture pathticks(path g, int n=1, real r=.5, real spacing=6, real s=8, pen p=cu
 % (change hex codes to your taste to change box colors, its done rather automatically)
 % box styles
 \global\mdfdefinestyle{probdefault}{% 
-    innerleftmargin=0.5cm,innertopmargin=0.25cm,innerbottommargin=0.25cm,linecolor=probcolor,linewidth=1.5pt,backgroundcolor=probcolor!25!white,roundcorner=5pt%
+    innerleftmargin=0.5cm,innertopmargin=0.25cm,innerbottommargin=0.25cm,
+    linecolor=probcolor,linewidth=1.5pt,backgroundcolor=probcolor!25!white,roundcorner=5pt%
     }
 \global\mdfdefinestyle{claimdefault}{% 
     innerleftmargin=0.5cm,innertopmargin=0.25cm,innerbottommargin=0.25cm,
@@ -317,10 +318,12 @@ picture pathticks(path g, int n=1, real r=.5, real spacing=6, real s=8, pen p=cu
     topline=false,bottomline=false,rightline=false,leftline=true
     }
 \global\mdfdefinestyle{theodefault}{%
-    innerleftmargin=0.5cm,innertopmargin=0.25cm,innerbottommargin=0.25cm,linecolor=theocolor,linewidth=1.5pt,backgroundcolor=theocolor!25!white,roundcorner=2pt
+    innerleftmargin=0.5cm,innertopmargin=0.25cm,innerbottommargin=0.25cm,
+    linecolor=theocolor,linewidth=1.5pt,backgroundcolor=theocolor!25!white,roundcorner=2pt
     }
-\global\mdfdefinestyle{remarkdefault}{%
-    innerleftmargin=0.5cm,innertopmargin=0.25cm,innerbottommargin=0.25cm,linecolor=remarkcolor,linewidth=1.5pt,backgroundcolor=remarkcolor!20!white,roundcorner=2pt
+\global\mdfdefinestyle{remarkdefault}{% 
+	innerleftmargin=0.5cm,innertopmargin=0.25cm,innerbottommargin=0.25cm, 
+	linecolor=remarkcolor,linewidth=1.5pt,backgroundcolor=remarkcolor!20!white,roundcorner=2pt
     }
 %cmds for convenience
 \newcounter{probnum}
@@ -360,7 +363,7 @@ picture pathticks(path g, int n=1, real r=.5, real spacing=6, real s=8, pen p=cu
 \newcommand{\remark}[1]{\begin{mdframed}[style=remarkdefault]
     {\lato\itshape Remark.\enskip}#1
     \end{mdframed}}
-\newcommand{\pro}[1]{\begin{proof}#1\end{proof}}
+\newcommand{\pro}[1]{\begin{proof}#1\end{proof}} % idk, should i put the proofs in boxes?
 %---------------------------------------------
 %math commands, from nyanya.sty
 %floor/ceil; im so smart idk what \left and \right are, smh
@@ -384,7 +387,7 @@ picture pathticks(path g, int n=1, real r=.5, real spacing=6, real s=8, pen p=cu
 \newcommand{\R}{\mathbb{R}}
 \newcommand{\C}{\mathbb{C}}
 %---------------------------------------------
-%sections, theme undecided
+%sections, part of big sur theme
 \setcounter{tocdepth}{3}
 \newcommand{\toc}{
 {\hypersetup{
@@ -415,12 +418,18 @@ picture pathticks(path g, int n=1, real r=.5, real spacing=6, real s=8, pen p=cu
 \newcommand{\sctn}[1]{{\par\noindent\Large\color{nyandarkgrn}\AlegreyaMedium #1\par\noindent}}
 \newcommand{\subsctn}[1]{{\par\noindent\AlegreyaMedium\large\color{nyandarkgrn} #1\par\noindent}}
 \newcommand{\subsubsctn}[1]{{\par\noindent\AlegreyaMedium\color{nyandarkgrn} #1\par\noindent}}
-
-%exercises
+%---------------------------------------------
+%exercises and quotes
 \newcounter{exenum}
 \newcommand{\exercise}{\stepcounter{exenum}\par\noindent{\lato\bfseries Problem \theexenum.\enskip}}
-\global\mdfdefinestyle{quotedefault}{innerleftmargin=0.5cm,innertopmargin=0.25cm,innerbottommargin=0.25cm,leftmargin=3.25in,linewidth=2.5pt,linecolor=quotecolor,backgroundcolor=quotecolor!25!white,topline=false,bottomline=false,rightline=false,leftline=true}
-\global\mdfdefinestyle{inlinequotedefault}{innerleftmargin=0.5cm,innertopmargin=0.25cm,innerbottommargin=0.25cm,leftmargin=1cm,rightmargin=1cm,backgroundcolor=quotecolor!25!white,topline=false,bottomline=false,rightline=false,leftline=false}
+\global\mdfdefinestyle{quotedefault}{%
+	innerleftmargin=0.5cm,innertopmargin=0.25cm,innerbottommargin=0.25cm,leftmargin=3.25in,
+	linewidth=2.5pt,linecolor=quotecolor,backgroundcolor=quotecolor!25!white,
+	topline=false,bottomline=false,rightline=false,leftline=true}
+\global\mdfdefinestyle{inlinequotedefault}{%
+	innerleftmargin=0.5cm,innertopmargin=0.25cm,innerbottommargin=0.25cm,
+	leftmargin=1cm,rightmargin=1cm,backgroundcolor=quotecolor!25!white,
+	topline=false,bottomline=false,rightline=false,leftline=false}
 \renewcommand{\quote}[2]{\begin{mdframed}[style=quotedefault]
     {\Alegreya\itshape ``#1''-- #2}
     \end{mdframed}}
