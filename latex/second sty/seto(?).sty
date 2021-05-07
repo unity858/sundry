@@ -331,7 +331,7 @@ picture pathticks(path g, int n=1, real r=.5, real spacing=6, real s=8, pen p=cu
     }
 \newcounter{exmpnum}
 \newcommand{\example}[2][source unknown]{\stepcounter{exmpnum}
-    \begin{mdframed}[style=probdefault]{\lato\bfseries Example \theprobnum(#1).\enskip}#2\end{mdframed}
+    \begin{mdframed}[style=probdefault]{\lato\bfseries Example \theexmpnum(#1).\enskip}#2\end{mdframed}
     }
 \newcommand{\exmp}[2][source unknown]{
     \begin{mdframed}[style=probdefault]{\lato\bfseries Example (#1).\enskip}#2\end{mdframed}
@@ -400,7 +400,7 @@ picture pathticks(path g, int n=1, real r=.5, real spacing=6, real s=8, pen p=cu
     \end{center}}{}{} 
 \patchcmd{\@maketitle}{\@title}{{\AlegreyaMedium\color{nyandarkgrn}\@title}}{}{}
 \patchcmd{\@maketitle}{\@author}{{\Alegreya\color{nyandarkgrn}\@author}}{}{}
-\patchcmd{\@maketitle}{\@date}{{\Alegreya\color{nyandarkgrn}\@date}}{}{}
+\patchcmd{\@maketitle}{\@date}{{\Alegreya\@date}}{}{}
 
 % regular sections
 \titleformat{\section}{\AlegreyaMedium\Large\color{nyandarkgrn}}{
@@ -417,5 +417,5 @@ picture pathticks(path g, int n=1, real r=.5, real spacing=6, real s=8, pen p=cu
 
 %exercises
 \newcounter{exenum}
-\newcommand{\exercise}{\stepcounter{exenum}\par\noindent{\lato Exercise \theexenum.\enskip}}
+\newcommand{\exercise}{\stepcounter{exenum}\par\noindent{\lato\bfseries Exercise \theexenum.\enskip}}
 %---------------------------------------------
