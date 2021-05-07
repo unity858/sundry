@@ -3,6 +3,6 @@ nyanya.sty is an original open-source LaTeX package written by GitHub user tac-n
 Currently the package is rather simple and does not need a description.
 
 Questions and commments should be directed via Discord DM to epsilon#8682, or via email to nyyanyn@gmail.com.
-Thanks for using nyanya1.sty!
+Thanks for using nyanya.sty!
 
 (_Remark._ Garish color theme from Nyan Cat, as its name suggests.)
