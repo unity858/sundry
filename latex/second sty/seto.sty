@@ -21,7 +21,7 @@
 // Olympiad Asymptote Package
 // By Maria Monks and AoPS Community
 // Last Updated: 08/26/2007
-/////////////////////////////////////////////////////
+///////////////////////////////////////////////////
 size(6cm);
 include graph;
 include math;
@@ -309,7 +309,8 @@ picture pathticks(path g, int n=1, real r=.5, real spacing=6, real s=8, pen p=cu
 % (change hex codes to your taste to change box colors, its done rather automatically)
 % box styles
 \global\mdfdefinestyle{probdefault}{% 
-    innerleftmargin=0.5cm,innertopmargin=0.25cm,innerbottommargin=0.25cm,linecolor=probcolor,linewidth=1.5pt,backgroundcolor=probcolor!25!white,roundcorner=5pt%
+    innerleftmargin=0.5cm,innertopmargin=0.25cm,innerbottommargin=0.25cm,
+    linecolor=probcolor,linewidth=1.5pt,backgroundcolor=probcolor!25!white,roundcorner=5pt%
     }
 \global\mdfdefinestyle{claimdefault}{% 
     innerleftmargin=0.5cm,innertopmargin=0.25cm,innerbottommargin=0.25cm,
@@ -317,10 +318,12 @@ picture pathticks(path g, int n=1, real r=.5, real spacing=6, real s=8, pen p=cu
     topline=false,bottomline=false,rightline=false,leftline=true
     }
 \global\mdfdefinestyle{theodefault}{%
-    innerleftmargin=0.5cm,innertopmargin=0.25cm,innerbottommargin=0.25cm,linecolor=theocolor,linewidth=1.5pt,backgroundcolor=theocolor!25!white,roundcorner=2pt
+    innerleftmargin=0.5cm,innertopmargin=0.25cm,innerbottommargin=0.25cm,
+    linecolor=theocolor,linewidth=1.5pt,backgroundcolor=theocolor!25!white,roundcorner=2pt
     }
 \global\mdfdefinestyle{remarkdefault}{%
-    innerleftmargin=0.5cm,innertopmargin=0.25cm,innerbottommargin=0.25cm,linecolor=remarkcolor,linewidth=1.5pt,backgroundcolor=remarkcolor!20!white,roundcorner=2pt
+	innerleftmargin=0.5cm,innertopmargin=0.25cm,innerbottommargin=0.25cm,
+	linecolor=remarkcolor,linewidth=1.5pt,backgroundcolor=remarkcolor!20!white,roundcorner=2pt
     }
 %cmds for convenience
 \newcounter{probnum}
@@ -421,14 +424,17 @@ picture pathticks(path g, int n=1, real r=.5, real spacing=6, real s=8, pen p=cu
 
 %exercises
 \newcounter{exenum}
-\newcommand{\exercise}{\stepcounter{exenum}\par\noindent{\lato\bfseries Problem \theexenum.\enskip}}
+\newcommand{\exercise}{
+	\stepcounter{exenum}\par\noindent{\lato\bfseries Problem \theexenum.\enskip}}
 %quotes
-\global\mdfdefinestyle{quotedefault}{innerleftmargin=0.5cm,innertopmargin=0.25cm,
-    innerbottommargin=0.25cm,leftmargin=3.25in, skipabove=0cm,skipbelow=0cm,
+\global\mdfdefinestyle{quotedefault}{%
+	innerleftmargin=0.5cm,innertopmargin=0.25cm,innerbottommargin=0.25cm,
+	leftmargin=3.25in, skipabove=0cm,skipbelow=0cm,
     linewidth=2.5pt,linecolor=quotecolor,backgroundcolor=quotecolor!25!white,
     topline=false,bottomline=false,rightline=false,leftline=true}
-\global\mdfdefinestyle{inlinequotedefault}{innerleftmargin=0.5cm,innertopmargin=0.25cm,
-    innerbottommargin=0.25cm,leftmargin=1cm,rightmargin=1cm,backgroundcolor=quotecolor!25!white,
+\global\mdfdefinestyle{inlinequotedefault}{%
+	innerleftmargin=0.5cm,innertopmargin=0.25cm,innerbottommargin=0.25cm,
+	leftmargin=1cm,rightmargin=1cm,backgroundcolor=quotecolor!25!white,
     topline=false,bottomline=false,rightline=false,leftline=false}
 \renewcommand{\quote}[2]{\begin{mdframed}[style=quotedefault]
     {\Alegreya\itshape ``#1''-- #2}
