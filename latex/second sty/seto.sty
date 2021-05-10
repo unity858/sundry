@@ -285,6 +285,20 @@ picture pathticks(path g, int n=1, real r=.5, real spacing=6, real s=8, pen p=cu
 \RequirePackage[symbol]{footmisc}
 \RequirePackage[T1]{fontenc}
 %---------------------------------------------
+%colors, for mdframed
+% Theme: big sur
+\RequirePackage[framemethod=TikZ]{mdframed}
+% let's use mdframed already, its capabilities are a superset of those of tcolorbox
+\definecolor{white}{HTML}{FFFFFF}% do not remove
+\definecolor{black}{HTML}{000000}% do not remove
+\definecolor{nyandarkgrn}{HTML}{0D534F}
+\definecolor{probcolor}{HTML}{E5A29B} %brownish red?
+\definecolor{theocolor}{HTML}{9BCAE8} %light blu
+\definecolor{claimcolor}{HTML}{E6CE88} %yellow
+\definecolor{remarkcolor}{HTML}{0D534F} %dark grn atm
+\definecolor{quotecolor}{HTML}{91B9DC} % slightly darker blue
+% (change hex codes to your taste to change box colors, its done rather automatically)
+%---------------------------------------------
 %fonts, text formatting
 \usepackage{roboto-mono}
 \usepackage{lato}
@@ -294,19 +308,6 @@ picture pathticks(path g, int n=1, real r=.5, real spacing=6, real s=8, pen p=cu
 \usepackage{ebgaramond-maths}
 \renewcommand{\emph}[1]{\textbf{{\lato\textcolor{nyandarkgrn}{#1}}}}
 %---------------------------------------------------------------
-%colors, for mdframed
-% Theme: big sur
-\RequirePackage[framemethod=TikZ]{mdframed}
-% let's use mdframed already, its capabilities are a superset of those of tcolorbox
-\definecolor{white}{HTML}{FFFFFF}% do not remove
-\definecolor{black}{HTML}{000000}% do not remove
-\definecolor{nyandarkgrn}{HTML}{0D534F}
-\definecolor{probcolor}{HTML}{E5A29B}
-\definecolor{theocolor}{HTML}{9BCAE8}
-\definecolor{claimcolor}{HTML}{E6CE88}
-\definecolor{remarkcolor}{HTML}{0D534F}
-\definecolor{quotecolor}{HTML}{91B9DC}
-% (change hex codes to your taste to change box colors, its done rather automatically)
 % box styles
 \global\mdfdefinestyle{probdefault}{% 
     innerleftmargin=0.5cm,innertopmargin=0.25cm,innerbottommargin=0.25cm,
