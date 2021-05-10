@@ -5,15 +5,15 @@ import copy
 # im too lazy to solve a quadratic then round the sols, so this is the result
 def quad_formula(a,b,c):
     delta = b*b - 4 * a * c
-    if (delta >= 0):
-        return {(-b + math.sqrt(delta)) / (2 * a), (-b - math.sqrt(delta)) / (2 * a)}
+    if (delta >= 0): return {(-b + math.sqrt(delta)) / (2 * a), (-b - math.sqrt(delta)) / (2 * a)}
     return {(-b + math.sqrt(-delta)*1j) / (2 * a), (-b - math.sqrt(-delta)*1j) / (2 * a)}
 # the repeated problem of tension in which a weight is suspended by two strings/ropes/whatever
 def tension(weight, Langle,Rangle):
     '''angles in degrees'''
     x=weight/(math.tan(Langle)+math.tan(Rangle))
     return [x/math.cos(Langle),x/math.cos(Rangle)]
-#triangle completion, also assigned ad nauseam
+#triangle completion, also assigned ad nauseam, thank god these exist
+#the weird '^\circ' exists to allow for direct copypasting into LaTeX compilers
 def trianglesolveAAS(A,B,a):
     C=math.pi-A-B
     b= a*math.sin(B)/math.sin(A)
