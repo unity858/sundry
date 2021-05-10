@@ -368,20 +368,24 @@ picture pathticks(path g, int n=1, real r=.5, real spacing=6, real s=8, pen p=cu
     \end{mdframed}}
 \newcommand{\pro}[1]{\begin{proof}#1\end{proof}}
 %---------------------------------------------
-%math commands, from nyanya.sty
+%math operators/commands, from nyanya.sty, slight additions made
+\newcommand{\parenth}[1]{\left( #1\right)}
+\newcommand{\sqbrack}[1]{\left[ #1\right]}
+\newcommand{\deg}{^\circ}
+\newcommand{\pow}{\text{Pow}}
 %floor/ceil; im so smart idk what \left and \right are, smh
-\DeclarePairedDelimiter{\floor}{\left\lfloor}{\right\rfloor}
+\newcommand{\floor}[1]{\left\lfloor #1\right\rfloor}
 \DeclarePairedDelimiter{\bigfloor}{\bigl\lfloor}{\bigr\rfloor}
 \DeclarePairedDelimiter{\biggfloor}{\biggl\lfloor}{\biggr\rfloor}
 \DeclarePairedDelimiter{\Biggfloor}{\Biggl\lfloor}{\Biggr\rfloor}
-\DeclarePairedDelimiter{\ceil}{\left\lceil}{\right\rceil}
+\newcommand{\ceil}[1]{\left\lceil #1\right\rceil}
 \DeclarePairedDelimiter{\bigceil}{\bigl\lceil}{\bigr\rceil}
 \DeclarePairedDelimiter{\biggceil}{\biggl\lceil}{\biggr\rceil}
 \DeclarePairedDelimiter{\Biggceil}{\Biggl\lceil}{\Biggr\rceil}
-% operators, middle two from lucky.sty
+% operators, first two from lucky.sty
 \DeclareMathOperator{\cyc}{\sum_{\text{cyc}}}
 \DeclareMathOperator{\sym}{\sum_{\text{sym}}}
-\DeclarePairedDelimiter\abs{\left|}{\right|}
+\newcommand{\abs}[1]{\left\lvert #1\right\rvert}
 \newcommand{\solution}{\par\noindent {\lato\itshape Solution.\enskip}}
 %sets
 \newcommand{\N}{\mathbb{N}}
@@ -389,6 +393,7 @@ picture pathticks(path g, int n=1, real r=.5, real spacing=6, real s=8, pen p=cu
 \newcommand{\Q}{\mathbb{Q}}
 \newcommand{\R}{\mathbb{R}}
 \newcommand{\C}{\mathbb{C}}
+\newcommand{\P}{\mathbb{P}}% for example, PR^2
 %---------------------------------------------
 %sections, theme is big sur?
 \setcounter{tocdepth}{3}
@@ -421,11 +426,12 @@ picture pathticks(path g, int n=1, real r=.5, real spacing=6, real s=8, pen p=cu
 \newcommand{\sctn}[1]{{\par\noindent\Large\color{nyandarkgrn}\AlegreyaMedium #1\par\noindent}}
 \newcommand{\subsctn}[1]{{\par\noindent\AlegreyaMedium\large\color{nyandarkgrn} #1\par\noindent}}
 \newcommand{\subsubsctn}[1]{{\par\noindent\AlegreyaMedium\color{nyandarkgrn} #1\par\noindent}}
-
+%---------------------------------------------
 %exercises
 \newcounter{exenum}
 \newcommand{\exercise}{
 	\stepcounter{exenum}\par\noindent{\lato\bfseries Problem \theexenum.\enskip}}
+%---------------------------------------------
 %quotes
 \global\mdfdefinestyle{quotedefault}{%
 	innerleftmargin=0.5cm,innertopmargin=0.25cm,innerbottommargin=0.25cm,
@@ -437,9 +443,9 @@ picture pathticks(path g, int n=1, real r=.5, real spacing=6, real s=8, pen p=cu
 	leftmargin=1cm,rightmargin=1cm,backgroundcolor=quotecolor!25!white,
     topline=false,bottomline=false,rightline=false,leftline=false}
 \renewcommand{\quote}[2]{\begin{mdframed}[style=quotedefault]
-    {\Alegreya\itshape ``#1''-- #2}
+    {\Alegreya\itshape ``#1'' --#2}
     \end{mdframed}}
 \newcommand{\inlinequote}[2]{\begin{mdframed}[style=inlinequotedefault]
-    {\Alegreya\itshape ``#1''-- #2}
+    {\Alegreya\itshape ``#1'' --#2}
     \end{mdframed}}
 %---------------------------------------------
