@@ -371,29 +371,30 @@ picture pathticks(path g, int n=1, real r=.5, real spacing=6, real s=8, pen p=cu
 %math operators/commands, from nyanya.sty, slight additions made
 \newcommand{\parenth}[1]{\left( #1\right)}
 \newcommand{\sqbrack}[1]{\left[ #1\right]}
-\newcommand{\deg}{^\circ}
+\renewcommand{\deg}{^\circ}
 \newcommand{\pow}{\text{Pow}}
 %floor/ceil; im so smart idk what \left and \right are, smh
 \newcommand{\floor}[1]{\left\lfloor #1\right\rfloor}
-\DeclarePairedDelimiter{\bigfloor}{\bigl\lfloor}{\bigr\rfloor}
-\DeclarePairedDelimiter{\biggfloor}{\biggl\lfloor}{\biggr\rfloor}
-\DeclarePairedDelimiter{\Biggfloor}{\Biggl\lfloor}{\Biggr\rfloor}
+\newcommand{\bigfloor}[1]{\bigl\lfloor #1\bigr\rfloor}
+\newcommand{\biggfloor}[1]{\biggl\lfloor #1\biggr\rfloor}
+\newcommand{\Biggfloor}[1]{\Biggl\lfloor #1\Biggr\rfloor}
 \newcommand{\ceil}[1]{\left\lceil #1\right\rceil}
-\DeclarePairedDelimiter{\bigceil}{\bigl\lceil}{\bigr\rceil}
-\DeclarePairedDelimiter{\biggceil}{\biggl\lceil}{\biggr\rceil}
-\DeclarePairedDelimiter{\Biggceil}{\Biggl\lceil}{\Biggr\rceil}
+\newcommand{\bigceil}[1]{\bigl\lceil #1\bigr\rceil}
+\newcommand{\biggceil}[1]{\biggl\lceil #1\biggr\rceil}
+\newcommand{\Biggceil}[1]{\Biggl\lceil #1\Biggr\rceil}
 % operators, first two from lucky.sty
 \DeclareMathOperator{\cyc}{\sum_{\text{cyc}}}
 \DeclareMathOperator{\sym}{\sum_{\text{sym}}}
 \newcommand{\abs}[1]{\left\lvert #1\right\rvert}
 \newcommand{\solution}{\par\noindent {\lato\itshape Solution.\enskip}}
+\newcommand{\evalat}[2][]{\biggr\rvert_{#2}^{#1}}
 %sets
 \newcommand{\N}{\mathbb{N}}
 \newcommand{\Z}{\mathbb{Z}}
 \newcommand{\Q}{\mathbb{Q}}
 \newcommand{\R}{\mathbb{R}}
 \newcommand{\C}{\mathbb{C}}
-\newcommand{\P}{\mathbb{P}}% for example, PR^2
+\renewcommand{\P}{\mathbb{P}}% for example, PR^2
 %---------------------------------------------
 %sections, theme is big sur?
 \setcounter{tocdepth}{3}
