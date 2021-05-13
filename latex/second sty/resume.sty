@@ -53,10 +53,18 @@
 \global\mdfdefinestyle{quote}{
     leftmargin=5.5cm,rightmargin=5.5cm,linecolor=white,backgroundcolor=white,
     }
-\newcommand{\cvQuote}[2]{\begin{mdframed}[style=quote]{\color{misc}\Alegreya\itshape #1}\begin{flushright}{\color{misc}\Alegreya #2}\end{flushright}\end{mdframed}
-}
+\newcommand{\cvQuote}[2]{\begin{mdframed}[style=quote]{
+    \color{misc}\Alegreya\itshape #1}
+    \begin{flushright}{\color{misc}\Alegreya #2}\end{flushright}
+    \end{mdframed}
+    }
 \RequirePackage{fontawesome}
-\newcommand{\links}[4]{\begin{center}\faLink\enskip #1\quad\faEnvelope\enskip #2\quad\faLinkedin\enskip #3\quad\faGithub\enskip #4\end{center}} % in order, website, mail, linkedin, github
-\newcommand{\cvItem}[2]{\vspace{0.05cm}\par\noindent {\lato\bfseries\color{cvdarkgrn} #1}\hfill {\lato #2}}
+\newcommand{\links}[4]{\begin{center}\faLink\enskip #1\quad
+    \faEnvelope\enskip #2\quad
+    \faLinkedin\enskip #3\quad
+    \faGithub\enskip #4\end{center}
+    } % in order, website, mail, linkedin, github
+\newcommand{\cvItem}[2]{\vspace{0.05cm}\par\noindent
+    {\lato\bfseries\color{cvdarkgrn} #1}\hfill {\lato #2}}
 \newcommand{\desc}[1]{\par\noindent {\color{maincolor} #1}}
 \newcommand{\cvRef}[1]{\par\noindent(Reference: #1)}
