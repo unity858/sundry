@@ -149,4 +149,21 @@ def harmonic1(n):
 def harmonic2(n):
     gamma=0.577215664901532 #euler-mascheroni const
     return math.log(n)+gamma+1/(2*n)-1/(12*n*n)+1/(120*(n**4)) #first few terms of series but alr rlly accurate
+#
+#self-explanatory, for use on the stupid riemann sums
+def foo(x): 
+    return x*x*x/2  #change this to your discretion, to be referenced in 'fakeintegral' functions
+def lowfakeintegral(a,b,n):
+    '''a,b are endpts, n is number of sections'''
+    ans,intervalsize=0,(b-a)/n
+    for i in range(n):
+        ans+=foo(a+i*intervalsize)
+    return ans*intervalsize
+def highfakeintegral(a,b,n):
+    '''a,b are endpts, n is number of sections'''
+    ans,intervalsize=0,(b-a)/n
+    for i in range(n):
+        ans+=foo(a+(i+1)*intervalsize)
+    return ans*intervalsize
+highfakeintegral(0,2,4)
 #more will be added as more repetitive tasks appear, but hopefully i saved you some time lel
