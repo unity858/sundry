@@ -436,7 +436,7 @@ picture pathticks(path g, int n=1, real r=.5, real spacing=6, real s=8, pen p=cu
 	\stepcounter{exenum}\par\noindent{\lato\bfseries Problem \theexenum.\enskip}}
 % hpc problem numbering on school hw, because im lazy af
 \newcounter{hpcExenum}
-\newcommand{\hpcExe}[1]{\par\emph{\thehpcExenum/#1; }}
+\newcommand{\hpcExe}[1]{\stepcounter{hpcExenum}\par\emph{\thehpcExenum/#1; }}
 %---------------------------------------------
 %quotes
 \global\mdfdefinestyle{quotedefault}{%
