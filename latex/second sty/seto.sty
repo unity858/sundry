@@ -436,11 +436,12 @@ pen thickgrn=linewidth(1)+RGB(13,83,76);
 \newcounter{exenum}
 \newcommand{\exercise}{
 	\stepcounter{exenum}\par\noindent{\lato\bfseries Problem \theexenum.\enskip}}
-% hpc problem numbering on school hw, because im lazy af
+% hpc numbering/labelling on school hw, because im lazy af
 \newcounter{hpcExenum}
 \newcommand{\hpcExe}[1]{\stepcounter{hpcExenum}\par\emph{\thehpcExenum/#1; }}
 \newcounter{hpcTopicnum}
 \newcommand{\hpcTopic}[1]{\stepcounter{hpcTopicnum}\textit{Topic \thehpcTopicnum, #1.}}
+\newcommand{\hpcContinueTopic}{\textit{Topic \thehpcTopicnum, continued.}}
 %---------------------------------------------
 %quotes
 \global\mdfdefinestyle{quotedefault}{%
