@@ -1,8 +1,14 @@
+# HONORS PRECALC SCRIPTS
+# A collection of scripts I used to save time on repetitive procedures;
+# May future HPC students be fortunate enough to encounter these short programs,
+# and hopefully spend less time on their homework.
+#
+# Neal Yan, 2021
 #the modules, do not modify
 import math
 import cmath
 import copy
-# im too lazy to solve a quadratic then round the sols, so this is the result
+# im too lazy to solve a quadratic then round the sols, so here's the result:
 def quad_formula(a,b,c):
     delta = b*b - 4 * a * c
     if (delta >= 0): return {(-b + math.sqrt(delta)) / (2 * a), (-b - math.sqrt(delta)) / (2 * a)}
@@ -150,7 +156,7 @@ def harmonic2(n):
     gamma=0.577215664901532 #euler-mascheroni const
     return math.log(n)+gamma+1/(2*n)-1/(12*n*n)+1/(120*(n**4)) #first few terms of series but alr rlly accurate
 #
-#self-explanatory, for use on the stupid riemann sums
+#self-explanatory, for use on the stupid riemann sums; when it isn't clear, use highfakeintegral.
 def foo(x): 
     return x*x*x/2  #change this to your discretion, to be referenced in 'fakeintegral' functions
 def lowfakeintegral(a,b,n):
@@ -165,5 +171,13 @@ def highfakeintegral(a,b,n):
     for i in range(n):
         ans+=foo(a+(i+1)*intervalsize)
     return ans*intervalsize
-highfakeintegral(0,2,4)
+# some rlly simple bs
+def g(x): return (1.5/x-1)/x-1 # change as needed
+#local sets often used in hpc textbook
+L1=[4,8,20,50]
+L2=[1,10,100,1000,10000]
+for i in range(len(L2)):
+    print(g(i+1))
+# in some cases, you may want to replace the L1s in the last loop w/ L2s; 
+# the textbook often uses these sets of numbers for test-evaluation.
 #more will be added as more repetitive tasks appear, but hopefully i saved you some time lel
