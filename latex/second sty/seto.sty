@@ -270,14 +270,12 @@ picture pathticks(path g, int n=1, real r=.5, real spacing=6, real s=8, pen p=cu
 	} 
 	return pict;
 }
-/////// personal pen//////
-pen thickgrn=linewidth(1)+RGB(13,83,76);
 \end{asydef}
 %---------------------------------------------
 %essential packages/ tikz stuff
 % minor issue: for csquotes, error with "no style for language 'nil' "
 \RequirePackage{tikz,tkz-euclide}
-\usetikzlibrary{calc,shapes,arrows}
+\usetikzlibrary{calc}
 \RequirePackage{babel}
 \RequirePackage[margin=1in]{geometry} %keep before fancyhdr to make margins work
 \RequirePackage[utf8]{inputenc} % inputenc b4 csquotes
@@ -313,56 +311,42 @@ pen thickgrn=linewidth(1)+RGB(13,83,76);
 % box styles
 \global\mdfdefinestyle{probdefault}{% 
     innerleftmargin=0.5cm,innertopmargin=0.25cm,innerbottommargin=0.25cm,
-    linecolor=probcolor,linewidth=1.5pt,backgroundcolor=probcolor!25!white,roundcorner=5pt%
-    }
+    linecolor=probcolor,linewidth=1.5pt,backgroundcolor=probcolor!25!white,roundcorner=5pt}
 \global\mdfdefinestyle{claimdefault}{% 
     innerleftmargin=0.5cm,innertopmargin=0.25cm,innerbottommargin=0.25cm,
     linecolor=claimcolor,linewidth=3pt,backgroundcolor=claimcolor!25!white,
-    topline=false,bottomline=false,rightline=false,leftline=true
-    }
+    topline=false,bottomline=false,rightline=false,leftline=true}
 \global\mdfdefinestyle{theodefault}{%
     innerleftmargin=0.5cm,innertopmargin=0.25cm,innerbottommargin=0.25cm,
-    linecolor=theocolor,linewidth=1.5pt,backgroundcolor=theocolor!25!white,roundcorner=2pt
-    }
+    linecolor=theocolor,linewidth=1.5pt,backgroundcolor=theocolor!25!white,roundcorner=2pt}
 \global\mdfdefinestyle{remarkdefault}{%
 	innerleftmargin=0.5cm,innertopmargin=0.25cm,innerbottommargin=0.25cm,
-	linecolor=remarkcolor,linewidth=1.5pt,backgroundcolor=remarkcolor!20!white,roundcorner=2pt
-    }
+	linecolor=remarkcolor,linewidth=1.5pt,backgroundcolor=remarkcolor!20!white,roundcorner=2pt}
 %cmds for convenience
 \newcounter{probnum}
 \newcommand{\problem}[2][source unknown]{\stepcounter{probnum}
-    \begin{mdframed}[style=probdefault]{\lato\bfseries Problem \theprobnum (#1).\enskip}#2\end{mdframed}
-    }
+    \begin{mdframed}[style=probdefault]{\lato\bfseries Problem \theprobnum (#1).\enskip}#2\end{mdframed}}
 \newcommand{\prob}[2][source unknown]{
-    \begin{mdframed}[style=probdefault]{\lato\bfseries Problem (#1).\enskip}#2\end{mdframed}
-    }
+    \begin{mdframed}[style=probdefault]{\lato\bfseries Problem (#1).\enskip}#2\end{mdframed}}
 \newcounter{exmpnum}
 \newcommand{\example}[2][source unknown]{\stepcounter{exmpnum}
-    \begin{mdframed}[style=probdefault]{\lato\bfseries Example \theexmpnum (#1).\enskip}#2\end{mdframed}
-    }
+    \begin{mdframed}[style=probdefault]{\lato\bfseries Example \theexmpnum (#1).\enskip}#2\end{mdframed}}
 \newcommand{\exmp}[2][source unknown]{
-    \begin{mdframed}[style=probdefault]{\lato\bfseries Example (#1).\enskip}#2\end{mdframed}
-    }
+    \begin{mdframed}[style=probdefault]{\lato\bfseries Example (#1).\enskip}#2\end{mdframed}}
 \newcommand{\claim}[1]{
-    \begin{mdframed}[style=claimdefault]{\lato\bfseries Claim---\quad}#1\end{mdframed}
-    }
+    \begin{mdframed}[style=claimdefault]{\lato\bfseries Claim---\quad}#1\end{mdframed}}
 \newcommand{\lemma}[1]{
-    \begin{mdframed}[style=claimdefault]{\lato\bfseries Lemma---\quad}#1\end{mdframed}
-    }
+    \begin{mdframed}[style=claimdefault]{\lato\bfseries Lemma---\quad}#1\end{mdframed}}
 \newcounter{theonum}
 \newcommand{\theorem}[1]{\stepcounter{theonum}\begin{mdframed}[style=theodefault]
-    {\lato\bfseries Theorem \thetheonum.\enskip}#1\end{mdframed}
-    }
+    {\lato\bfseries Theorem \thetheonum.\enskip}#1\end{mdframed}}
 \newcommand{\theo}[1]{\begin{mdframed}[style=theodefault]
-    {\lato\bfseries Theorem.\enskip}#1\end{mdframed}
-    }
+    {\lato\bfseries Theorem.\enskip}#1\end{mdframed}}
 \newcounter{defnum}
 \newcommand{\definition}[1]{\stepcounter{defnum}\begin{mdframed}[style=theodefault]
-    {\lato\bfseries Definition \thedefnum.\enskip}#1\end{mdframed}
-    }
+    {\lato\bfseries Definition \thedefnum.\enskip}#1\end{mdframed}}
 \newcommand{\defn}[1]{\begin{mdframed}[style=theodefault]
-    {\lato\bfseries Definition.\enskip}#1\end{mdframed}
-    }
+    {\lato\bfseries Definition.\enskip}#1\end{mdframed}}
 \newcommand{\remark}[1]{\begin{mdframed}[style=remarkdefault]
     {\lato\itshape Remark.\enskip}#1
     \end{mdframed}}
@@ -376,6 +360,7 @@ pen thickgrn=linewidth(1)+RGB(13,83,76);
 \newcommand{\parenth}[1]{\left( #1\right)}
 \newcommand{\sqbrack}[1]{\left[ #1\right]}
 \newcommand{\abs}[1]{\left\lvert #1\right\rvert}
+\newcommand{\norm}[1]{\left\lVert #1\right\rVert}
 %floor/ceil; im so smart idk what \left and \right are, smh
 \newcommand{\floor}[1]{\left\lfloor #1\right\rfloor}
 \newcommand{\bigfloor}[1]{\bigl\lfloor #1\bigr\rfloor}
@@ -386,8 +371,10 @@ pen thickgrn=linewidth(1)+RGB(13,83,76);
 \newcommand{\biggceil}[1]{\biggl\lceil #1\biggr\rceil}
 \newcommand{\Biggceil}[1]{\Biggl\lceil #1\Biggr\rceil}
 % operators, first two from lucky.sty, misc otherwise
-\DeclareMathOperator{\cyc}{\sum_{\text{cyc}}}
-\DeclareMathOperator{\sym}{\sum_{\text{sym}}}
+\DeclareMathOperator{\cycsum}{\sum_{\text{cyc}}}
+\DeclareMathOperator{\symsum}{\sum_{\text{sym}}}
+\DeclareMathOperator{\cycprod}{\prod{\text{cyc}}}
+\DeclareMathOperator{\symprod}{\prod{\text{sym}}}
 \renewcommand{\deg}{^\circ}
 \newcommand{\pow}[2]{\text{Pow}_{#1}(#2)}
 \newcommand{\solution}{\par\noindent {\lato\itshape Solution.\enskip}}
@@ -410,7 +397,7 @@ pen thickgrn=linewidth(1)+RGB(13,83,76);
 	urlcolor=black}
 \emph{\tableofcontents}\newpage
 }}
-% section packages
+% title stuff
 \usepackage{titling,titlesec,setspace}
 \apptocmd{\maketitle}{\begin{center}
     {\color{nyandarkgrn}\Alegreya\itshape Produced using seto.sty}
@@ -419,7 +406,7 @@ pen thickgrn=linewidth(1)+RGB(13,83,76);
 \patchcmd{\@maketitle}{\@author}{{\Alegreya\color{nyandarkgrn}\@author}}{}{}
 \patchcmd{\@maketitle}{\@date}{{\Alegreya\@date}}{}{}
 
-% regular sections
+% regular (sub)(sub)sections
 \titleformat{\section}{\AlegreyaMedium\Large\color{nyandarkgrn}}{
     {\S\thesection}}{1em}{}
 \titleformat{\subsection}{\lato\bfseries\large\color{nyandarkgrn}}{
@@ -436,12 +423,9 @@ pen thickgrn=linewidth(1)+RGB(13,83,76);
 \newcounter{exenum}
 \newcommand{\exercise}{
 	\stepcounter{exenum}\par\noindent{\lato\bfseries Problem \theexenum.\enskip}}
-% hpc numbering/labelling on school hw, because im lazy af
+% hpc problem numbering on school hw, because im lazy af
 \newcounter{hpcExenum}
 \newcommand{\hpcExe}[1]{\stepcounter{hpcExenum}\par\emph{\thehpcExenum/#1; }}
-\newcounter{hpcTopicnum}
-\newcommand{\hpcTopic}[1]{\stepcounter{hpcTopicnum}\textit{Topic \thehpcTopicnum, #1.}}
-\newcommand{\hpcContinueTopic}{\textit{Topic \thehpcTopicnum, continued.}}
 %---------------------------------------------
 %quotes
 \global\mdfdefinestyle{quotedefault}{%
