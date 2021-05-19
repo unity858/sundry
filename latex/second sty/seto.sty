@@ -26,21 +26,17 @@ size(6cm);
 include graph;
 include math;
 real markscalefactor=0.03;
-
 // useful pts
 // (0,0)-> origin;
 pair origin;
 origin=(0,0);
-
 // The point r of the way along path p with respect to arc length, where r is a real value between 0 and 1 inclusive:
 pair waypoint(path p, real r)
 { 
 	return point(p,reltime(p,r));
 }
-
 // The midpoint of path p:
 pair midpoint(path p){ return waypoint(p,.5);}
-
 // The foot of the perpendicular from P to line AB:
 pair foot(pair P,pair A, pair B)
 { 
@@ -48,7 +44,6 @@ pair foot(pair P,pair A, pair B)
 	s=dot(P-A,unit(B-A)); 
 	return (scale(s)*unit(B-A)+A);
 }
-
 // The point on the angle bisector of <ABC that is a unit distance from B.
 // If only two points A and B are specified, the function returns a point
 // on the perpendicular bisector of AB, a unit distance from the segment. 
@@ -69,13 +64,10 @@ pair bisectorpoint(pair A ... pair[] BC)
 	} 
 	return P;
 }
-
 ///////////////////////////////////////////
 // CIRCLES
 ///////////////////////////////////////////
-
 // CIRCUMCIRCLE: //
-
 // The circumcenter of triangle ABC:
 pair circumcenter(pair A=(0,0), pair B=(0,0), pair C=(0,0))
 { 
@@ -86,21 +78,17 @@ pair circumcenter(pair A=(0,0), pair B=(0,0), pair C=(0,0))
 	Q=rotate(90,N)*B; 
 	return extension(M,P,N,Q);
 }
-
 // The circumradius of triangle ABC:
 real circumradius(pair A,pair B,pair C)
 { 
 	return abs(circumcenter(A,B,C)-A);
 }
-
 // The circumcircle of triangle ABC:
 guide circumcircle(pair A=(0,0), pair B=(0,0), pair C=(0,0))
 { 
 	return Circle(circumcenter(A,B,C),circumradius(A,B,C));
 }
-
 // INCIRCLE: //
-
 // The incenter of triangle ABC:
 pair incenter(pair A=(0,0), pair B=(0,0), pair C=(0,0))
 { 
@@ -109,7 +97,6 @@ pair incenter(pair A=(0,0), pair B=(0,0), pair C=(0,0))
 	Q=rotate((angle(A-B)-angle(C-B))*90/pi,B)*C; 
 	return extension(A,P,B,Q);
 }
-
 // The inradius of triangle ABC:
 real inradius(pair A,pair B,pair C)
 { 
@@ -119,13 +106,11 @@ real inradius(pair A,pair B,pair C)
 	c=abs(B-A); 
 	s=(a+b+c)/2; 
 	return sqrt(s*(s-a)*(s-b)*(s-c))/s;}
-
 // The inscribed circle of triangle ABC:
 guide incircle(pair A=(0,0), pair B=(0,0), pair C=(0,0))
 { 
 	return Circle(incenter(A,B,C),inradius(A,B,C));
 }
-
 // The nth point of tangency from a point P to the circle with center O and radius r
 // where n can be 1 or 2 - the points of tangency are labeled in counterclockwise order around the circle.
 // If P is inside the circle, the center of the circle is returned rather than an error.
@@ -148,7 +133,6 @@ pair tangent(pair P, pair O, real r, int n=1)
 	else {T=O;}  
 	return T;
 }
-
 // Returns true if ABCD is a cyclic quadrilateral
 // Tests if the circumcenters of ABC and ABD are equal within 10^(-5) 
 bool cyclic(pair A, pair B, pair C, pair D) 
@@ -156,11 +140,9 @@ bool cyclic(pair A, pair B, pair C, pair D)
 	if (abs(circumcenter(A,B,C).x-circumcenter(A,B,D).x)<1/10^(5) && abs(circumcenter(A,B,C).y-circumcenter(A,B,D).y)<1/10^(5)) return true;
     else return false; 
 }
-
 ///////////////////////////////////////////
 // COLLINEARITY AND CONCURRENCY
 ///////////////////////////////////////////
-
 // Returns true if the lines AB, CD, EF are concurrent 
 // within 10^(-5) (to avoid approximation errors),
 // or if AB, CD, EF are mutually parallel, intersecting at infinity.
@@ -173,7 +155,6 @@ bool concurrent(pair A, pair B, pair C, pair D, pair E, pair F)
 	return true; 
 	else return false;
 }
-
 // Returns true if points A, B, and C are collinear.
 bool collinear(pair A, pair B, pair C)
 { 
@@ -181,30 +162,24 @@ bool collinear(pair A, pair B, pair C)
 	return true; 
 	else return false;
 }
-
 ///////////////////////////////////////////
 // TRIANGLES AND ASSOCIATED POINTS
 ///////////////////////////////////////////
-
 // The centroid of triangle ABC:
 pair centroid(pair A, pair B, pair C)
 { 
 	return (A+B+C)/3;
 }
-
 // The orthocenter of triangle ABC:
 pair orthocenter(pair A, pair B, pair C)
 { 
 return extension(A,foot(A,B,C),B,foot(B,A,C));
 }
-
 ///////////////////////////////////////////
 // TICKMARKS AND ANGLE MARKS
 ///////////////////////////////////////////
-
 // Returns a right angle mark at B given a right angle ABC
 // The optional argument s specifies the side length of the mark in ps points:
-
 path rightanglemark(pair A, pair B, pair C, real s=8)
 { 
 	pair P,Q,R; 
@@ -213,7 +188,6 @@ path rightanglemark(pair A, pair B, pair C, real s=8)
 	Q=P+R-B; 
 	return P--Q--R;
 }
-
 // Returns an angle mark on angle ABC consisting of several arcs centered at B.
 // The optional arguments t, s[] specify the radius of the arcs in increasing order:
 path anglemark(pair A, pair B, pair C, real t=8 ... real[] s)
@@ -247,7 +221,6 @@ path anglemark(pair A, pair B, pair C, real t=8 ... real[] s)
 	else mark=(mark--B--cycle); 
 	return mark;
 }
-
 // A picture marking a path g with n ticks spaced spacing apart, with length s in ps points
 // such that the middle tick mark (or one of the two if n is even) is normal to g
 // and located r of the way along path g:
@@ -274,7 +247,7 @@ picture pathticks(path g, int n=1, real r=.5, real spacing=6, real s=8, pen p=cu
 pen darkgrn=RGB(13,83,76);
 pen thickgrn=linewidth(1)+RGB(13,83,76);
 pen redpink=RGB(229,162,155);
-pen thickpink=linewidth(1)+RGB(229,162,155)
+pen thickpink=linewidth(1)+RGB(229,162,155);
 \end{asydef}
 %---------------------------------------------
 %essential packages/ tikz stuff
@@ -282,13 +255,23 @@ pen thickpink=linewidth(1)+RGB(229,162,155)
 \RequirePackage{tikz,tkz-euclide}
 \usetikzlibrary{calc}
 \RequirePackage{babel}
-\RequirePackage[margin=1in]{geometry} %keep before fancyhdr to make margins work
+\RequirePackage[margin=1in]{geometry}
 \RequirePackage[utf8]{inputenc} % inputenc b4 csquotes
-\RequirePackage{amsmath,amssymb,amsthm,csquotes,enumitem,etoolbox,fancyhdr,ifthen,
-    mathtools,,imakeidx,suffix,xstring,xcolor}
+\RequirePackage{amsmath,amssymb,amsthm,csquotes,enumitem,etoolbox,xifthen,mathtools,imakeidx,xstring,xcolor}
 \RequirePackage[hypertexnames=false]{hyperref}
 \RequirePackage[symbol]{footmisc}
 \RequirePackage[T1]{fontenc}
+%---------------------------------------------
+%options
+\newboolean{normalnumbering}
+\newboolean{sectnumbering}
+\setboolean{normalnumbering}{true}
+\setboolean{sectnumbering}{false}
+\DeclareOption{labelsBySect}{
+    \setboolean{normalnumbering}{false}
+    \setboolean{sectnumbering}{true}}
+\DeclareOption*{\PackageWarning{seto}{Unknown ‘\CurrentOption’}}
+\ProcessOptions\relax
 %---------------------------------------------
 %colors, for mdframed
 % Theme: big sur
@@ -329,27 +312,34 @@ pen thickpink=linewidth(1)+RGB(229,162,155)
 	linecolor=remarkcolor,linewidth=1.5pt,backgroundcolor=remarkcolor!20!white,roundcorner=2pt}
 %cmds for convenience
 \newcounter{probnum}
-\newcommand{\problem}[2][source unknown]{\stepcounter{probnum}
-    \begin{mdframed}[style=probdefault]{\lato\bfseries Problem \theprobnum (#1).\enskip}#2\end{mdframed}}
-\newcommand{\prob}[2][source unknown]{
-    \begin{mdframed}[style=probdefault]{\lato\bfseries Problem (#1).\enskip}#2\end{mdframed}}
+\newcommand{\problabel}{\ifthenelse{\boolean{normalnumbering}}{\theprobnum}{\thesection.\theprobnum}}
+\newcommand{\problem}[2][]{\stepcounter{probnum}
+    \begin{mdframed}[style=probdefault]{\lato\bfseries Problem \problabel\ifthenelse{\isempty{#1}}{}{ (#1)}.\enskip}#2\end{mdframed}}
+\newcommand{\prob}[2][]{
+    \begin{mdframed}[style=probdefault]{\lato\bfseries Problem
+    \ifthenelse{\isempty{#1}}{}{ (#1))}.\enskip}#2\end{mdframed}}
 \newcounter{exmpnum}
-\newcommand{\example}[2][source unknown]{\stepcounter{exmpnum}
-    \begin{mdframed}[style=probdefault]{\lato\bfseries Example \theexmpnum (#1).\enskip}#2\end{mdframed}}
-\newcommand{\exmp}[2][source unknown]{
-    \begin{mdframed}[style=probdefault]{\lato\bfseries Example (#1).\enskip}#2\end{mdframed}}
+\newcommand{\exmplabel}{\ifthenelse{\boolean{normalnumbering}}{\theexmpnum}{\thesection.\theexmpnum}}
+\newcommand{\example}[2][]{\stepcounter{exmpnum}
+    \begin{mdframed}[style=probdefault]{\lato\bfseries Example \exmplabel
+    \ifthenelse{\isempty{#1}}{}{ (#1)}.\enskip}#2\end{mdframed}}
+\newcommand{\exmp}[2][]{
+    \begin{mdframed}[style=probdefault]{\lato\bfseries Example
+    \ifthenelse{\isempty{#1}}{}{ (#1)}.\enskip}#2\end{mdframed}}
 \newcommand{\claim}[1]{
     \begin{mdframed}[style=claimdefault]{\lato\bfseries Claim---\quad}#1\end{mdframed}}
 \newcommand{\lemma}[1]{
     \begin{mdframed}[style=claimdefault]{\lato\bfseries Lemma---\quad}#1\end{mdframed}}
 \newcounter{theonum}
+\newcommand{\thmlabel}{\ifthenelse{\boolean{normalnumbering}}{\thetheonum}{\thesection.\thetheonum}}
 \newcommand{\theorem}[1]{\stepcounter{theonum}\begin{mdframed}[style=theodefault]
-    {\lato\bfseries Theorem \thetheonum.\enskip}#1\end{mdframed}}
+    {\lato\bfseries Theorem \thmlabel.\enskip}#1\end{mdframed}}
 \newcommand{\theo}[1]{\begin{mdframed}[style=theodefault]
     {\lato\bfseries Theorem.\enskip}#1\end{mdframed}}
 \newcounter{defnum}
+\newcommand{\deflabel}{\ifthenelse{\boolean{normalnumbering}}{\thedefnum}{\thesection.\thedefnum}}
 \newcommand{\definition}[1]{\stepcounter{defnum}\begin{mdframed}[style=theodefault]
-    {\lato\bfseries Definition \thedefnum.\enskip}#1\end{mdframed}}
+    {\lato\bfseries Definition \deflabel.\enskip}#1\end{mdframed}}
 \newcommand{\defn}[1]{\begin{mdframed}[style=theodefault]
     {\lato\bfseries Definition.\enskip}#1\end{mdframed}}
 \newcommand{\remark}[1]{\begin{mdframed}[style=remarkdefault]
@@ -392,7 +382,7 @@ pen thickpink=linewidth(1)+RGB(229,162,155)
 \newcommand{\C}{\mathbb{C}}
 \renewcommand{\P}{\mathbb{P}}% for example, PR^2
 %---------------------------------------------
-%sections, theme is big sur?
+% title/toc
 \setcounter{tocdepth}{3}
 \newcommand{\toc}{
 {\hypersetup{
@@ -410,27 +400,40 @@ pen thickpink=linewidth(1)+RGB(229,162,155)
 \patchcmd{\@maketitle}{\@title}{{\AlegreyaMedium\color{nyandarkgrn}\@title}}{}{}
 \patchcmd{\@maketitle}{\@author}{{\Alegreya\color{nyandarkgrn}\@author}}{}{}
 \patchcmd{\@maketitle}{\@date}{{\Alegreya\@date}}{}{}
-
+%---------------------------------------------
 % regular (sub)(sub)sections
 \titleformat{\section}{\AlegreyaMedium\Large\color{nyandarkgrn}}{
-    {\S\thesection}}{1em}{}
+    {\S\thesection}
+    \ifthenelse{\boolean{sectnumbering}}{
+        \setcounter{probnum}{0}\setcounter{exmpnum}{0}
+        \setcounter{theonum}{0}\setcounter{defnum}{0}
+        \setcounter{equation}{0}}{}}
+    {1em}{}
 \titleformat{\subsection}{\lato\bfseries\large\color{nyandarkgrn}}{
     {\thesubsection}}{1em}{}
 \titleformat{\subsubsection}{\lato\bfseries\color{nyandarkgrn}}{
     {\thesubsubsection}}{1em}{}
-
 % (sub)(sub)sections, unnumbered, THESE DO NOT APPEAR IN TOC!
-\newcommand{\sctn}[1]{{\par\noindent\Large\color{nyandarkgrn}\AlegreyaMedium #1\par\noindent}}
+\newcommand{\sctn}[1]{\ifthenelse{\boolean{sectnumbering}}{
+        \setcounter{probnum}{0}\setcounter{exmpnum}{0}
+        \setcounter{theonum}{0}\setcounter{defnum}{0}
+        \setcounter{equation}{0}}{}
+    {\par\noindent\Large\color{nyandarkgrn}\AlegreyaMedium #1\par\noindent}}
 \newcommand{\subsctn}[1]{{\par\noindent\AlegreyaMedium\large\color{nyandarkgrn} #1\par\noindent}}
 \newcommand{\subsubsctn}[1]{{\par\noindent\AlegreyaMedium\color{nyandarkgrn} #1\par\noindent}}
 %---------------------------------------------
 %exercises
 \newcounter{exenum}
-\newcommand{\exercise}{
-	\stepcounter{exenum}\par\noindent{\lato\bfseries Problem \theexenum.\enskip}}
+\newcommand{\exelabel}{\ifthenelse{\boolean{sectnumbering}}{\thesection.\theexenum}{\theexenum}}
+\newcommand{\exercise}{\stepcounter{exenum}
+	\par\noindent{\lato\bfseries Problem \exelabel.\enskip}}
+%---------------------------------------------
 % hpc problem numbering on school hw, because im lazy af
 \newcounter{hpcExenum}
 \newcommand{\hpcExe}[1]{\stepcounter{hpcExenum}\par\emph{\thehpcExenum/#1; }}
+\newcounter{hpcTopicnum}
+\newcommand{\hpcTopic}[1]{\stepcounter{hpcTopicnum}\textit{Topic \thehpcTopicnum, #1.}}
+\newcommand{\hpcContinueTopic}{\textit{Topic \thehpcTopicnum, continued.}}
 %---------------------------------------------
 %quotes
 \global\mdfdefinestyle{quotedefault}{%
@@ -447,6 +450,6 @@ pen thickpink=linewidth(1)+RGB(229,162,155)
     {\begin{flushright}{\color{nyandarkgrn}\Alegreya #2}\end{flushright}}
     \end{mdframed}}
 \newcommand{\inlinequote}[2]{\begin{mdframed}[style=inlinequotedefault]
-    {\Alegreya\itshape ``#1'' --#2}
+    {\Alegreya\itshape ``#1'' -- #2}
     \end{mdframed}}
 %---------------------------------------------
