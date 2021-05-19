@@ -313,8 +313,8 @@ pen thickpink=linewidth(1)+RGB(229,162,155);
 %cmds for convenience
 \newcounter{probnum}
 \newcommand{\problabel}{\ifthenelse{\boolean{normalnumbering}}{\theprobnum}{\thesection.\theprobnum}}
-\newcommand{\problem}[2][]{\stepcounter{probnum}
-    \begin{mdframed}[style=probdefault]{\lato\bfseries Problem \problabel\ifthenelse{\isempty{#1}}{}{ (#1)}.\enskip}#2\end{mdframed}}
+\newcommand{\problem}[2][]{\stepcounter{probnum}\begin{mdframed}[style=probdefault]
+	{\lato\bfseries Problem \problabel\ifthenelse{\isempty{#1}}{}{ (#1)}.\enskip}#2\end{mdframed}}
 \newcommand{\prob}[2][]{
     \begin{mdframed}[style=probdefault]{\lato\bfseries Problem
     \ifthenelse{\isempty{#1}}{}{ (#1))}.\enskip}#2\end{mdframed}}
@@ -403,22 +403,23 @@ pen thickpink=linewidth(1)+RGB(229,162,155);
 %---------------------------------------------
 % regular (sub)(sub)sections
 \titleformat{\section}{\AlegreyaMedium\Large\color{nyandarkgrn}}{
-    {\S\thesection}
-    \ifthenelse{\boolean{sectnumbering}}{
+    {\S\thesection}}
+    {1em}{}
+\apptocmd{\@section}{\ifthenelse{\boolean{sectnumbering}}{
         \setcounter{probnum}{0}\setcounter{exmpnum}{0}
         \setcounter{theonum}{0}\setcounter{defnum}{0}
-        \setcounter{equation}{0}}{}}
-    {1em}{}
+        \setcounter{equation}{0}}{}}{}{}
 \titleformat{\subsection}{\lato\bfseries\large\color{nyandarkgrn}}{
     {\thesubsection}}{1em}{}
 \titleformat{\subsubsection}{\lato\bfseries\color{nyandarkgrn}}{
     {\thesubsubsection}}{1em}{}
 % (sub)(sub)sections, unnumbered, THESE DO NOT APPEAR IN TOC!
-\newcommand{\sctn}[1]{\ifthenelse{\boolean{sectnumbering}}{
+\newcommand{\sctn}[1]{
+    {\par\noindent\Large\color{nyandarkgrn}\AlegreyaMedium #1\par\noindent}
+    \ifthenelse{\boolean{sectnumbering}}{
         \setcounter{probnum}{0}\setcounter{exmpnum}{0}
         \setcounter{theonum}{0}\setcounter{defnum}{0}
-        \setcounter{equation}{0}}{}
-    {\par\noindent\Large\color{nyandarkgrn}\AlegreyaMedium #1\par\noindent}}
+        \setcounter{equation}{0}}{}}
 \newcommand{\subsctn}[1]{{\par\noindent\AlegreyaMedium\large\color{nyandarkgrn} #1\par\noindent}}
 \newcommand{\subsubsctn}[1]{{\par\noindent\AlegreyaMedium\color{nyandarkgrn} #1\par\noindent}}
 %---------------------------------------------
