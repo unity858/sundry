@@ -105,34 +105,28 @@ def multiply(M1:list,M2:list):
 def equationsolve(M:list):
     l=len(M)
     rhs_vec=[]
-    for h in range(l):
-        rhs_vec.append([M[h][-1]])
+    for h in range(l): rhs_vec.append([M[h][-1]])
     print(f"{rhs_vec=}")
     lhs_matrix=[]
-    for g in range(l):
-        lhs_matrix.append(M[g][:-1])
+    for g in range(l): lhs_matrix.append(M[g][:-1])
     print(f"{lhs_matrix=}")
-    if det(lhs_matrix)==0:
-        return 'No unique solution'
+    if det(lhs_matrix)==0: return 'No unique solution'
     inv=inverse(lhs_matrix)
     print(f"{inv=}")
     print(f"{det(lhs_matrix)=}")
     return multiply(inv,rhs_vec)
 def scale(r,M:list):
-    length=len(M[0])
-    height=len(M)
+    length,height=len(M[0]),len(M)
     M1=copy.deepcopy(M)
     for i in range(height):
-        for j in range(length):
-            M1[i][j]*=r
+        for j in range(length): M1[i][j]*=r
     return M1
 def add(M1,M2):
     ans=copy.deepcopy(M1)
     length1=len(M1[0])
     height1=len(M1)
     for i in range(height1):
-        for j in range(length1):
-            ans[i][j]+=M2[i][j]
+        for j in range(length1): ans[i][j]+=M2[i][j]
     return ans
 def shoelace(vertices):
     '''vertices contains ordered pairs(list)'''
@@ -149,8 +143,7 @@ def shoelace(vertices):
 def harmonic1(n):
     '''naive'''
     ans=0
-    for i in range(n):
-        ans+=(1/(i+1))
+    for i in range(n): ans+=(1/(i+1))
     return ans
 def harmonic2(n):
     gamma=0.577215664901532 #euler-mascheroni const
@@ -162,22 +155,19 @@ def foo(x):
 def lowfakeintegral(a,b,n):
     '''a,b are endpts, n is number of sections'''
     ans,intervalsize=0,(b-a)/n
-    for i in range(n):
-        ans+=foo(a+i*intervalsize)
+    for i in range(n): ans+=foo(a+i*intervalsize)
     return ans*intervalsize
 def highfakeintegral(a,b,n):
     '''a,b are endpts, n is number of sections'''
     ans,intervalsize=0,(b-a)/n
-    for i in range(n):
-        ans+=foo(a+(i+1)*intervalsize)
+    for i in range(n): ans+=foo(a+(i+1)*intervalsize)
     return ans*intervalsize
 # some rlly simple bs
 def g(x): return (1.5/x-1)/x-1 # change as needed
 #local sets often used in hpc textbook
 L1=[4,8,20,50]
 L2=[1,10,100,1000,10000]
-for i in range(len(L2)):
-    print(g(i+1))
+for i in range(len(L2)): print(g(L2[i+1]))
 # in some cases, you may want to replace the L1s in the last loop w/ L2s; 
 # the textbook often uses these sets of numbers for test-evaluation.
 #more will be added as more repetitive tasks appear, but hopefully i saved you some time lel
