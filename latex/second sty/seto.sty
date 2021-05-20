@@ -429,7 +429,7 @@ pen thickpink=linewidth(1)+RGB(229,162,155);
 \newcommand{\hpcTopic}[1]{\stepcounter{hpcTopic}\textit{Topic \thehpcTopic, #1.}}
 \newcommand{\hpcContinueTopic}{\textit{Topic \thehpcTopic, continued.}}
 \newcounter{revSectnum}
-\newcommand{\hpcRevtopic}[1][]{\stepcounter{revSectnum}\textit{Section \#\therevSectnum.}}
+\newcommand{\hpcRevtopic}[1][]{\stepcounter{revSectnum}\textit{Section \#\therevSectnum\ifthenelse{\isempty{#1}}{}{, #1}.}}
 %----------
 % 'fakecmd'
 \newcommand{\fakecommand}[1]{\texttt{\textbackslash #1}}
