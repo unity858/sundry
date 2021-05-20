@@ -64,9 +64,7 @@ pair bisectorpoint(pair A ... pair[] BC)
 	} 
 	return P;
 }
-///////////////////////////////////////////
-// CIRCLES
-///////////////////////////////////////////
+// CIRCLES ///////////////////////
 // CIRCUMCIRCLE: //
 // The circumcenter of triangle ABC:
 pair circumcenter(pair A=(0,0), pair B=(0,0), pair C=(0,0))
@@ -140,9 +138,7 @@ bool cyclic(pair A, pair B, pair C, pair D)
 	if (abs(circumcenter(A,B,C).x-circumcenter(A,B,D).x)<1/10^(5) && abs(circumcenter(A,B,C).y-circumcenter(A,B,D).y)<1/10^(5)) return true;
     else return false; 
 }
-///////////////////////////////////////////
-// COLLINEARITY AND CONCURRENCY
-///////////////////////////////////////////
+// COLLINEARITY AND CONCURRENCY ////////
 // Returns true if the lines AB, CD, EF are concurrent 
 // within 10^(-5) (to avoid approximation errors),
 // or if AB, CD, EF are mutually parallel, intersecting at infinity.
@@ -162,9 +158,7 @@ bool collinear(pair A, pair B, pair C)
 	return true; 
 	else return false;
 }
-///////////////////////////////////////////
-// TRIANGLES AND ASSOCIATED POINTS
-///////////////////////////////////////////
+// TRIANGLES AND ASSOCIATED POINTS //////////////////
 // The centroid of triangle ABC:
 pair centroid(pair A, pair B, pair C)
 { 
@@ -175,9 +169,7 @@ pair orthocenter(pair A, pair B, pair C)
 { 
 return extension(A,foot(A,B,C),B,foot(B,A,C));
 }
-///////////////////////////////////////////
-// TICKMARKS AND ANGLE MARKS
-///////////////////////////////////////////
+// TICKMARKS AND ANGLE MARKS ////////////////
 // Returns a right angle mark at B given a right angle ABC
 // The optional argument s specifies the side length of the mark in ps points:
 path rightanglemark(pair A, pair B, pair C, real s=8)
@@ -248,6 +240,7 @@ pen darkgrn=RGB(13,83,76);
 pen thickgrn=linewidth(1)+RGB(13,83,76);
 pen redpink=RGB(229,162,155);
 pen thickpink=linewidth(1)+RGB(229,162,155);
+////////////////////////////
 \end{asydef}
 %---------------------------------------------
 %essential packages/ tikz stuff
@@ -257,7 +250,8 @@ pen thickpink=linewidth(1)+RGB(229,162,155);
 \RequirePackage{babel}
 \RequirePackage[margin=1in]{geometry}
 \RequirePackage[utf8]{inputenc} % inputenc b4 csquotes
-\RequirePackage{amsmath,amssymb,amsthm,csquotes,enumitem,etoolbox,xifthen,mathtools,imakeidx,xstring,xcolor}
+\RequirePackage{amsmath,amssymb,amsthm,csquotes,enumitem,etoolbox,graphics,graphicx,
+    xifthen,mathtools,imakeidx,stackrel,svg,xstring,xcolor}
 \RequirePackage[hypertexnames=false]{hyperref}
 \RequirePackage[symbol]{footmisc}
 \RequirePackage[T1]{fontenc}
@@ -373,9 +367,9 @@ pen thickpink=linewidth(1)+RGB(229,162,155);
 \DeclareMathOperator{\symprod}{\prod{\text{sym}}}
 \renewcommand{\deg}{^\circ}
 \newcommand{\pow}[2]{\text{Pow}_{#1}(#2)}
-\newcommand{\solution}[1][]{\par\noindent {\lato\itshape Solution\optlabel{#1}.\enskip}}
 \newcommand{\evalat}[2][]{\biggr\rvert_{#2}^{#1}}
 \newcommand{\solqed}{\noindent\hfill$\blacksquare$}
+\newcommand{\hbeq}[1]{\overset{#1}{=}}
 %sets
 \newcommand{\N}{\mathbb{N}}
 \newcommand{\Z}{\mathbb{Z}}
@@ -383,9 +377,8 @@ pen thickpink=linewidth(1)+RGB(229,162,155);
 \newcommand{\R}{\mathbb{R}}
 \newcommand{\C}{\mathbb{C}}
 \renewcommand{\P}{\mathbb{P}}% for example, PR^2
-\newcommand{\fakecommand}[1]{\texttt{\textbackslash #1}}
 %---------------------------------------------
-% title/toc
+% toc
 \setcounter{tocdepth}{3}
 \newcommand{\toc}{
 {\hypersetup{
@@ -395,7 +388,8 @@ pen thickpink=linewidth(1)+RGB(229,162,155);
 	urlcolor=black}
 \emph{\tableofcontents}\newpage
 }}
-% title stuff
+%---------------------------------------------
+% title customization
 \RequirePackage{titling,titlesec,setspace}
 \apptocmd{\maketitle}{\begin{center}
     {\color{nyandarkgrn}\Alegreya\itshape Produced using seto.sty}
@@ -416,28 +410,29 @@ pen thickpink=linewidth(1)+RGB(229,162,155);
     {\thesubsection}}{1em}{}
 \titleformat{\subsubsection}{\lato\bfseries\color{nyandarkgrn}}{
     {\thesubsubsection}}{1em}{}
-% (sub)(sub)sections, unnumbered, THESE DO NOT APPEAR IN TOC!
-\newcommand{\sctn}[1]{
-    {\par\noindent\Large\color{nyandarkgrn}\AlegreyaMedium #1\par\noindent}
-    \ifthenelse{\boolean{sectnumbering}}{
-        \setcounter{probnum}{0}\setcounter{exmpnum}{0}
-        \setcounter{theonum}{0}\setcounter{defnum}{0}
-        \setcounter{equation}{0}}{}}
-\newcommand{\subsctn}[1]{{\par\noindent\AlegreyaMedium\large\color{nyandarkgrn} #1\par\noindent}}
-\newcommand{\subsubsctn}[1]{{\par\noindent\AlegreyaMedium\color{nyandarkgrn} #1\par\noindent}}
 %---------------------------------------------
-%exercises
+% misc
+%-----------
+% exercises
 \newcounter{exenum}
 \newcommand{\exelabel}{\ifthenelse{\boolean{sectnumbering}}{\thesection.\theexenum}{\theexenum}}
 \newcommand{\exercise}[1][]{\stepcounter{exenum}
 	\par\noindent{\lato\bfseries Problem \exelabel}{\lato\optlabel{#1}}{\lato\bfseries.}\enskip}
-%---------------------------------------------
+%-----------
+% sol
+\newcommand{\solution}[1][]{\par\noindent {\lato\itshape Solution\optlabel{#1}.\enskip}}
+%----------
 % hpc problem numbering on school hw, because im lazy af
-\newcounter{hpcExenum}
-\newcommand{\hpcExe}[1]{\stepcounter{hpcExenum}\par\emph{\thehpcExenum/#1; }}
-\newcounter{hpcTopicnum}
-\newcommand{\hpcTopic}[1]{\stepcounter{hpcTopicnum}\textit{Topic \thehpcTopicnum, #1.}}
-\newcommand{\hpcContinueTopic}{\textit{Topic \thehpcTopicnum, continued.}}
+\newcounter{hpcExe}
+\newcommand{\hpcExe}[1]{\stepcounter{hpcExe}\par\emph{\thehpcExe/#1; }}
+\newcounter{hpcTopic}
+\newcommand{\hpcTopic}[1]{\stepcounter{hpcTopic}\textit{Topic \thehpcTopic, #1.}}
+\newcommand{\hpcContinueTopic}{\textit{Topic \thehpcTopic, continued.}}
+\newcounter{revSectnum}
+\newcommand{\hpcRevtopic}[1][]{\stepcounter{revSectnum}\textit{Section \#\therevSectnum.}}
+%----------
+% 'fakecmd'
+\newcommand{\fakecommand}[1]{\texttt{\textbackslash #1}}
 %---------------------------------------------
 %quotes
 \global\mdfdefinestyle{quotedefault}{%
