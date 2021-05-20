@@ -1,5 +1,5 @@
 \documentclass{article}
-\usepackage{seto}
+\usepackage[labelsBySect]{seto}
 \title{seto.sty Sample\\(a nyanya.sty variant)}
 \author{Neal Yan heheheh}
 \date{May 2021}
@@ -7,89 +7,84 @@
 \begin{document}
 
 \maketitle
-
+A demonstration of the features of seto.sty.
+\section*{Package information}
+There is an option called \texttt{labelsBySect}, which labels problems, theorems, etc by section.
 \toc
 
 \section{This is a section header}
 \subsection{Subsection appearance}
 
-The command for (sub)(sub)section has not changed, although its appearance has: \texttt{\textbackslash(sub)(sub)section}.
+The command for (sub)(sub)section has not changed, although its appearance has: \fakecommand{(sub)(sub)section}.
 
-\subsubsection{Just in case you need these.}
-
-There is a slight possibility of the necessity of this command, \texttt{\textbackslash subsubsection}, I guess.
-
+\subsubsection{Just in case!}
 \section{Math commands}
 
-A few math commands have been defined, such as \texttt{\textbackslash sym} and \texttt{\textbackslash cyc}, which appear as $\sym$ and $\cyc$, respectively\footnote{sorry dennis lol}.
+A few math commands have been defined, such as \fakecommand{symsum} and \fakecommand{cycsum}, which appear as $\symsum$ and $\cycsum$, respectively\footnote{sorry dennis lol}.\\
+Some other ones defined include \fakecommand{deg}(changed from `deg' to `$\deg$'), and \fakecommand{pow}(power of a point).
 
 \subsection{Between bars}
-
-After noticing the lack of absolute value bars and the evaluated-at thing, the following were defined: 
-
-\texttt{\textbackslash abs\{...\}}$\Rightarrow\abs{\dots}$;
-
-\texttt{\textbackslash evalat[upper number]\{lower number\}}$\Rightarrow\evalat[\text{first argument}]{\text{second argument}}$.
+\fakecommand{abs/norm/sqbrack/parenth} are some of the provided delimiters. Evalat is also rather straightforward:\\
+\fakecommand{evalat[upper]\{lower\}}$\Rightarrow\evalat[\text{first argument}]{\text{second argument}}$;
 
 \subsection{Floors/ceilings}
-Due to personal need\footnote{Ross quiz, anyone?}, I've defined floor brackets because ``\texttt{\textbackslash lfloor \dots \textbackslash  rfloor}" was too tedious to repeat.  Furthermore, the brackets can be of specified size. The basic commands are \texttt{\textbackslash floor} and \texttt{\textbackslash ceil}. They may be made larger by prefixing \texttt{big}, \texttt{bigg}, or \texttt{Bigg} before \texttt{floor\{...\}}/\texttt{ceil\{...\}}, which already include \texttt{\textbackslash left} and \texttt{\textbackslash right} and will change size as according to what is within the floor/ceil bars:
+Due to personal need\footnote{Ross quiz, anyone?}, I've defined floor brackets because ``\fakecommand{lfloor \dots \textbackslash  rfloor}" was too tedious to repeat.  Although \fakecommand{floor/ceil} already uses \fakecommand{left \textbackslash right}, the sizes can also be adjusted manually by prefixing \texttt{big}, \texttt{bigg}, or \texttt{Bigg} before \texttt{floor\{...\}}/\texttt{ceil\{...\}}:
 \begin{center}
 \begin{tabular}{c|c|c|c|c}
-    \emph{Command} & \texttt{\textbackslash floor} & \texttt{\textbackslash bigfloor} & \texttt{\textbackslash biggfloor} & \texttt{\textbackslash Biggfloor}\\\hline
+    \emph{Command} & \fakecommand{floor} & \fakecommand{bigfloor} & \fakecommand{biggfloor} & \fakecommand{Biggfloor}\\\hline
     \emph{Appearance} & $\floor{\enskip}$ & $\bigfloor{\enskip}$ & $\biggfloor{\enskip}$ & $\Biggfloor{\enskip}$ \\
 \end{tabular}  
 \end{center}
 
 \subsection{Sets}
 
-I also found typing \texttt{\textbackslash mathbb\{R\}} for $\R$ too tedious to repeat, so I shortened it to \texttt{\textbackslash R}. Similar commands exist for $\N,\Z,\Q$, and $\C$:
+I also found typing \fakecommand{mathbb\{R\}} for $\R$ too tedious to repeat, so I shortened it to \fakecommand{R}. Similar commands exist for $\N,\Z,\Q$, and $\C$:
 \begin{center}
 \begin{tabular}{c|c|c|c|c|c}
-\emph{Command}& \texttt{\textbackslash N} & \texttt{\textbackslash Z} & \texttt{\textbackslash Q} & \texttt{\textbackslash R} & \texttt{\textbackslash C}\\\hline
+\emph{Command}& \fakecommand{N} & \fakecommand{Z} & \fakecommand{Q} & \fakecommand{R} & \fakecommand{C}\\\hline
 \emph{Appearance}& $\N$ & $\Z$ & $\Q$ & $\R$ & $\C$
 \end{tabular}  
 \end{center}
 
 \section{Fonts/text formatting}
 
-On this sty I changed up the fonts.
-To \emph{emphasize} a word, the command \texttt{\textbackslash emph} is still used.
-
-As for the environments \texttt{enumerate}, \texttt{itemize}, and \texttt{enumitem}, I'm still too lazy to change those, lel.
-
-Also, the command \texttt{\textbackslash solution}(which compiles as "\textit{Solution. }", because \texttt{\textbackslash textit\{Solution. \}} is also rather long.
+On this sty I changed up the fonts:
+\begin{itemize}
+    \item Title/section/quotes font is {\Alegreya Alegreya};
+    \item Sans font used is {\lato Lato}.
+    \item Body text font is EB Garamond.
+\end{itemize}
+\fakecommand{emph}'s appearance has changed as well, \emph{like so}.
+For itemize I'll change up the item icons later, using TikZ probably.\\
 \newpage
 \quote{Quotes are called using `\textbackslash quote\{text\}\{author\}', although this type looks more suitable at the top of a page.}{seto.sty}
 \section{Fancy stuff}
-\problem{The appearance of a problem/example. It is called by the command 
+\problem{The appearance of a problem/example. Who needs environments, thus these boxes are defined as commands instead of environments. This one is called by \fakecommand{problem/example[<label>]\{<text>\}}. When the first argument is omitted, the labeling parentheses will also disappear.}
+\theorem{Theorems and definitions are this color. (\fakecommand{theorem/definition\{\}})}
+\lemma{Lemmas/claims are this color. (\fakecommand{lemma/claim\{\}})}
+\pro{I'm also too lazy to add a frame/box to enclose proofs, so whatever. (\fakecommand{pro\{\}})}
 
-\texttt{\textbackslash problem/example[optional argument for source]\{problem text\}}. When the first argument is omitted, it will display ``source unknown" in place of a source.}
-\theorem{Theorems and definitions are this color. (\texttt{\textbackslash theorem/definition\{\}})}
-\lemma{Lemmas/claims are this color. (\texttt{\textbackslash lemma/claim\{\}})}
-\pro{I do not think proofs need their own box... at least not now. The command for proofs like this one is \texttt{\textbackslash pro\{proof text\}}.}
-
-\remark{I used a [hopefully] better color theme(for anyone who cares, it's Big Sur). Oh, and remarks/notes are called by \texttt{\textbackslash remark/note\{...\}}.}
+\remark{I used a [hopefully] better color theme(for anyone who cares, it's Big Sur). Oh, and remarks/notes are called by \fakecommand{remark/note\{...\}}.}
 
 Oh, and to remove the labeling numbers, use a shortened version of the original command:
 \begin{center}
-\begin{tabular}{c|c|c|c|c|c}
-    \emph{Original}& \texttt{\textbackslash (sub)(sub)section} & \texttt{\textbackslash problem} & \texttt{\textbackslash example}&\texttt{\textbackslash theorem}&\texttt{definition}\\\hline
-    \emph{Shortened}& \texttt{\textbackslash (sub)(sub)sctn} & \texttt{\textbackslash prob} & \texttt{\textbackslash exmp}&\texttt{\textbackslash theo}&\texttt{\textbackslash defn}
+\begin{tabular}{c|c|c|c|c}
+    \emph{Original}& \fakecommand{problem} & \fakecommand{example}&\fakecommand{theorem}&\fakecommand{definition}\\\hline
+    \emph{Shortened} & \fakecommand{prob} & \fakecommand{exmp}&\fakecommand{theo}&\fakecommand{defn}
 \end{tabular}  
 \end{center}
 
 The other commands do not have abbreviated versions.
 
-\emph{Table of Contents: }it finally worked!!!! Command is \texttt{\textbackslash toc}.
+\emph{Table of Contents: }it finally worked!!!! Command is \fakecommand{toc}.
 
 \section{Exercises}
 \noindent
-\exercise The bolded problem number and label is called by \texttt{\textbackslash exercise}. (who needs inputs lol)
-\exercise Another exercise. 
+\exercise The bolded problem number and label is called by \fakecommand{exercise}. It takes an optional input as a label.
+\exercise[sample label] Another exercise. 
+\solution Solution works similarly, and the square at the end of this dummy solution is \fakecommand{solqed}.\solqed
 
-\remark{Still rather unrefined, the typewriter font is a lot bigger than the normal font. In any case, I only added a few new features, but some things were improved. I really couldn't resist changing the fonts and colors to ones of my liking.}
-
-\inlinequote{Inline quotes( \textbackslash inlinequote\{\}\{\}) look like this.}{seto.sty}
+\inlinequote{Inline quotes( \fakecommand{inlinequote\{\}\{\}}) look like this.}{seto.sty}
 
 I think that's about it! A bit more features by now\dots
 \end{document}
