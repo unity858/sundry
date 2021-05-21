@@ -360,6 +360,8 @@ pen thickpink=linewidth(1)+RGB(229,162,155);
 \newcommand{\bigceil}[1]{\bigl\lceil #1\bigr\rceil}
 \newcommand{\biggceil}[1]{\biggl\lceil #1\biggr\rceil}
 \newcommand{\Biggceil}[1]{\Biggl\lceil #1\Biggr\rceil}
+% subsitute for {a \brack b}
+\newcommand{\sqbinom}[2]{\genfrac[]{0pt}{0}{#1}{#2}}
 % operators, first two from lucky.sty, misc otherwise
 \DeclareMathOperator{\cycsum}{\sum_{\text{cyc}}}
 \DeclareMathOperator{\symsum}{\sum_{\text{sym}}}
@@ -430,7 +432,7 @@ pen thickpink=linewidth(1)+RGB(229,162,155);
 \newcommand{\hpcTopic}[1]{\stepcounter{hpcTopic}\textit{Topic \thehpcTopic, #1.}}
 \newcommand{\hpcContinueTopic}{\textit{Topic \thehpcTopic, continued.}}
 \newcounter{revSectnum}
-\newcommand{\hpcRevsect}[1][]{\stepcounter{revSectnum}\textit{Section \#\therevSectnum}}
+\newcommand{\hpcRevsect}[1][]{\stepcounter{revSectnum}\textit{Section \#\therevSectnum\ifthenelse{\isempty{#1}}{}{ (#1)}.}}
 %----------
 % 'fakecmd'
 \newcommand{\fakecommand}[1]{\texttt{\textbackslash #1}}
