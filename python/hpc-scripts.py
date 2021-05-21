@@ -4,7 +4,8 @@
 # and hopefully spend less time on their homework.
 #
 # Neal Yan, 2021
-#the modules, do not modify
+#-----------------------------------------
+# the modules, do not modify
 import math
 import cmath
 import copy
