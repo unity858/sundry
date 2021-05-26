@@ -13,10 +13,16 @@
 % version 1 of the License, or (at your option) any later version.
 %
 %---------------------------------------------
-\LoadClass{article}
+\newboolean{artc}
+\newboolean{book}
+\setboolean{artc}{true}
+\setboolean{book}{false}
+\DeclareOption{book}{\setboolean{artc}{false}\setboolean{book}{true}}
+\DeclareOption*{\PassOptionsToClass{\CurrentOption}{article}}
+\ProcessOptions\relax
+\ifthen{\boolean{artc}}{\LoadClass{article}}{\LoadClass{book}}
 %---------------------------------------------
-%asymptote
-\RequirePackage[inline]{asymptote}
+%asymptote, when using this cls, pair with a sty that already has asy package
 \begin{asydef}
 // OLYMPIAD.ASY; COPYPASTED FROM https://math.berkeley.edu/~monks/images/olympiad.asy
 ///////////////////////////////////////////////////
