@@ -361,7 +361,6 @@ pen thickpink=linewidth(1)+RGB(229,162,155);
 	linecolor=remarkcolor,linewidth=1.5pt,backgroundcolor=remarkcolor!20!white,roundcorner=2pt}
 %------------------
 %cmds for convenience
-\newcommand{\optlabel}[1]{\ifthenelse{\isempty{#1}}{}{ (#1)}}
 \newcounter{probnum}
 \newcommand{\problabel}{\ifthenelse{\boolean{normalnumbering}}{\theprobnum}{\thesection.\theprobnum}}
 \newcommand{\problem}[2][]{\stepcounter{probnum}\begin{mdframed}[style=probdefault]
