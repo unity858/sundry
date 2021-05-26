@@ -13,6 +13,7 @@
 % version 1 of the License, or (at your option) any later version.
 %
 %---------------------------------------------
+\RequirePackage{xifthen}
 \newboolean{artc}
 \newboolean{book}
 \setboolean{artc}{true}
