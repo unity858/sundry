@@ -243,6 +243,19 @@ pen thickpink=linewidth(1)+RGB(229,162,155);
 ////////////////////////////
 \end{asydef}
 %---------------------------------------------
+%essential packages/ tikz stuff
+% minor issue: for csquotes, error with "no style for language 'nil' "
+\RequirePackage{tikz,tkz-euclide}
+\usetikzlibrary{calc}
+\RequirePackage{babel}
+\RequirePackage[margin=1in]{geometry}
+\RequirePackage[utf8]{inputenc} % inputenc b4 csquotes
+\RequirePackage{amsmath,amssymb,amsthm,csquotes,enumitem,etoolbox,graphics,graphicx,
+    xifthen,mathtools,imakeidx,stackrel,svg,xstring,xcolor}
+\RequirePackage[hypertexnames=false]{hyperref}
+\RequirePackage[symbol]{footmisc}
+\RequirePackage[T1]{fontenc}
+%---------------------------------------------
 %options
 %------------------
 % numbering
@@ -256,72 +269,6 @@ pen thickpink=linewidth(1)+RGB(229,162,155);
 %------------------
 \DeclareOption*{\PackageWarning{seto}{Unknown ‘\CurrentOption’}}
 \ProcessOptions\relax
-%---------------------------------------------
-%essential packages/ tikz stuff
-% minor issue: for csquotes, error with "no style for language 'nil' "
-\RequirePackage{tikz,tkz-euclide}
-\usetikzlibrary{calc}
-\RequirePackage{babel}
-\RequirePackage[margin=1in]{geometry}
-\RequirePackage[utf8]{inputenc} % inputenc b4 csquotes
-\RequirePackage{amsmath,amssymb,amsthm,csquotes,enumitem,etoolbox,fontawesome,graphics,graphicx,
-    xifthen,mathtools,imakeidx,stackrel,svg,xstring,xcolor}
-\RequirePackage[hypertexnames=false]{hyperref}
-\RequirePackage[symbol]{footmisc}
-\RequirePackage[T1]{fontenc}    
-%---------------------------------------------
-%math operators/commands, from nyanya.sty, slight additions made
-%delimiters
-\newcommand{\parenth}[1]{\left( #1\right)}
-\newcommand{\sqbrack}[1]{\left[ #1\right]}
-\newcommand{\abs}[1]{\left\lvert #1\right\rvert}
-\newcommand{\norm}[1]{\left\lVert #1\right\rVert}
-%floor/ceil; im so smart idk what \left and \right are, smh
-\newcommand{\floor}[1]{\left\lfloor #1\right\rfloor}
-\newcommand{\bigfloor}[1]{\bigl\lfloor #1\bigr\rfloor}
-\newcommand{\biggfloor}[1]{\biggl\lfloor #1\biggr\rfloor}
-\newcommand{\Biggfloor}[1]{\Biggl\lfloor #1\Biggr\rfloor}
-\newcommand{\ceil}[1]{\left\lceil #1\right\rceil}
-\newcommand{\bigceil}[1]{\bigl\lceil #1\bigr\rceil}
-\newcommand{\biggceil}[1]{\biggl\lceil #1\biggr\rceil}
-\newcommand{\Biggceil}[1]{\Biggl\lceil #1\Biggr\rceil}
-% subsitute for {a \brack b}
-\newcommand{\sqbinom}[2]{\genfrac[]{0pt}{0}{#1}{#2}}
-% operators, first two from lucky.sty, misc otherwise
-\DeclareMathOperator{\cycsum}{\sum_{\text{cyc}}}
-\DeclareMathOperator{\symsum}{\sum_{\text{sym}}}
-\DeclareMathOperator{\cycprod}{\prod{\text{cyc}}}
-\DeclareMathOperator{\symprod}{\prod{\text{sym}}}
-\DeclareMathOperator{\dir}{\text{dir}}
-\renewcommand{\deg}{^\circ}
-\newcommand{\pow}[2]{\text{Pow}_{#1}(#2)}
-\newcommand{\evalat}[2][]{\biggr\rvert_{#2}^{#1}}
-\newcommand{\solqed}{\noindent\hfill$\blacksquare$}
-\newcommand{\hbeq}[1]{\overset{#1}{=}}                                                                                                
-%sets
-\newcommand{\N}{\mathbb{N}}
-\newcommand{\Z}{\mathbb{Z}}
-\newcommand{\Q}{\mathbb{Q}}
-\newcommand{\R}{\mathbb{R}}
-\newcommand{\C}{\mathbb{C}}
-\renewcommand{\P}{\mathbb{P}}% for example, PR^2
-%---------------------------------------------
-\newcommand{\optlabel}[1]{\ifthenelse{\isempty{#1}}{}{ (#1)}}
-%-----------
-% exercises
-\newcommand{\solution}[1][]{\par\noindent {\sffamily\itshape Solution\optlabel{#1}.\enskip}}
-%----------
-% hpc problem numbering on school hw, because im lazy af
-\newcounter{hpcExe}
-\newcommand{\hpcExe}[1]{\stepcounter{hpcExe}\par\emph{\thehpcExe/#1; }}
-\newcounter{hpcTopic}
-\newcommand{\hpcTopic}[1]{\stepcounter{hpcTopic}\textit{Topic \thehpcTopic, #1.}}
-\newcommand{\hpcContinueTopic}{\textit{Topic \thehpcTopic, continued.}}
-\newcounter{revSectnum}
-\newcommand{\hpcRevsect}[1][]{\stepcounter{revSectnum}\par\noindent\textit{Section \#\therevSectnum\ifthenelse{\isempty{#1}}{}{, #1}.}}
-%----------
-% 'fakecmd'
-\newcommand{\fakecommand}[1]{\texttt{\textbackslash #1}}
 %---------------------------------------------
 %colors, for mdframed
 % Theme: big sur
@@ -361,6 +308,7 @@ pen thickpink=linewidth(1)+RGB(229,162,155);
 	linecolor=remarkcolor,linewidth=1.5pt,backgroundcolor=remarkcolor!20!white,roundcorner=2pt}
 %------------------
 %cmds for convenience
+\newcommand{\optlabel}[1]{\ifthenelse{\isempty{#1}}{}{ (#1)}}
 \newcounter{probnum}
 \newcommand{\problabel}{\ifthenelse{\boolean{normalnumbering}}{\theprobnum}{\thesection.\theprobnum}}
 \newcommand{\problem}[2][]{\stepcounter{probnum}\begin{mdframed}[style=probdefault]
@@ -370,9 +318,9 @@ pen thickpink=linewidth(1)+RGB(229,162,155);
 \newcounter{exmpnum}
 \newcommand{\exmplabel}{\ifthenelse{\boolean{normalnumbering}}{\theexmpnum}{\thesection.\theexmpnum}}
 \newcommand{\example}[2][]{\stepcounter{exmpnum}\begin{mdframed}[style=probdefault]
-    {\lato\bfseries Example}{\lato\optlabel{#1}}{\lato\bfseries.}\enskip#2\end{mdframed}}
+    {\lato\bfseries Example \exmplabel}{\lato\optlabel{#1}}{\lato\bfseries.}\enskip#2\end{mdframed}}
 \newcommand{\exmp}[2][]{
-    {\lato\bfseries Problem}{\lato\optlabel{#1}}{\lato\bfseries.}\enskip#2\end{mdframed}}
+    {\lato\bfseries Example}{\lato\optlabel{#1}}{\lato\bfseries.}\enskip#2\end{mdframed}}
 \newcommand{\claim}[1]{
     \begin{mdframed}[style=claimdefault]{\lato\bfseries Claim---\quad}#1\end{mdframed}}
 \newcommand{\lemma}[1]{
@@ -396,6 +344,42 @@ pen thickpink=linewidth(1)+RGB(229,162,155);
     {\lato\itshape Note.\enskip}#1
     \end{mdframed}}
 \newcommand{\pro}[1]{\begin{proof}#1\end{proof}}
+%---------------------------------------------
+%math operators/commands, from nyanya.sty, slight additions made
+%delimiters
+\newcommand{\parenth}[1]{\left( #1\right)}
+\newcommand{\sqbrack}[1]{\left[ #1\right]}
+\newcommand{\abs}[1]{\left\lvert #1\right\rvert}
+\newcommand{\norm}[1]{\left\lVert #1\right\rVert}
+%floor/ceil; im so smart idk what \left and \right are, smh
+\newcommand{\floor}[1]{\left\lfloor #1\right\rfloor}
+\newcommand{\bigfloor}[1]{\bigl\lfloor #1\bigr\rfloor}
+\newcommand{\biggfloor}[1]{\biggl\lfloor #1\biggr\rfloor}
+\newcommand{\Biggfloor}[1]{\Biggl\lfloor #1\Biggr\rfloor}
+\newcommand{\ceil}[1]{\left\lceil #1\right\rceil}
+\newcommand{\bigceil}[1]{\bigl\lceil #1\bigr\rceil}
+\newcommand{\biggceil}[1]{\biggl\lceil #1\biggr\rceil}
+\newcommand{\Biggceil}[1]{\Biggl\lceil #1\Biggr\rceil}
+% subsitute for {a \brack b}
+\newcommand{\sqbinom}[2]{\genfrac[]{0pt}{0}{#1}{#2}}
+% operators, first two from lucky.sty, misc otherwise
+\DeclareMathOperator{\cycsum}{\sum_{\text{cyc}}}
+\DeclareMathOperator{\symsum}{\sum_{\text{sym}}}
+\DeclareMathOperator{\cycprod}{\prod{\text{cyc}}}
+\DeclareMathOperator{\symprod}{\prod{\text{sym}}}
+\DeclareMathOperator{\dir}{\text{dir}}
+\renewcommand{\deg}{^\circ}
+\newcommand{\pow}[2]{\text{Pow}_{#1}(#2)}
+\newcommand{\evalat}[2][]{\biggr\rvert_{#2}^{#1}}
+\newcommand{\solqed}{\noindent\hfill$\blacksquare$}
+\newcommand{\hbeq}[1]{\overset{#1}{=}}
+%sets
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\renewcommand{\P}{\mathbb{P}}% for example, PR^2
 %---------------------------------------------
 % toc
 \setcounter{tocdepth}{3}
@@ -437,6 +421,21 @@ pen thickpink=linewidth(1)+RGB(229,162,155);
 \newcommand{\exelabel}{\ifthenelse{\boolean{sectnumbering}}{\thesection.\theexenum}{\theexenum}}
 \newcommand{\exercise}[1][]{\stepcounter{exenum}
 	\par\noindent{\lato\bfseries Problem \exelabel}{\lato\optlabel{#1}}{\lato\bfseries.}\enskip}
+%-----------
+% sol
+\newcommand{\solution}[1][]{\par\noindent {\lato\itshape Solution\optlabel{#1}.\enskip}}
+%----------
+% hpc problem numbering on school hw, because im lazy af
+\newcounter{hpcExe}
+\newcommand{\hpcExe}[1]{\stepcounter{hpcExe}\par\emph{\thehpcExe/#1; }}
+\newcounter{hpcTopic}
+\newcommand{\hpcTopic}[1]{\stepcounter{hpcTopic}\textit{Topic \thehpcTopic, #1.}}
+\newcommand{\hpcContinueTopic}{\textit{Topic \thehpcTopic, continued.}}
+\newcounter{revSectnum}
+\newcommand{\hpcRevsect}[1][]{\stepcounter{revSectnum}\textit{Section \#\therevSectnum\ifthenelse{\isempty{#1}}{}{ (#1)}.}}
+%----------
+% 'fakecmd'
+\newcommand{\fakecommand}[1]{\texttt{\textbackslash #1}}
 %---------------------------------------------
 %quotes
 \global\mdfdefinestyle{quotedefault}{%
