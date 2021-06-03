@@ -3,88 +3,72 @@
 \title{seto.sty Sample\\(a nyanya.sty variant)}
 \author{Neal Yan heheheh}
 \date{May 2021}
-
 \begin{document}
-
 \maketitle
 A demonstration of the features of seto.sty.
 \section*{Package information}
-There is an option called \texttt{labelsBySect}, which labels problems, theorems, etc by section.
-\toc
-
+There is an option called \texttt{labelsBySect}, which labels problems, theorems, etc by section;\\
+Another option is called \texttt{noheader}, which removes the headers identifying the author, etc.\\
+Stylized table of contents below is called by \fakecommand{toc}, which also includes a page break after it.
+\toc 
 \section{This is a section header}
 \subsection{Subsection appearance}
-
-The command for (sub)(sub)section has not changed, although its appearance has: \fakecommand{(sub)(sub)section}.
-
+The command for (sub)(sub)section has not changed, although its appearance has: \fakecmd{(sub)(sub)section}.
 \subsubsection{Just in case!}
 \section{Math commands}
-
-A few math commands have been defined, such as \fakecommand{symsum} and \fakecommand{cycsum}, which appear as $\symsum$ and $\cycsum$, respectively\footnote{sorry dennis lol}.\\
-Some other ones defined include \fakecommand{deg}(changed from `deg' to `$\deg$'), and \fakecommand{pow}(power of a point).
-
-\subsection{Between bars}
-\fakecommand{abs/norm/sqbrack/parenth} are some of the provided delimiters. Evalat is also rather straightforward:\\
-\fakecommand{evalat[upper]\{lower\}}$\Rightarrow\evalat[\text{first argument}]{\text{second argument}}$;
-
+A few math commands have been defined, such as \fakecmd{symsum} and \fakecmd{cycsum}, which appear as $\symsum$ and $\cycsum$, respectively\footnote{sorry dennis lol}.\\
+Some other ones defined include \fakecmd{deg}(changed from `deg' to `$\deg$'), and \fakecmd{pow}(power of a point).
+\subsection{Delimiters(\textbackslash left and \textbackslash right already included)}
+\begin{itemize}
+    \item\fakecmd{abs}; absolute values: $\abs{pqr}$;
+    \item\fakecmd{norm}; norms [of vectors]: $\norm{\textbf{v}}$;
+    \item\fakecmd{floor}, \fakecmd{ceil}; floors/ceilings: $\floor{abc}$, $\ceil{abc}$;
+    \item\fakecmd{parenth}; parentheses because characters typed is still less: $\parenth{xyz}$;
+    \item\fakecmd{sqbrack}; brackets, just in case?
+    \item\fakecmd{braces}; braces because why not: $\braces{n/k}$;
+\end{itemize}
+\fakecmd{evalat[upper]\{lower\}}$\Rightarrow\evalat[\text{first argument}]{\text{second argument}}$, because that kind of is a delimiter? It's not \fakecmd{mid} that creates the bar, duh...
 \subsection{Floors/ceilings}
-Due to personal need\footnote{Ross quiz, anyone?}, I've defined floor brackets because ``\fakecommand{lfloor \dots \textbackslash  rfloor}" was too tedious to repeat.  Although \fakecommand{floor/ceil} already uses \fakecommand{left \textbackslash right}, the sizes can also be adjusted manually by prefixing \texttt{big}, \texttt{bigg}, or \texttt{Bigg} before \texttt{floor\{...\}}/\texttt{ceil\{...\}}:
-\begin{center}
-\begin{tabular}{c|c|c|c|c}
-    \emph{Command} & \fakecommand{floor} & \fakecommand{bigfloor} & \fakecommand{biggfloor} & \fakecommand{Biggfloor}\\\hline
-    \emph{Appearance} & $\floor{\enskip}$ & $\bigfloor{\enskip}$ & $\biggfloor{\enskip}$ & $\Biggfloor{\enskip}$ \\
-\end{tabular}  
-\end{center}
-
+Due to personal need\footnote{Ross quiz, anyone?}, I've defined floor brackets because ``\fakecmd{left}\fakecmd{lfloor} \dots\fakecmd{right}\fakecmd{rfloor}" was too tedious to repeat.
 \subsection{Sets}
-
-I also found typing \fakecommand{mathbb\{R\}} for $\R$ too tedious to repeat, so I shortened it to \fakecommand{R}. Similar commands exist for $\N,\Z,\Q$, and $\C$:
+I also found typing \fakecmd{mathbb\{R\}} for $\R$ too tedious to repeat, so I shortened it to \fakecmd{R}. Similar commands exist for $\N,\Z,\Q$, and $\C$:
 \begin{center}
 \begin{tabular}{c|c|c|c|c|c}
-\emph{Command}& \fakecommand{N} & \fakecommand{Z} & \fakecommand{Q} & \fakecommand{R} & \fakecommand{C}\\\hline
+\emph{Command}& \fakecmd{N} & \fakecmd{Z} & \fakecmd{Q} & \fakecmd{R} & \fakecmd{C}\\\hline
 \emph{Appearance}& $\N$ & $\Z$ & $\Q$ & $\R$ & $\C$
 \end{tabular}  
 \end{center}
-
 \section{Fonts/text formatting}
-
 On this sty I changed up the fonts:
 \begin{itemize}
     \item Title/section/quotes font is {\Alegreya Alegreya};
     \item Sans font used is {\lato Lato}.
     \item Body text font is EB Garamond.
 \end{itemize}
-\fakecommand{emph}'s appearance has changed as well, \emph{like so}.
+\fakecmd{emph}'s appearance has changed as well, \emph{like so}.
 For itemize I'll change up the item icons later, using TikZ probably.\\
 \newpage
-\quote{Quotes are called using `\textbackslash quote\{text\}\{author\}', although this type looks more suitable at the top of a page.}{seto.sty}
+\quote{Quotes are called using `\fakecmd{quote\{text\}\{author\}}',\\
+although this type looks more suitable at the top of a page.}{seto.sty}
 \section{Fancy stuff}
-\problem{The appearance of a problem/example. Who needs environments, thus these boxes are defined as commands instead of environments. This one is called by \fakecommand{problem/example[<label>]\{<text>\}}. When the first argument is omitted, the labeling parentheses will also disappear.}
-\theorem{Theorems and definitions are this color. (\fakecommand{theorem/definition\{\}})}
-\lemma{Lemmas/claims are this color. (\fakecommand{lemma/claim\{\}})}
-\pro{I'm also too lazy to add a frame/box to enclose proofs, so whatever. (\fakecommand{pro\{\}})}
-
-\remark{I used a [hopefully] better color theme(for anyone who cares, it's Big Sur). Oh, and remarks/notes are called by \fakecommand{remark/note\{...\}}.}
-
+\problem{The appearance of a problem/example. Who needs environments, thus these boxes are defined as commands instead of environments. This one is called by \fakecmd{problem/example[<label>]\{<text>\}}. When the first argument is omitted, the labeling parentheses will also disappear.}
+\theorem{Theorems and definitions are this color. (\fakecmd{theorem/definition\{\}})}
+\lemma{Lemmas/claims are this color. (\fakecmd{lemma/claim\{\}})}
+\pro{I'm also too lazy to add a frame/box to enclose proofs, so whatever. (\fakecmd{pro\{\}})}
+\remark{I used a [hopefully] better color theme(for anyone who cares, it's Big Sur). Oh, and remarks/notes are called by \fakecmd{remark/note\{...\}}.}
 Oh, and to remove the labeling numbers, use a shortened version of the original command:
 \begin{center}
 \begin{tabular}{c|c|c|c|c}
-    \emph{Original}& \fakecommand{problem} & \fakecommand{example}&\fakecommand{theorem}&\fakecommand{definition}\\\hline
-    \emph{Shortened} & \fakecommand{prob} & \fakecommand{exmp}&\fakecommand{theo}&\fakecommand{defn}
+    \emph{Original}& \fakecmd{problem} & \fakecmd{example}&\fakecmd{theorem}&\fakecmd{definition}\\\hline
+    \emph{Shortened} & \fakecmd{prob} & \fakecmd{exmp}&\fakecmd{theo}&\fakecmd{defn}
 \end{tabular}  
 \end{center}
-
-The other commands do not have abbreviated versions.
-
-\emph{Table of Contents: }it finally worked!!!! Command is \fakecommand{toc}.
-
+The other commands do not have abbreviated versions.\\
 \section{Exercises}
 \noindent
-\exercise The bolded problem number and label is called by \fakecommand{exercise}. It takes an optional input as a label.
+\exercise The bolded problem number and label is called by \fakecmd{exercise}. It takes an optional input as a label.
 \exercise[sample label] Another exercise. 
-\solution Solution works similarly, and the square at the end of this dummy solution is \fakecommand{solqed}.\solqed
-
-\inlinequote{Inline quotes( \fakecommand{inlinequote\{\}\{\}}) look like this.}{seto.sty}
-
+\solution Solution works similarly, and the square at the end of this dummy solution is \fakecmd{solqed}.\solqed
+\inlinequote{Inline quotes( \fakecmd{inlinequote\{\}\{\}}) look like this.}{seto.sty}
 I think that's about it! A bit more features by now\dots
 \end{document}
