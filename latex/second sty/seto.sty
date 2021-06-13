@@ -263,13 +263,16 @@ pen thickpink=linewidth(1)+RGB(229,162,155);
 \newboolean{normalnumbering}
 \newboolean{sectnumbering}
 \newboolean{headers}
+\newboolean{credit}
 \setboolean{normalnumbering}{true}
 \setboolean{sectnumbering}{false}
 \setboolean{headers}{true}
+\setboolean{credit}{true}
 \DeclareOption{labelsBySect}{
     \setboolean{normalnumbering}{false}
     \setboolean{sectnumbering}{true}}
 \DeclareOption{noheader}{\setboolean{headers}{false}}
+\DeclareOption{nocredit}{\setboolean{credit}{false}}
 %------------------
 \DeclareOption*{\PackageWarning{seto}{Unknown ‘\CurrentOption’}}
 \ProcessOptions\relax
@@ -388,8 +391,8 @@ pen thickpink=linewidth(1)+RGB(229,162,155);
     \fancyhf{}
     \renewcommand{\headrulewidth}{0.5pt}
     \renewcommand{\footrulewidth}{0pt}
-    \fancyhead[L]{\emph{\@title}}
-    \fancyhead[R]{\emph{\@author, \@date}}
+    \fancyhead[L]{\small\emph{\@title}}
+    \fancyhead[R]{\small\emph{\@author, \@date}}
     \fancyfoot[C]{\thepage}}{}
 %---------
 % toc
@@ -404,9 +407,9 @@ pen thickpink=linewidth(1)+RGB(229,162,155);
 %---------------------------------------------
 % title customization
 \RequirePackage{titling,titlesec,setspace}
-\apptocmd{\maketitle}{\begin{center}
+\ifthenelse{\boolean{credit}}{\apptocmd{\maketitle}{\begin{center}
     {\color{nyandarkgrn}\Alegreya\itshape Produced using seto.sty}
-    \end{center}}{}{} 
+    \end{center}}{}{}}{}
 \patchcmd{\@maketitle}{\@title}{{\AlegreyaMedium\color{nyandarkgrn}\@title}}{}{}
 \patchcmd{\@maketitle}{\@author}{{\Alegreya\color{nyandarkgrn}\@author}}{}{}
 \patchcmd{\@maketitle}{\@date}{{\Alegreya\@date}}{}{}
