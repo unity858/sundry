@@ -314,7 +314,7 @@ pen thickpink=linewidth(1)+RGB(229,162,155);
 	innerleftmargin=0.5cm,innertopmargin=0.25cm,innerbottommargin=0.25cm,innerrightmargin=0.4cm,
 	linecolor=remarkcolor,linewidth=1.5pt,backgroundcolor=remarkcolor!20!white,roundcorner=2pt}
 %------------------
-%cmds for convenience, doing them from scratch to allow for more control
+%cmds for convenience, because im still too lazy to define the boxes as envs
 \newcommand{\optlabel}[1]{\ifthenelse{\isempty{#1}}{}{ (#1)}}
 \newcounter{probnum}
 \newcommand{\problabel}{\ifthenelse{\boolean{normalnumbering}}{\theprobnum}{\thesection.\theprobnum}}
