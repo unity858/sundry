@@ -275,6 +275,7 @@ pen thickpink=linewidth(1)+RGB(229,162,155);
     \setboolean{sectnumbering}{true}}
 \DeclareOption{noheader}{\setboolean{headers}{false}}
 \DeclareOption{nocredit}{\setboolean{credit}{false}}
+\DeclareOption{default}{\setboolean{fancyfont}{false}}
 %------------------
 \DeclareOption*{\PackageWarning{seto}{Unknown ‘\CurrentOption’}}
 \ProcessOptions\relax
@@ -294,7 +295,7 @@ pen thickpink=linewidth(1)+RGB(229,162,155);
 % (change hex codes to your taste to change box colors, its done rather automatically)
 %-------------------------------------------------
 %fonts, text formatting
-\ifthenelse{fancyfonts}{\RequirePackage[defaultsans]{lato}\RequirePackage[cmintegrals,cmbraces]{newtxmath}
+\ifthenelse{\boolean{fancyfont}}{\RequirePackage[defaultsans]{lato}\RequirePackage[cmintegrals,cmbraces]{newtxmath}
 \RequirePackage{ebgaramond-maths}}{}
 \DeclareRobustCommand{\Alegreya}{\fontfamily{Alegreya-LF}\selectfont}
 \DeclareRobustCommand{\AlegreyaMedium}{\fontfamily{Alegreya-LF}\fontseries{mb}\fontshape{n}\selectfont}
