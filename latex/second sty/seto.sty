@@ -264,10 +264,12 @@ pen thickpink=linewidth(1)+RGB(229,162,155);
 \newboolean{sectnumbering}
 \newboolean{headers}
 \newboolean{credit}
+\newboolean{fancyfont}
 \setboolean{normalnumbering}{true}
 \setboolean{sectnumbering}{false}
 \setboolean{headers}{true}
 \setboolean{credit}{true}
+\setboolean{fancyfont}{true}
 \DeclareOption{labelsBySect}{
     \setboolean{normalnumbering}{false}
     \setboolean{sectnumbering}{true}}
@@ -292,12 +294,11 @@ pen thickpink=linewidth(1)+RGB(229,162,155);
 % (change hex codes to your taste to change box colors, its done rather automatically)
 %-------------------------------------------------
 %fonts, text formatting
-\RequirePackage{lato}
-\RequirePackage{Alegreya}
-\renewcommand*\oldstylenums[1]{{\AlegreyaOsF #1}}
-\RequirePackage[cmintegrals,cmbraces]{newtxmath}
-\RequirePackage{ebgaramond-maths}
-\renewcommand{\emph}[1]{\textbf{{\lato\textcolor{nyandarkgrn}{#1}}}}
+\ifthenelse{fancyfonts}{\RequirePackage[defaultsans]{lato}\RequirePackage[cmintegrals,cmbraces]{newtxmath}
+\RequirePackage{ebgaramond-maths}}{}
+\DeclareRobustCommand{\Alegreya}{\fontfamily{Alegreya-LF}\selectfont}
+\DeclareRobustCommand{\AlegreyaMedium}{\fontfamily{Alegreya-LF}\fontseries{mb}\fontshape{n}\selectfont}
+\renewcommand{\emph}[1]{\color{nyandarkgrn}\sffamily\bfseries}
 %------------------------------------------------------
 % box styles
 \global\mdfdefinestyle{probdefault}{% 
