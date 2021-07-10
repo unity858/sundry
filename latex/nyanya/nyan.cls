@@ -1,8 +1,8 @@
 %---------------------------------------------
 %info
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{nyanya}[2021/07/10]
-%% package name: nyanya.cls 
+\ProvidesClass{nyan}[2021/07/10]
+%% package name: nyan.cls 
 %% Copyright 2021 by Neal Yan
 % 
 % seriously, just use seto.cls already XD
@@ -12,23 +12,29 @@
 % archives in directory macros/latex/base/lppl.txt; either 
 % version 1 of the License, or (at your option) any later version.
 %
-%---------------------------------------------
+≈---------------------------------
 % options
 \newboolean{normalnumbering}
 \newboolean{sectnumbering}
 \newboolean{headers}
+\newboolean{credit}
 \setboolean{normalnumbering}{true}
 \setboolean{sectnumbering}{false}
 \setboolean{headers}{true}
+\setboolean{credit}{true}
 \DeclareOption{labelsBySect}{
     \setboolean{normalnumbering}{false}
     \setboolean{sectnumbering}{true}}
 \DeclareOption{noheader}{\setboolean{headers}{false}}
-\DeclareOption*{\ClassWarning{nyanya}{Unknown ‘\CurrentOption’}}
+\DeclareOption{nocredit}{\setboolean{credit}{false}}
+%--------------
+\DeclareOption*{\ClassWarning{nyan}{Unknown ‘\CurrentOption’}}
 \ProcessOptions\relax
 %---------------------------------------------
 %fonts, text formatting, the default stuff
+\LoadClass{article}
 \RequirePackage{universal}
+\DeclareRobustCommand{\sffamily}{\cmss}
 \renewcommand{\emph}[1]{{\color{nyanblue}\cmss\bfseries #1}}
 %-------------------------------------------------------
 %colors, for tcolorbox
@@ -114,9 +120,9 @@
 %---------------------------------------------
 % section packages
 \usepackage{titling,titlesec,setspace}
-\apptocmd{\maketitle}{\begin{center}
+\ifthenelse{\boolean{credit}}{\apptocmd{\maketitle}{\begin{center}
     \textit{Produced using nyanya.cls}
-    \end{center}}{}{}% i'm too lazy to change font for \maketitle lol
+    \end{center}}{}{}}{}% i'm too lazy to change font for \maketitle lol
 % regular sections
 \titleformat{\section}{\Large\cmss\bfseries\color{nyanblue}}{
     {\S\thesection}}{1em}{}
