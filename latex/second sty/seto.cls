@@ -121,40 +121,6 @@ pen thickpink=linewidth(1)+RGB(229,162,155);
 \newcommand{\note}[1]{\begin{mdframed}[style=remarkdefault]
     {\color{nyandarkgrn}\sffamily\itshape Note.\enskip}#1
     \end{mdframed}}
-\newcommand{\pro}[1]{\begin{proof}#1\end{proof}}
-%---------------------------------------------
-%math operators/commands, from nyanya.sty, slight additions made
-%delimiters
-\newcommand{\parenth}[1]{\left( #1\right)}
-\newcommand{\sqbrack}[1]{\left[ #1\right]}
-\newcommand{\braces}[1]{\left\{ #1\right\}}
-\newcommand{\abs}[1]{\left\lvert #1\right\rvert}
-\newcommand{\norm}[1]{\left\lVert #1\right\rVert}
-%floor/ceil; im so smart idk what \left and \right are, smh
-\newcommand{\floor}[1]{\left\lfloor #1\right\rfloor}
-\newcommand{\ceil}[1]{\left\lceil #1\right\rceil}
-% subsitute for {a \brack b}
-\newcommand{\sqbinom}[2]{\genfrac[]{0pt}{0}{#1}{#2}}
-% operators, first two from lucky.sty, misc otherwise
-\DeclareMathOperator{\cycsum}{\sum_{\text{cyc}}}
-\DeclareMathOperator{\symsum}{\sum_{\text{sym}}}
-\DeclareMathOperator{\cycprod}{\prod{\text{cyc}}}
-\DeclareMathOperator{\symprod}{\prod{\text{sym}}}
-\DeclareMathOperator{\dir}{\text{dir}}
-\renewcommand{\deg}{^\circ}
-\newcommand{\pow}[2]{\text{Pow}_{#1}(#2)}
-\newcommand{\evalat}[2][]{\biggr\rvert_{#2}^{#1}}
-\newcommand{\solqed}{\noindent\hfill$\blacksquare$}
-\newcommand{\hbeq}[1]{\overset{#1}{=}}
-\newcommand{\dangle}{\measuredangle}
-%sets
-\newcommand{\N}{\mathbb{N}}
-\newcommand{\Z}{\mathbb{Z}}
-\newcommand{\Q}{\mathbb{Q}}
-\newcommand{\R}{\mathbb{R}}
-\newcommand{\C}{\mathbb{C}}
-\renewcommand{\P}{\mathbb{P}}% for example, PR^2
-\newcommand{\F}{\mathbb{F}}
 %---------------------------------------------
 % headers/footers
 \RequirePackage{fancyhdr}
@@ -205,26 +171,11 @@ pen thickpink=linewidth(1)+RGB(229,162,155);
 \newcommand{\exelabel}{\ifthenelse{\boolean{sectnumbering}}{\thesection.\theexenum}{\theexenum}}
 \newcommand{\exercise}[1][]{\stepcounter{exenum}
 	\par\noindent\emph{Problem \exelabel}{\color{nyandarkgrn}\sffamily\optlabel{#1}}\emph{.}\enskip}
-%-----------
-% sol
-\newcommand{\solution}[1][]{\par\noindent {\sffamily\itshape Solution\optlabel{#1}.\enskip}}
-%----------
-% hpc problem numbering on school hw, because im lazy af
-\newcounter{hpcExe}
-\newcommand{\hpcExe}[1]{\stepcounter{hpcExe}\par\emph{\thehpcExe/#1; }}
-\newcounter{hpcTopic}
-\newcommand{\hpcTopic}[1]{\stepcounter{hpcTopic}\textit{Topic \thehpcTopic, #1.}}
-\newcommand{\hpcContinueTopic}{\textit{Topic \thehpcTopic, continued.}}
-\newcounter{revSectnum}
-\newcommand{\hpcRevsect}[1][]{\stepcounter{revSectnum}\textit{Section \#\therevSectnum\ifthenelse{\isempty{#1}}{}{ (#1)}.}}
-%----------
-% 'fakecmd'
-\newcommand{\fakecmd}[1]{\texttt{\textbackslash #1}}
 %---------------------------------------------
 %quotes
 \newenvironment{quoteBox}{\begin{mdframed}[
-	innerleftmargin=0.4cm,innertopmargin=0.25cm,innerbottommargin=0.25cm,innerrightmargin=0.4cm,
-	leftmargin=3.25in, skipabove=0cm,skipbelow=0cm,
+	innerleftmargin=0.4cm,innertopmargin=0.25cm,innerbottommargin=0.25cm,
+	innerrightmargin=0.4cm,leftmargin=3.25in, skipabove=0cm,skipbelow=0cm,
     linewidth=2.5pt,linecolor=quotecolor,backgroundcolor=quotecolor!25!white,
     topline=false,bottomline=false,rightline=false,leftline=true}]}
 	{\end{mdframed}}
