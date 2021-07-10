@@ -119,7 +119,7 @@ pen thickpink=linewidth(1)+RGB(229,162,155);
     {\color{nyandarkgrn}\sffamily\itshape Remark.\enskip}#1
     \end{mdframed}}
 \newcommand{\note}[1]{\begin{mdframed}[style=remarkdefault]
-    {\color{nyandarkgrn}\lato\itshape Note.\enskip}#1
+    {\color{nyandarkgrn}\sffamily\itshape Note.\enskip}#1
     \end{mdframed}}
 \newcommand{\pro}[1]{\begin{proof}#1\end{proof}}
 %---------------------------------------------
@@ -180,7 +180,7 @@ pen thickpink=linewidth(1)+RGB(229,162,155);
 % title customization
 \RequirePackage{titling,titlesec,setspace}
 \ifthenelse{\boolean{credit}}{\apptocmd{\maketitle}{\begin{center}
-    {\color{nyandarkgrn}\Alegreya\itshape Produced using seto.sty}
+    {\color{nyandarkgrn}\Alegreya\itshape Produced using seto.cls}
     \end{center}}{}{}}{}
 \patchcmd{\@maketitle}{\@title}{{\AlegreyaMedium\color{nyandarkgrn}\@title}}{}{}
 \patchcmd{\@maketitle}{\@author}{{\Alegreya\color{nyandarkgrn}\@author}}{}{}
@@ -193,9 +193,9 @@ pen thickpink=linewidth(1)+RGB(229,162,155);
         \setcounter{probnum}{0}\setcounter{exmpnum}{0}
         \setcounter{theonum}{0}\setcounter{defnum}{0}
         \setcounter{equation}{0}}{}}{}{}
-\titleformat{\subsection}{\lato\bfseries\large\color{nyandarkgrn}}{
+\titleformat{\subsection}{\sffamily\bfseries\large\color{nyandarkgrn}}{
     {\thesubsection}}{1em}{}
-\titleformat{\subsubsection}{\lato\bfseries\color{nyandarkgrn}}{
+\titleformat{\subsubsection}{\sffamily\bfseries\color{nyandarkgrn}}{
     {\thesubsubsection}}{1em}{}
 %---------------------------------------------
 % misc
