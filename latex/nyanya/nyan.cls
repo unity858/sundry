@@ -34,12 +34,10 @@
 %fonts, text formatting, the default stuff
 \LoadClass{article}
 \RequirePackage{universal}
-\DeclareRobustCommand{\sffamily}{\cmss}
-\renewcommand{\emph}[1]{{\color{nyanblue}\cmss\bfseries #1}}
-%-------------------------------------------------------
-%colors, for tcolorbox
+%---------------------------------------------
+%colors
 % Theme: nyan cat colors
-\RequirePackage[most]{tcolorbox}
+\RequirePackage{xstring,xcolor}
 \definecolor{probcolor}{HTML}{FF0090}%\problem/example color
 \definecolor{white}{HTML}{FFFFFF}%dont remove this one
 \definecolor{black}{HTML}{000000}% or this one
@@ -47,8 +45,10 @@
 \definecolor{claimcolor}{HTML}{F5C596}%\claim color
 \definecolor{nyanblue}{HTML}{003366}%
 \definecolor{theocolor}{HTML}{FD99FD}%\example color
-%--------------
-% tcolorboxes for claim, problem, etc
+\DeclareRobustCommand{\nyanblue}{\color{nyanblue}}
+%---------------------------------------------
+% tcolorboxes
+\RequirePackage[most]{tcolorbox}
 \newtcolorbox{probBox}{colframe=probcolor,colback=probcolor!20!white}
 \newtcolorbox{claimBox}{colframe=claimcolor,colback=claimcolor!25!white}
 \newtcolorbox{theoBox}{colframe=theocolor,colback=theocolor!30!white}
@@ -94,6 +94,10 @@
     {\color{nyanblue}\cmss\itshape Note.\enskip}#1\end{remarkBox}}
 \newcommand{\pro}[1]{\begin{proof}#1\end{proof}}
 %---------------------------------------------
+% text formatting
+\DeclareRobustCommand{\sffamily}{\cmss}
+\renewcommand{\emph}[1]{{\nyanblue\cmss\bfseries #1}}
+%---------------------------------------------
 % exercises
 \newcounter{exenum}
 \newcommand{\exelabel}{\ifthenelse{\boolean{sectnumbering}}{\thesection.\theexenum}{\theexenum}}
@@ -112,22 +116,19 @@
 %---------
 % toc
 \setcounter{tocdepth}{3}
-\newcommand{\toc}{
-	{\hypersetup{
-	citecolor=black,filecolor=nyanblue,
-	linkcolor=black,urlcolor=black}
-\emph{\tableofcontents}\newpage}}
+\newcommand{\toc}{{\hypersetup{citecolor=black,filecolor=nyanblue,linkcolor=black,urlcolor=black}
+	\emph{\tableofcontents}\newpage}}
 %---------------------------------------------
-% section packages
-\usepackage{titling,titlesec,setspace}
+% headings
+\RequirePackage{titling,titlesec,setspace}
+% title
 \ifthenelse{\boolean{credit}}{\apptocmd{\maketitle}{\begin{center}
-    \textit{Produced using nyanya.cls}
-    \end{center}}{}{}}{}% i'm too lazy to change font for \maketitle lol
-% regular sections
-\titleformat{\section}{\Large\cmss\bfseries\color{nyanblue}}{
-    {\S\thesection}}{1em}{}
-\titleformat{\subsection}{\cmss\large\bfseries\color{nyanblue}}{
-    {\thesubsection}}{1em}{}
-\titleformat{\subsubsection}{\cmss\bfseries\color{nyanblue}}{
-    {\thesubsubsection}}{1em}{}
+    \textit{Produced using nyanya.cls}\end{center}}{}{}}{}% i'm too lazy to change font for \maketitle lol 
+\patchcmd{\@maketitle}{\@title}{{\nyanblue\cmss\bfserues\@title}}{}{}
+\patchcmd{\@maketitle}{\@author}{{\cmss\color{nyanblue}\@author}}{}{}
+\patchcmd{\@maketitle}{\@date}{{\cmss\bfseries\@date}}{}{}
+% sections
+\titleformat{\section}{\nyanblue\Large\cmss\bfseries}{{\S\thesection}}{1em}{}
+\titleformat{\subsection}{\nyanblue\cmss\large\bfseries}{{\thesubsection}}{1em}{}
+\titleformat{\subsubsection}{\nyanblue\cmss\bfseries}{{\thesubsubsection}}{1em}{}
 %---------------------------------------------
