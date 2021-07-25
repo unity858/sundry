@@ -16,6 +16,7 @@
 %---------------------------------------------
 \LoadClass{article}
 \RequirePackage{universal} % my own
+\RequirePackage[inline]{asymptote}
 \begin{asydef}
 /////// Personal pens //////
 pen darkgrn=RGB(13,83,76);
@@ -26,22 +27,17 @@ pen thickpink=linewidth(1)+RGB(229,162,155);
 \end{asydef}
 %---------------------------------------------
 %options
+\RequirePackage{xifthen}
 \newboolean{normalnumbering}
 \newboolean{sectnumbering}
 \newboolean{headers}
-\newboolean{credit}
-\newboolean{fancyfont}
 \setboolean{normalnumbering}{true}
 \setboolean{sectnumbering}{false}
 \setboolean{headers}{true}
-\setboolean{credit}{true}
-\setboolean{fancyfont}{true}
 \DeclareOption{labelsBySect}{
     \setboolean{normalnumbering}{false}
     \setboolean{sectnumbering}{true}}
 \DeclareOption{noheader}{\setboolean{headers}{false}}
-\DeclareOption{nocredit}{\setboolean{credit}{false}}
-\DeclareOption{default}{\setboolean{fancyfont}{false}}
 %------------------
 \DeclareOption*{\ClassWarning{seto}{Unknown ‘\CurrentOption’}}
 \ProcessOptions\relax
@@ -49,21 +45,22 @@ pen thickpink=linewidth(1)+RGB(229,162,155);
 %colors, for mdframed
 % Theme: big sur
 % let's use mdframed already, its capabilities are a superset of those of tcolorbox
+\RequirePackage{xstring,xcolor}
 \definecolor{white}{HTML}{FFFFFF}% do not remove
 \definecolor{black}{HTML}{000000}% do not remove
-\definecolor{nyandarkgrn}{HTML}{0D534F}
+\definecolor{setogrn}{HTML}{0D534F}
 \definecolor{probcolor}{HTML}{E5A29B} % brownish red?
 \definecolor{theocolor}{HTML}{9BCAE8} % light blu
 \definecolor{claimcolor}{HTML}{E6CE88} % yellow
-\definecolor{remarkcolor}{HTML}{0D534F} % nyandarkgrn atm
-\definecolor{quotecolor}{HTML}{91B9DC} % slightly darker blue
-% (change hex codes to your taste to change box colors, its done rather automatically)
+\definecolor{remarkcolor}{HTML}{0D534F} % setogrn atm
+\definecolor{quotecolor}{HTML}{91B9DC} % slightly darker blue\
 %-------------------------------------------------
 %fonts, text formatting
-\ifthenelse{\boolean{fancyfont}}{\RequirePackage[cmintegrals,cmbraces]{newtxmath}
-	\RequirePackage{ebgaramond-maths}}{}
-\DeclareRobustCommand{\sffamily}{\ifthenelse{\boolean{fancyfonts}}{\lato}{\cmss}}
-\renewcommand{\emph}[1]{\color{nyandarkgrn}\sffamily\bfseries}
+\RequirePackage[cmintegrals,cmbraces]{newtxmath}
+\RequirePackage{ebgaramond-maths}
+\DeclareRobustCommand{\sffamily}{\lato}
+\DeclareRobustCommand{\setogrn}{\color{setogrn}}
+\renewcommand{\emph}[1]{{\setogrn\sffamily\bfseries #1}}
 %------------------------------------------------------
 % box styles
 \RequirePackage[framemethod=TikZ]{mdframed}
@@ -97,30 +94,30 @@ pen thickpink=linewidth(1)+RGB(229,162,155);
 \newcommand{\exmplabel}{\ifthenelse{\boolean{normalnumbering}}{\theexmpnum}{\thesection.\theexmpnum}}
 \newcommand{\example}[2][]{\stepcounter{exmpnum}\begin{probBox}
     {\sffamily\bfseries Example \exmplabel}{\sffamily\optlabel{#1}}{\sffamily\bfseries.}\enskip#2\end{probBox}}
-\newcommand{\exmp}[2][]{
-    {\sffamily\bfseries Example}{\sffamily\optlabel{#1}}{\sffamily\bfseries.}\enskip#2\end{mdframed}}
+\newcommand{\exmp}[2][]{\begin{probBox}
+    {\sffamily\bfseries Example}{\sffamily\optlabel{#1}}{\sffamily\bfseries.}\enskip#2\end{probBox}}
 \newcommand{\claim}[1]{
-    \begin{mdframed}[style=claimdefault]{\sffamily\bfseries Claim ---\enskip}#1\end{mdframed}}
+    \begin{claimBox}{\sffamily\bfseries Claim ---\enskip}#1\end{claimBox}}
 \newcommand{\lemma}[1]{
-    \begin{mdframed}[style=claimdefault]{\sffamily\bfseries Lemma ---\enskip}#1\end{mdframed}}
+    \begin{claimBox}{\sffamily\bfseries Lemma ---\enskip}#1\end{claimBox}}
 \newcounter{theonum}
 \newcommand{\thmlabel}{\ifthenelse{\boolean{normalnumbering}}{\thetheonum}{\thesection.\thetheonum}}
-\newcommand{\theorem}[1]{\stepcounter{theonum}\begin{mdframed}[style=theodefault]
-    {\sffamily\bfseries Theorem \thmlabel.\enskip}#1\end{mdframed}}
-\newcommand{\theo}[1]{\begin{mdframed}[style=theodefault]
-    {\sffamily\bfseries Theorem.\enskip}#1\end{mdframed}}
+\newcommand{\theorem}[1]{\stepcounter{theonum}\begin{thmBox}
+    {\sffamily\bfseries Theorem \thmlabel.\enskip}#1\end{thmBox}}
+\newcommand{\theo}[1]{\begin{thmBox}
+    {\sffamily\bfseries Theorem.\enskip}#1\end{thmBox}}
 \newcounter{defnum}
 \newcommand{\deflabel}{\ifthenelse{\boolean{normalnumbering}}{\thedefnum}{\thesection.\thedefnum}}
-\newcommand{\definition}[1]{\stepcounter{defnum}\begin{mdframed}[style=theodefault]
-    {\sffamily\bfseries Definition \deflabel.\enskip}#1\end{mdframed}}
-\newcommand{\defn}[1]{\begin{mdframed}[style=theodefault]
-    {\sffamily\bfseries Definition.\enskip}#1\end{mdframed}}
-\newcommand{\remark}[1]{\begin{mdframed}[style=remarkdefault]
-    {\color{nyandarkgrn}\sffamily\itshape Remark.\enskip}#1
-    \end{mdframed}}
-\newcommand{\note}[1]{\begin{mdframed}[style=remarkdefault]
-    {\color{nyandarkgrn}\sffamily\itshape Note.\enskip}#1
-    \end{mdframed}}
+\newcommand{\definition}[1]{\stepcounter{defnum}\begin{thmBox}
+    {\sffamily\bfseries Definition \deflabel.\enskip}#1\end{thmBox}}
+\newcommand{\defn}[1]{\begin{thmBox}
+    {\sffamily\bfseries Definition.\enskip}#1\end{thmBox}}
+\newcommand{\remark}[1]{\begin{remarkBox}
+    {\setogrn\sffamily\itshape Remark.\enskip}#1
+    \end{remarkBox}}
+\newcommand{\note}[1]{\begin{remarkBox}
+    {\setogrn\sffamily\itshape Note.\enskip}#1
+    \end{remarkBox}}
 %---------------------------------------------
 % headers/footers
 \RequirePackage{fancyhdr}
@@ -134,35 +131,28 @@ pen thickpink=linewidth(1)+RGB(229,162,155);
     \fancyfoot[C]{\thepage}}{}
 %---------
 % toc
+\RequirePackage[hypertexnames=false]{hyperref}
 \setcounter{tocdepth}{3}
 \newcommand{\toc}{
-{\hypersetup{
-	citecolor=black,
-	filecolor=nyandarkgrn,
-	linkcolor=black,
-	urlcolor=black}
-\emph{\tableofcontents}\newpage}}
+    {\hypersetup{
+	citecolor=black,filecolor=setogrn,
+	linkcolor=black,urlcolor=black}
+    \emph{\tableofcontents}\newpage}}
 %---------------------------------------------
 % title customization
 \RequirePackage{titling,titlesec,setspace}
-\ifthenelse{\boolean{credit}}{\apptocmd{\maketitle}{\begin{center}
-    {\color{nyandarkgrn}\Alegreya\itshape Produced using seto.cls}
-    \end{center}}{}{}}{}
-\patchcmd{\@maketitle}{\@title}{{\AlegreyaMedium\color{nyandarkgrn}\@title}}{}{}
-\patchcmd{\@maketitle}{\@author}{{\Alegreya\color{nyandarkgrn}\@author}}{}{}
+\patchcmd{\@maketitle}{\@title}{{\AlegreyaMedium\setogrn\@title}}{}{}
+\patchcmd{\@maketitle}{\@author}{{\Alegreya\setogrn\@author}}{}{}
 \patchcmd{\@maketitle}{\@date}{{\Alegreya\@date}}{}{}
 %---------------------------------------------
 % regular (sub)(sub)sections
-\titleformat{\section}{\AlegreyaMedium\Large\color{nyandarkgrn}}
-	{{\S\thesection}}{1em}{}
+\titleformat{\section}{\AlegreyaMedium\Large\setogrn}{\S\thesection}{1em}{}
 \apptocmd{\@section}{\ifthenelse{\boolean{sectnumbering}}{
-        \setcounter{probnum}{0}\setcounter{exmpnum}{0}
-        \setcounter{theonum}{0}\setcounter{defnum}{0}
-        \setcounter{equation}{0}}{}}{}{}
-\titleformat{\subsection}{\sffamily\bfseries\large\color{nyandarkgrn}}{
-    {\thesubsection}}{1em}{}
-\titleformat{\subsubsection}{\sffamily\bfseries\color{nyandarkgrn}}{
-    {\thesubsubsection}}{1em}{}
+    \setcounter{probnum}{0}\setcounter{exmpnum}{0}
+    \setcounter{theonum}{0}\setcounter{defnum}{0}
+    \setcounter{equation}{0}}{}}{}{}
+\titleformat{\subsection}{\sffamily\bfseries\large\setogrn}{\thesubsection}{1em}{}
+\titleformat{\subsubsection}{\sffamily\bfseries\setogrn}{\thesubsubsection}{1em}{}
 %---------------------------------------------
 % misc
 %-----------
@@ -170,16 +160,23 @@ pen thickpink=linewidth(1)+RGB(229,162,155);
 \newcounter{exenum}
 \newcommand{\exelabel}{\ifthenelse{\boolean{sectnumbering}}{\thesection.\theexenum}{\theexenum}}
 \newcommand{\exercise}[1][]{\stepcounter{exenum}
-	\par\noindent\emph{Problem \exelabel}{\color{nyandarkgrn}\sffamily\optlabel{#1}}\emph{.}\enskip}
+	\par\noindent\emph{Problem \exelabel}{\setogrn\sffamily\optlabel{#1}}\emph{.}\enskip}
+%---------------------------------------------
+% sol
+\newenvironment{sol}[1][]{\begin{mdframed}[
+    innerleftmargin=0.4cm,innertopmargin=0.15cm,innerbottommargin=0.15cm,innerrightmargin=0cm,
+    topline=false,bottomline=false,rightline=false,leftline=true,
+    linecolor=setogrn,linewidth=3pt,backgroundcolor=white]
+    \emph{Solution}{\setogrn\sffamily\optlabel{#1}}\emph{.}\enskip}{\solqed\end{mdframed}}
 %---------------------------------------------
 %quotes
 \newenvironment{quoteBox}{\begin{mdframed}[
 	innerleftmargin=0.4cm,innertopmargin=0.25cm,innerbottommargin=0.25cm,
 	innerrightmargin=0.4cm,leftmargin=3.25in, skipabove=0cm,skipbelow=0cm,
     linewidth=2.5pt,linecolor=quotecolor,backgroundcolor=quotecolor!25!white,
-    topline=false,bottomline=false,rightline=false,leftline=true}]}
+    topline=false,bottomline=false,rightline=false,leftline=true]}
 	{\end{mdframed}}
 \renewcommand{\quote}[2]{\begin{quoteBox} {\Alegreya #1}
-    {\begin{flushright}{\color{nyandarkgrn}\Alegreya #2}\end{flushright}}
+    {\begin{flushright}{\setogrn\Alegreya #2}\end{flushright}}
     \end{quoteBox}}
 %---------------------------------------------
