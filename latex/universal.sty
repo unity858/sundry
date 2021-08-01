@@ -240,7 +240,7 @@ picture pathticks(path g, int n=1, real r=.5, real spacing=6, real s=8, pen p=cu
 \DeclareOption{nogeo}{\geofalse}
 \DeclareOption*{\PackageWarning{universal}{Unknown ‘\CurrentOption’}}
 \ProcessOptions\relax
-\ifgeotrue\RequirePackage[margin=1in]{geometry}\fi
+\ifgeo\RequirePackage[margin=1in]{geometry}\fi
 %---------------------------------------------
 % pkgs randomly loaded >:)
 \RequirePackage{tikz,tkz-euclide}
