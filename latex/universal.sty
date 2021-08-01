@@ -236,12 +236,14 @@ picture pathticks(path g, int n=1, real r=.5, real spacing=6, real s=8, pen p=cu
 	return pict;
 }
 \end{asydef}
+\newif\ifgeo\geotrue
+\DeclareOption{nogeo}{\geofalse}
+\ifgeotrue\RequirePackage[margin=1in]{geometry}\fi
 %---------------------------------------------
 % pkgs randomly loaded >:)
 \RequirePackage{tikz,tkz-euclide}
 \usetikzlibrary{calc}
 \RequirePackage{babel}
-\RequirePackage[margin=1in]{geometry}
 \RequirePackage[utf8]{inputenc} % inputenc b4 csquotes
 \RequirePackage{amsmath,amssymb,amsthm,csquotes,enumitem,etoolbox}
 \RequirePackage{graphics,graphicx,xifthen,mathtools,imakeidx,stackrel,svg,xstring,xcolor}
