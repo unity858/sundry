@@ -237,10 +237,13 @@ picture pathticks(path g, int n=1, real r=.5, real spacing=6, real s=8, pen p=cu
 }
 \end{asydef}
 \newif\ifgeo\geotrue
+\newif\ifhyperref\hyperreffalse
 \DeclareOption{nogeo}{\geofalse}
+\DeclareOption{nohyperref}{\hyperreffalse}
 \DeclareOption*{\PackageWarning{universal}{Unknown ‘\CurrentOption’}}
 \ProcessOptions\relax
 \ifgeo\RequirePackage[margin=1in]{geometry}\fi
+\ifhyperref\RequirePackage[hypertexnames=false]{hyperref}\fi
 %---------------------------------------------
 % pkgs randomly loaded >:)
 \RequirePackage{tikz,tkz-euclide}
@@ -249,7 +252,6 @@ picture pathticks(path g, int n=1, real r=.5, real spacing=6, real s=8, pen p=cu
 \RequirePackage[utf8]{inputenc} % inputenc b4 csquotes
 \RequirePackage{amsmath,amssymb,amsthm,csquotes,enumitem,etoolbox}
 \RequirePackage{graphics,graphicx,xifthen,mathtools,imakeidx,stackrel,svg,xstring,xcolor}
-\RequirePackage[hypertexnames=false]{hyperref}
 \RequirePackage[symbol]{footmisc}
 \RequirePackage[T1]{fontenc}
 %---------------------------------------------
@@ -293,6 +295,9 @@ picture pathticks(path g, int n=1, real r=.5, real spacing=6, real s=8, pen p=cu
 \newcommand{\C}{\mathbb{C}}
 \renewcommand{\P}{\mathbb{P}}% for example, PR^2
 \newcommand{\F}{\mathbb{F}}
+%---------------------
+\def\ifempty#1{\def\temp{#1} \ifx\temp\empty}
+\newcommand{\optlabel}[1]{\ifempty{#1}\enskip(#1)\else\fi}
 %---------------------------------------------
 \newcommand{\pro}[1]{\begin{proof}#1\end{proof}}
 \newcommand{\fakecmd}[1]{\texttt{\textbackslash #1}}
