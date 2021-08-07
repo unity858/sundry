@@ -296,8 +296,7 @@ picture pathticks(path g, int n=1, real r=.5, real spacing=6, real s=8, pen p=cu
 \renewcommand{\P}{\mathbb{P}}% for example, PR^2
 \newcommand{\F}{\mathbb{F}}
 %---------------------
-\def\ifempty#1{\def\temp{#1} \ifx\temp\empty}
-\newcommand{\optlabel}[1]{\ifempty{#1}\enskip(#1)\else\fi}
+\newcommand{\optlabel}[1]{\ifstrempty{#1}{}{\enskip(#1)}}
 %---------------------------------------------
 \newcommand{\pro}[1]{\begin{proof}#1\end{proof}}
 \newcommand{\fakecmd}[1]{\texttt{\textbackslash #1}}
@@ -309,5 +308,5 @@ picture pathticks(path g, int n=1, real r=.5, real spacing=6, real s=8, pen p=cu
 \newcommand{\hpcTopic}[1]{\stepcounter{hpcTopic}\textit{Topic \thehpcTopic, #1.}}
 \newcommand{\hpcContinueTopic}{\textit{Topic \thehpcTopic, continued.}}
 \newcounter{revSectnum}
-\newcommand{\hpcRevsect}[1][]{\stepcounter{revSectnum}\textit{Section \#\therevSectnum\ifthenelse{\isempty{#1}}{}{ (#1)}.}}
+% \newcommand{\hpcRevsect}[1][]{\stepcounter{revSectnum}\textit{Section \#\therevSectnum\ifstrempty{#1}{}{\enskip(#1)}.}} nvm...
 %---------------------------------------------
