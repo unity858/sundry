@@ -27,17 +27,10 @@ pen thickpink=linewidth(1)+RGB(229,162,155);
 \end{asydef}
 %---------------------------------------------
 %options
-\RequirePackage{xifthen}
-\newboolean{normalnumbering}
-\newboolean{sectnumbering}
-\newboolean{headers}
-\setboolean{normalnumbering}{true}
-\setboolean{sectnumbering}{false}
-\setboolean{headers}{true}
-\DeclareOption{labelsBySect}{
-    \setboolean{normalnumbering}{false}
-    \setboolean{sectnumbering}{true}}
-\DeclareOption{noheader}{\setboolean{headers}{false}}
+\newif\ifnormalnums\normalnumstrue
+\newif\ifheader\headertrue
+\DeclareOption{labelsBySect}{\normalnumsfalse}
+\DeclareOption{noheader}{\headerfalse}
 %------------------
 \DeclareOption*{\ClassWarning{seto}{Unknown ‘\CurrentOption’}}
 \ProcessOptions\relax
@@ -65,70 +58,87 @@ pen thickpink=linewidth(1)+RGB(229,162,155);
 % box styles
 \RequirePackage[framemethod=TikZ]{mdframed}
 \newenvironment{probBox}{\begin{mdframed}[
-	innerleftmargin=0.4cm,innertopmargin=0.25cm,innerbottommargin=0.25cm,innerrightmargin=0.4cm,
+	innerleftmargin=0.35cm,innertopmargin=0.25cm,innerbottommargin=0.25cm,innerrightmargin=0.35cm,
     linecolor=probcolor,linewidth=1.5pt,backgroundcolor=probcolor!25!white,roundcorner=5pt]}
 	{\end{mdframed}}
 \newenvironment{claimBox}{\begin{mdframed}[
-	innerleftmargin=0.4cm,innertopmargin=0.25cm,innerbottommargin=0.25cm,innerrightmargin=0.4cm,
+	innerleftmargin=0.35cm,innertopmargin=0.25cm,innerbottommargin=0.25cm,innerrightmargin=0.35cm,
     linecolor=claimcolor,linewidth=3pt,backgroundcolor=claimcolor!25!white,
     topline=false,bottomline=false,rightline=false,leftline=true]}
 	{\end{mdframed}}
 \newenvironment{thmBox}{\begin{mdframed}[
-	innerleftmargin=0.4cm,innertopmargin=0.25cm,innerbottommargin=0.25cm,innerrightmargin=0.4cm,
+	innerleftmargin=0.35cm,innertopmargin=0.25cm,innerbottommargin=0.25cm,innerrightmargin=0.35cm,
     linecolor=theocolor,linewidth=1.5pt,backgroundcolor=theocolor!25!white,roundcorner=2pt]}
 	{\end{mdframed}}
 \newenvironment{remarkBox}{\begin{mdframed}[
-	innerleftmargin=0.4cm,innertopmargin=0.25cm,innerbottommargin=0.25cm,innerrightmargin=0.4cm,
+	innerleftmargin=0.35cm,innertopmargin=0.25cm,innerbottommargin=0.25cm,innerrightmargin=0.35cm,
 	linecolor=remarkcolor,linewidth=1.5pt,backgroundcolor=remarkcolor!20!white,roundcorner=2pt]}
 	{\end{mdframed}}
 %------------------
 %cmds for convenience, because im still too lazy to define the boxes as envs
-\newcommand{\optlabel}[1]{\ifthenelse{\isempty{#1}}{}{ (#1)}}
 \newcounter{probnum}
-\newcommand{\problabel}{\ifthenelse{\boolean{normalnumbering}}{\theprobnum}{\thesection.\theprobnum}}
-\newcommand{\problem}[2][]{\stepcounter{probnum}\begin{probBox}
-    {\sffamily\bfseries Problem \problabel}{\sffamily\optlabel{#1}}{\sffamily\bfseries.}\enskip#2\end{probBox}}
-\newcommand{\prob}[2][]{\begin{probBox}
-    {\sffamily\bfseries Problem}{\sffamily\optlabel{#1}}{\sffamily\bfseries.}\enskip#2\end{probBox}}
 \newcounter{exmpnum}
-\newcommand{\exmplabel}{\ifthenelse{\boolean{normalnumbering}}{\theexmpnum}{\thesection.\theexmpnum}}
-\newcommand{\example}[2][]{\stepcounter{exmpnum}\begin{probBox}
-    {\sffamily\bfseries Example \exmplabel}{\sffamily\optlabel{#1}}{\sffamily\bfseries.}\enskip#2\end{probBox}}
+\newcounter{theonum}
+\newcounter{defnum}
+\newcounter{item}
+\ifnormalnums
+    \newcommand{\problabel}{\theprobnum}
+    \newcommand{\exmplabel}{\theexmpnum}
+    \newcommand{\thmlabel}{\thetheonum}
+    \newcommand{\deflabel}{\thedefnum}
+\else
+    \newcommand{\problabel}{\thesection.\theitem}
+    \newcommand{\exmplabel}{\thesection.\theitem}
+    \newcommand{\thmlabel}{\thesection.\theitem}
+    \newcommand{\deflabel}{\thesection.\theitem}
+\fi
+\newcommand{\problem}[2][]{\begin{probBox}
+    {\sffamily\bfseries Problem \problabel{\mdseries\optlabel{#1}}.}\enskip#2\end{probBox}}
+\newcommand{\prob}[2][]{\begin{probBox}
+    {\sffamily\bfseries Problem{\mdseries\optlabel{#1}}.}\enskip#2\end{probBox}}
+\newcommand{\example}[2][]{\begin{probBox}
+    {\sffamily\bfseries Example \exmplabel{\mdseries\optlabel{#1}}.}\enskip#2\end{probBox}}
 \newcommand{\exmp}[2][]{\begin{probBox}
-    {\sffamily\bfseries Example}{\sffamily\optlabel{#1}}{\sffamily\bfseries.}\enskip#2\end{probBox}}
+    {\sffamily\bfseries Example{\mdseries\optlabel{#1}}.}\enskip#2\end{probBox}}
 \newcommand{\claim}[1]{
     \begin{claimBox}{\sffamily\bfseries Claim ---\enskip}#1\end{claimBox}}
 \newcommand{\lemma}[1]{
     \begin{claimBox}{\sffamily\bfseries Lemma ---\enskip}#1\end{claimBox}}
-\newcounter{theonum}
-\newcommand{\thmlabel}{\ifthenelse{\boolean{normalnumbering}}{\thetheonum}{\thesection.\thetheonum}}
-\newcommand{\theorem}[1]{\stepcounter{theonum}\begin{thmBox}
+\newcommand{\theorem}[1]{\begin{thmBox}
     {\sffamily\bfseries Theorem \thmlabel.\enskip}#1\end{thmBox}}
 \newcommand{\theo}[1]{\begin{thmBox}
     {\sffamily\bfseries Theorem.\enskip}#1\end{thmBox}}
-\newcounter{defnum}
-\newcommand{\deflabel}{\ifthenelse{\boolean{normalnumbering}}{\thedefnum}{\thesection.\thedefnum}}
-\newcommand{\definition}[1]{\stepcounter{defnum}\begin{thmBox}
+\newcommand{\definition}[1]{\begin{thmBox}
     {\sffamily\bfseries Definition \deflabel.\enskip}#1\end{thmBox}}
 \newcommand{\defn}[1]{\begin{thmBox}
     {\sffamily\bfseries Definition.\enskip}#1\end{thmBox}}
 \newcommand{\remark}[1]{\begin{remarkBox}
-    {\setogrn\sffamily\itshape Remark.\enskip}#1
-    \end{remarkBox}}
+    {\setogrn\sffamily\itshape Remark.\enskip}#1\end{remarkBox}}
 \newcommand{\note}[1]{\begin{remarkBox}
-    {\setogrn\sffamily\itshape Note.\enskip}#1
-    \end{remarkBox}}
+    {\setogrn\sffamily\itshape Note.\enskip}#1\end{remarkBox}}
+\ifnormalnums
+    \pretocmd{\problem}{\stepcounter{probnum}}{}{}
+    \pretocmd{\example}{\stepcounter{exmplabel}}{}{}
+    \pretocmd{\theorem}{\stepcounter{theonum}}{}{}
+    \pretocmd{\definition}{\stepcounter{defnum}}{}{}
+\else
+    \pretocmd{\problem}{\stepcounter{item}}{}{}
+    \pretocmd{\example}{\stepcounter{item}}{}{}
+    \pretocmd{\theorem}{\stepcounter{item}}{}{}
+    \pretocmd{\definition}{\stepcounter{item}}{}{}
+\fi
 %---------------------------------------------
 % headers/footers
 \RequirePackage{fancyhdr}
-\ifthenelse{\boolean{headers}}{
+\ifheader
     \pagestyle{fancy}
     \fancyhf{}
     \renewcommand{\headrulewidth}{0.5pt}
     \renewcommand{\footrulewidth}{0pt}
     \fancyhead[L]{\small\emph{\@title}}
     \fancyhead[R]{\small\emph{\@author, \@date}}
-    \fancyfoot[C]{\thepage}}{}
+    \fancyfoot[C]{\thepage}
+\else\fi
 %---------
 % toc
 \RequirePackage[hypertexnames=false]{hyperref}
@@ -147,10 +157,9 @@ pen thickpink=linewidth(1)+RGB(229,162,155);
 %---------------------------------------------
 % regular (sub)(sub)sections
 \titleformat{\section}{\AlegreyaMedium\Large\setogrn}{\S\thesection}{1em}{}
-\apptocmd{\@section}{\ifthenelse{\boolean{sectnumbering}}{
-    \setcounter{probnum}{0}\setcounter{exmpnum}{0}
-    \setcounter{theonum}{0}\setcounter{defnum}{0}
-    \setcounter{equation}{0}}{}}{}{}
+\ifnormalnums\else
+\pretocmd{\section}{\setcounter{item}{0}}{}{}
+\fi
 \titleformat{\subsection}{\sffamily\bfseries\large\setogrn}{\thesubsection}{1em}{}
 \titleformat{\subsubsection}{\sffamily\bfseries\setogrn}{\thesubsubsection}{1em}{}
 %---------------------------------------------
@@ -158,25 +167,33 @@ pen thickpink=linewidth(1)+RGB(229,162,155);
 %-----------
 % exercises
 \newcounter{exenum}
-\newcommand{\exelabel}{\ifthenelse{\boolean{sectnumbering}}{\thesection.\theexenum}{\theexenum}}
-\newcommand{\exercise}[1][]{\stepcounter{exenum}
+\ifnormalnums
+    \newcommand{\exelabel}{\theexenum}
+\else
+    \newcommand{\exelabel}{\thesection.\theitem}
+\fi
+\newcommand{\exercise}[1][]{
 	\par\noindent\emph{Problem \exelabel}{\setogrn\sffamily\optlabel{#1}}\emph{.}\enskip}
+\ifnormalnums
+    \pretocmd{\exercise}{\stepcounter{exenum}}{}{}
+\else
+    \pretocmd{\exercise}{\stepcounter{item}}{}{}
+\fi
 %---------------------------------------------
 % sol
 \newenvironment{sol}[1][]{\begin{mdframed}[
-    innerleftmargin=0.4cm,innertopmargin=0.15cm,innerbottommargin=0.15cm,innerrightmargin=0cm,
+    innerleftmargin=0.35cm,innertopmargin=0.15cm,innerbottommargin=0.15cm,innerrightmargin=0cm,
     topline=false,bottomline=false,rightline=false,leftline=true,
     linecolor=setogrn,linewidth=3pt,backgroundcolor=white]
     \emph{Solution}{\setogrn\sffamily\optlabel{#1}}\emph{.}\enskip}{\solqed\end{mdframed}}
 %---------------------------------------------
 %quotes
 \newenvironment{quoteBox}{\begin{mdframed}[
-	innerleftmargin=0.4cm,innertopmargin=0.25cm,innerbottommargin=0.25cm,
-	innerrightmargin=0.4cm,leftmargin=3.25in, skipabove=0cm,skipbelow=0cm,
+	innerleftmargin=0.35cm,innertopmargin=0.25cm,innerbottommargin=0.25cm,
+	innerrightmargin=0.35cm,leftmargin=3.25in, skipabove=0cm,skipbelow=0cm,
     linewidth=2.5pt,linecolor=quotecolor,backgroundcolor=quotecolor!25!white,
     topline=false,bottomline=false,rightline=false,leftline=true]}
 	{\end{mdframed}}
 \renewcommand{\quote}[2]{\begin{quoteBox} {\Alegreya #1}
-    {\begin{flushright}{\setogrn\Alegreya #2}\end{flushright}}
-    \end{quoteBox}}
+    {\begin{flushright}{\setogrn\Alegreya #2}\end{flushright}}\end{quoteBox}}
 %---------------------------------------------
