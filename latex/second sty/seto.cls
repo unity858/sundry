@@ -15,7 +15,6 @@
 %
 %---------------------------------------------
 \LoadClass{article}
-\RequirePackage{universal} % my own
 \RequirePackage[inline]{asymptote}
 \begin{asydef}
 /////// Personal pens //////
@@ -29,13 +28,17 @@ pen thickpink=linewidth(1)+RGB(229,162,155);
 %options
 \newif\ifnormalnums\normalnumstrue
 \newif\ifheader\headertrue
+\newif\ifsetogeo\setogeotrue
 \DeclareOption{labelsBySect}{\normalnumsfalse}
 \DeclareOption{noheader}{\headerfalse}
-\DeclareOption{nogeo}{\geofalse}
+\DeclareOption{nogeo}{\setogeofalse}
 %------------------
 \DeclareOption*{\ClassWarning{seto}{Unknown ‘\CurrentOption’}}
 \ProcessOptions\relax
 %---------------------------------------------
+\ifsetogeo\RequirePackage{universal}
+\else\RequirePackage[nogeo]{universal}
+\fi
 %colors, for mdframed
 % Theme: big sur
 % let's use mdframed already, its capabilities are a superset of those of tcolorbox
