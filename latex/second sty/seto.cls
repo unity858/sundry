@@ -31,6 +31,7 @@ pen thickpink=linewidth(1)+RGB(229,162,155);
 \newif\ifheader\headertrue
 \DeclareOption{labelsBySect}{\normalnumsfalse}
 \DeclareOption{noheader}{\headerfalse}
+\DeclareOption{nogeo}{\geofalse}
 %------------------
 \DeclareOption*{\ClassWarning{seto}{Unknown ‘\CurrentOption’}}
 \ProcessOptions\relax
