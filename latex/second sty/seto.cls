@@ -57,7 +57,8 @@ pen thickpink=linewidth(1)+RGB(229,162,155);
 \RequirePackage{ebgaramond-maths}
 \DeclareRobustCommand{\sffamily}{\lato}
 \DeclareRobustCommand{\setogrn}{\color{setogrn}}
-\renewcommand{\emph}[1]{{\setogrn\sffamily\bfseries #1}}
+\DeclareRobustcommand{\em}{\setogrn\sffamily\bfseries}
+\renewcommand{\emph}[1]{{\em #1}}
 %------------------------------------------------------
 % box styles
 \RequirePackage[framemethod=TikZ]{mdframed}
@@ -143,7 +144,7 @@ pen thickpink=linewidth(1)+RGB(229,162,155);
     \fancyhead[R]{\small\emph{\@author, \@date}}
     \fancyfoot[C]{\thepage}
 \else\fi
-%---------
+%---------------------------------------------
 % toc
 \RequirePackage[hypertexnames=false]{hyperref}
 \setcounter{tocdepth}{3}
