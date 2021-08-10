@@ -1,5 +1,5 @@
 \documentclass[labelsBySect]{seto}
-\title{seto.cls Sample\\(a nyanya.sty variant)}
+\title{seto.cls Sample(a nyan.cls variant)}
 \author{Neal Yan heheheh}
 \date{May 2021}
 \begin{document}
@@ -7,8 +7,7 @@
 A demonstration of the features of seto.cls.
 \section*{Package information}
 There is an option called \texttt{labelsBySect}, which labels problems, theorems, etc by section;\\
-Another option is called \texttt{noheader}, which removes the headers identifying the author, etc.\\
-Stylized table of contents below is called by \fakecommand{toc}, which also includes a page break after it.
+Another option is called \texttt{noheader}, which removes the headers identifying the author, etc.
 \toc 
 \section{This is a section header}
 \subsection{Subsection appearance}
@@ -38,7 +37,7 @@ I also found typing \fakecmd{mathbb\{R\}} for $\R$ too tedious to repeat, so I s
 \end{tabular}  
 \end{center}
 \section{Fonts/text formatting}
-On this cls I changed up the fonts:
+On this sty I changed up the fonts:
 \begin{itemize}
     \item Title/section/quotes font is {\Alegreya Alegreya};
     \item Sans font used is {\lato Lato}.
@@ -48,7 +47,7 @@ On this cls I changed up the fonts:
 For itemize I'll change up the item icons later, using TikZ probably.\\
 \newpage
 \quote{Quotes are called using `\fakecmd{quote\{text\}\{author\}}',\\
-although this type looks more suitable at the top of a page.}{seto.cls}
+although this type looks more suitable at the top of a page.}{seto.sty}
 \section{Fancy stuff}
 \problem{The appearance of a problem/example. Who needs environments, thus these boxes are defined as commands instead of environments. This one is called by \fakecmd{problem/example[<label>]\{<text>\}}. When the first argument is omitted, the labeling parentheses will also disappear.}
 \theorem{Theorems and definitions are this color. (\fakecmd{theorem/definition\{\}})}
@@ -63,10 +62,12 @@ Oh, and to remove the labeling numbers, use a shortened version of the original 
 \end{tabular}  
 \end{center}
 The other commands do not have abbreviated versions.\\
+\emph{Table of Contents: }it finally worked!!!! Command is \fakecmd{toc}.
 \section{Exercises}
 \noindent
 \exercise The bolded problem number and label is called by \fakecmd{exercise}. It takes an optional input as a label.
-\exercise[sample label] Another exercise. 
-\solution Solution works similarly, and the square at the end of this dummy solution is \fakecmd{solqed}.\solqed
-I think that's about it! A bit more features by now\dots
+\exercise[sample label] Another exercise.
+\begin{sol}
+Solution works intuitvely. (This is an environment called \texttt{sol}.)
+\end{sol}
 \end{document}
