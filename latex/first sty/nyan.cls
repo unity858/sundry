@@ -1,4 +1,5 @@
 %---------------------------------------------
+%---------------------------------------------
 %info
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesClass{nyan}[2021/07/10]
@@ -16,15 +17,17 @@
 % options
 \newif\ifnormalnums\normalnumstrue
 \newif\ifheader\headertrue
+\newif\ifnyangeo\nyangeotrue
 \DeclareOption{labelsBySect}{\normalnumsfalse}
 \DeclareOption{noheader}{\headerfalse}
+\DeclareOption{nogeo}{\nyangeofalse}
 %--------------
 \DeclareOption*{\ClassWarning{nyan}{Unknown ‘\CurrentOption’}}
 \ProcessOptions\relax
 %---------------------------------------------
 %fonts, text formatting, the default stuff
 \LoadClass{article}
-\RequirePackage{universal}
+\ifnyangeo\RequirePackage{universal}\else\RequirePackage[nogeo]{universal}\fi
 \DeclareRobustCommand{\sffamily}{\cmss}
 \renewcommand{\emph}[1]{{\nyanblue\cmss\bfseries #1}}
 %---------------------------------------------
@@ -42,10 +45,10 @@
 %---------------------------------------------
 % tcolorboxes
 \RequirePackage[most]{tcolorbox}
-\newtcolorbox{probBox}{arc=0mm,left=7pt,right=7pt,top=5pt,bottom=5pt,colframe=probcolor,colback=probcolor!20!white}
-\newtcolorbox{claimBox}{arc=0mm,left=7pt,right=7pt,top=5pt,bottom=5pt,colframe=claimcolor,colback=claimcolor!25!white}
-\newtcolorbox{thmBox}{arc=0mm,left=7pt,right=7pt,top=5pt,bottom=5pt,colframe=theocolor,colback=theocolor!30!white}
-\newtcolorbox{remarkBox}{arc=0mm,left=7pt,right=7pt,top=5pt,bottom=5pt,colframe=remarkcolor,colback=remarkcolor!25!white}
+\newtcolorbox{probBox}{arc=1mm,left=7pt,right=7pt,top=5pt,bottom=5pt,colframe=probcolor,colback=probcolor!20!white}
+\newtcolorbox{claimBox}{arc=1mm,left=7pt,right=7pt,top=5pt,bottom=5pt,colframe=claimcolor,colback=claimcolor!25!white}
+\newtcolorbox{thmBox}{arc=1mm,left=7pt,right=7pt,top=5pt,bottom=5pt,colframe=theocolor,colback=theocolor!30!white}
+\newtcolorbox{remarkBox}{arc=1mm,left=7pt,right=7pt,top=5pt,bottom=5pt,colframe=remarkcolor,colback=remarkcolor!25!white}
 %--------------
 % commands using the tcolorboxes, im too lazy to def envs lul
 \newcounter{probnum}
@@ -99,9 +102,6 @@
     \pretocmd{\theorem}{\stepcounter{item}}{}{}
     \pretocmd{\definition}{\stepcounter{item}}{}{}
 \fi
-\ifnormalnums\else
-\pretocmd{\section}{\setcounter{item}{0}}{}{}
-\fi
 %---------------------------------------------
 % exercises
 \newcounter{exenum}
@@ -110,7 +110,7 @@
 \else
     \newcommand{\exelabel}{\thesection.\theitem}
 \fi
-\newcommand{\exercise}[1][]{\stepcounter{exenum}
+\newcommand{\exercise}[1][]{
 	\par\noindent\emph{Problem \exelabel}{\nyanblue\cmss\optlabel{#1}}\emph{.}\enskip}
 \ifnormalnums
     \pretocmd{\exercise}{\stepcounter{exenum}}{}{}
@@ -147,6 +147,12 @@
 \patchcmd{\@maketitle}{\@date}{{\cmss\@date}}{}{}
 % sections
 \titleformat{\section}{\nyanblue\Large\cmss\bfseries}{{\S\thesection}}{1em}{}
+\ifnormalnums\else
+\pretocmd{\section}{\setcounter{item}{0}}{}{}
+\fi
 \titleformat{\subsection}{\nyanblue\cmss\large\bfseries}{{\thesubsection}}{1em}{}
 \titleformat{\subsubsection}{\nyanblue\cmss\bfseries}{{\thesubsubsection}}{1em}{}
+%---------------------------------------------
+% sol
+\newenvironment{sol}[1][]{\vspace{0.1cm}\\\emph{Solution}{\nyanblue\sffamily\optlabel{#1}}\emph{.}\enskip}{\solqed}
 %---------------------------------------------
