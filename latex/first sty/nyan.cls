@@ -1,5 +1,4 @@
 %---------------------------------------------
-%---------------------------------------------
 %info
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesClass{nyan}[2021/07/10]
@@ -29,7 +28,8 @@
 \LoadClass{article}
 \ifnyangeo\RequirePackage{universal}\else\RequirePackage[nogeo]{universal}\fi
 \DeclareRobustCommand{\sffamily}{\cmss}
-\renewcommand{\emph}[1]{{\nyanblue\cmss\bfseries #1}}
+\DeclareRobustCommand{\em}{\nyanblue\cmss\bfseries}
+\renewcommand{\emph}[1]{{\em #1}}
 %---------------------------------------------
 %colors
 % Theme: nyan cat colors
