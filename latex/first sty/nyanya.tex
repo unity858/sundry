@@ -1,133 +1,78 @@
-%---------------------------------------------
-%info
-\NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{nyan}[2021/07/10]
-%% class name: nyan.cls 
-%% Copyright 2021 by Neal Yan
-% 
-% seriously, just use seto.cls already XD
-%
-% This program can redistributed and/or modified under the terms 
-% of the LaTeX Project Public License Distributed from CTAN 
-% archives in directory macros/latex/base/lppl.txt; either 
-% version 1 of the License, or (at your option) any later version.
-%
-%---------------------------------
-% options
-\RequirePackage{xifthen}
-\newboolean{normalnumbering}
-\newboolean{sectnumbering}
-\newboolean{headers}
-\newboolean{credit}
-\setboolean{normalnumbering}{true}
-\setboolean{sectnumbering}{false}
-\setboolean{headers}{true}
-\setboolean{credit}{true}
-\DeclareOption{labelsBySect}{
-    \setboolean{normalnumbering}{false}
-    \setboolean{sectnumbering}{true}}
-\DeclareOption{noheader}{\setboolean{headers}{false}}
-\DeclareOption{nocredit}{\setboolean{credit}{false}}
-%--------------
-\DeclareOption*{\ClassWarning{nyan}{Unknown ‘\CurrentOption’}}
-\ProcessOptions\relax
-%---------------------------------------------
-%fonts, text formatting, the default stuff
-\LoadClass{article}
-\RequirePackage{universal}
-\DeclareRobustCommand{\sffamily}{\cmss}
-\renewcommand{\emph}[1]{{\color{nyanblue}\cmss\bfseries #1}}
-%-------------------------------------------------------
-%colors, for tcolorbox
-% Theme: nyan cat colors
-\RequirePackage[most]{tcolorbox}
-\definecolor{nyanblue}{HTML}{003366}
-\definecolor{white}{HTML}{FFFFFF}
-\definecolor{black}{HTML}{000000}
-\definecolor{probcolor}{HTML}{FF0090}
-\definecolor{remarkcolor}{HTML}{FF9898}
-\definecolor{claimcolor}{HTML}{F5C596}
-\definecolor{theocolor}{HTML}{FD99FD}
-%--------------
-% tcolorboxes for claim, problem, etc
-\newtcolorbox{probBox}{colframe=probcolor,colback=probcolor!20!white}
-\newtcolorbox{claimBox}{colframe=claimcolor,colback=claimcolor!25!white}
-\newtcolorbox{thmBox}{colframe=theocolor,colback=theocolor!30!white}
-\newtcolorbox{remarkBox}{colframe=remarkcolor,colback=remarkcolor!25!white}
-%--------------
-% commands using the tcolorboxes, im too lazy to def envs lul
-\newcommand{\optlabel}[1]{\ifthenelse{\isempty{#1}}{}{\enskip(#1)}}
-\newcounter{probnum}
-\newcommand{\problabel}{\ifthenelse{\boolean{normalnumbering}}{\theprobnum}{\thesection.\theprobnum}}
-\newcommand{\problem}[2][]{\stepcounter{probnum}\begin{probBox}
-    {\cmss\bfseries Problem \problabel}{\cmss\optlabel{#1}}
-    {\cmss\bfseries.}\enskip #2\end{probBox}}
-\newcommand{\prob}[2][]{\begin{probBox}
-    {\cmss\bfseries Problem}{\cmss\optlabel{#1}}
-    {\cmss\bfseries.}\enskip #2\end{probBox}}
-\newcounter{exmpnum}
-\newcommand{\exmplabel}{\ifthenelse{\boolean{normalnumbering}}{\theexmpnum}{\thesection.\theexmpnum}}
-\newcommand{\example}[2][]{\stepcounter{exmpnum}\begin{probBox}
-	{\cmss\bfseries Example \exmplabel}{\cmss\optlabel{#1}}
-	{\cmss\bfseries.}\enskip #2\end{probBox}}
-\newcommand{\exmp}[2][]{\begin{probBox}
-    {\cmss\bfseries Example}{\cmss\optlabel{#1}}
-    {\cmss\bfseries.}\enskip #2\end{probBox}}
-\newcommand{\claim}[1]{\begin{claimBox}
-	{\cmss\bfseries Claim ---\quad}#1\end{claimBox}} % evan [chen]'s style
-\newcommand{\lemma}[1]{\begin{claimBox}
-	{\cmss\bfseries Lemma ---\enskip}#1\end{claimBox}}
-\newcommand{\remark}[1]{\begin{remarkBox}
-	{\color{nyanblue}\cmss\itshape Remark.\enskip}#1\end{remarkBox}}
-\newcounter{theonum}
-\newcommand{\thmlabel}{\ifthenelse{\boolean{normalnumbering}}{\thetheonum}{\thesection.\thetheonum}}
-\newcommand{\theorem}[1]{\stepcounter{theonum}\begin{thmBox}
-	{\cmss\bfseries Theorem \thmlabel.\enskip}#1\end{thmBox}}
-\newcommand{\theo}[1]{\begin{thmBox}
-	{\cmss\bfseries Theorem.\enskip}#1\end{thmBox}}
-\newcounter{defnum}
-\newcommand{\deflabel}{\ifthenelse{\boolean{normalnumbering}}{\thedefnum}{\thesection.\thedefnum}}
-\newcommand{\definition}[1]{\stepcounter{defnum}\begin{thmBox}
-	{\cmss\bfseries Definition \deflabel.\enskip}#1\end{thmBox}}
-\newcommand{\defn}[1]{\begin{thmBox}
-	{\cmss\bfseries Definition.\enskip}#1\end{thmBox}}
-\newcommand{\note}[1]{\begin{remarkBox}
-    {\color{nyanblue}\cmss\itshape Note.\enskip}#1\end{remarkBox}}
-%---------------------------------------------
-% exercises
-\newcounter{exenum}
-\newcommand{\exelabel}{\ifthenelse{\boolean{sectnumbering}}{\thesection.\theexenum}{\theexenum}}
-\newcommand{\exercise}[1][]{\stepcounter{exenum}
-	\par\noindent\emph{Problem \exelabel}{\color{nyanblue}\cmss\optlabel{#1}}\emph{.}\enskip}
-%---------------------------------------------
-% headers/footers
-\RequirePackage{fancyhdr}
-\ifthenelse{\boolean{headers}}{
-    \pagestyle{fancy}\fancyhf{}
-    \renewcommand{\headrulewidth}{0.5pt}
-    \renewcommand{\footrulewidth}{0pt}
-    \fancyhead[L]{\emph{\@title}}
-    \fancyhead[R]{\emph{\@author, \@date}}
-    \fancyfoot[C]{\thepage}}{}
-%---------
-% toc
-\setcounter{tocdepth}{3}
-\newcommand{\toc}{
-	{\hypersetup{
-	citecolor=black,filecolor=nyanblue,
-	linkcolor=black,urlcolor=black}
-\emph{\tableofcontents}\newpage}}
-%---------------------------------------------
-% section packages
-\usepackage{titling,titlesec,setspace}
-\ifthenelse{\boolean{credit}}{\apptocmd{\maketitle}{\begin{center}
-    \textit{Produced using nyanya.cls}
-    \end{center}}{}{}}{}% i'm too lazy to change font for \maketitle lol
-% regular sections
-\titleformat{\section}{\color{nyanblue}\Large\cmss\bfseries}{
-    {\S\thesection}}{1em}{}
-\titleformat{\subsection}{\color{nyanblue}\cmss\large\bfseries}{
-    {\thesubsection}}{1em}{}
-\titleformat{\subsubsection}{\color{nyanblue}\cmss\bfseries}{
-    {\thesubsubsection}}{1em}{}
-%---------------------------------------------
+\documentclass[labelsBySect]{nyan}
+\title{nyan.cls Sample}
+\author{Neal Yan}
+\date{April 2021\\ Presenting the most garish color theme to ever exist}
+\begin{document}
+\maketitle
+\toc
+\section{This is a section header}
+\subsection{Subsection appearance}
+The command for (sub)(sub)section has not changed, although its appearance has: \fakecmd{(sub)(sub)section}.
+\subsubsection{Just in case you need these.}
+
+There is a slight possibility of the necessity of this command, \fakecmd{subsubsection}, I guess.
+
+\section{Math commands}
+
+A few math commands have been defined, such as \fakecmd{sym} and \fakecmd{cyc}, which appear as $\symsum$ and $\cycsum$, respectively\footnote{hi dennis heheheheh}
+
+\subsection{Between bars}
+
+After noticing the lack of absolute value bars and the evaluated-at thing, the following were defined: 
+
+\fakecmd{abs\{...\}}$\Rightarrow\abs{\dots}$;
+
+\fakecmd{evalat[upper number]\{lower number\}}$\Rightarrow\evalat[\text{first argument}]{\text{second argument}}$.
+
+\subsection{Floors/ceilings}
+Due to personal need\footnote{Ross quiz, anyone?}, I've defined floor brackets because ``\fakecmd{lfloor \dots \textbackslash  rfloor}" was too tedious to repeat. 
+\subsection{Sets}
+
+I also found typing \fakecmd{mathbb\{R\}} for $\R$ too tedious to repeat, so I shortened it to \fakecmd{R}. Similar commands exist for $\N$,$\Z$,$\Q$, and $\C$:
+\begin{center}
+\begin{tabular}{c|c|c|c|c|c}
+\emph{Command}& \fakecmd{N} & \fakecmd{Z} & \fakecmd{Q} & \fakecmd{R} & \fakecmd{C}\\\hline
+\emph{Appearance}& $\N$ & $\Z$ & $\Q$ & $\R$ & $\C$
+\end{tabular}  
+\end{center}
+
+\section{Fonts/text formatting}
+
+Default fonts used, emph appearance changed: \emph{like so}
+
+As for the environments \texttt{enumerate}, \texttt{itemize}, and \texttt{enumitem}, I'm too lazy to change those, lel.
+
+Also, the command \fakecmd{solution}(which compiles as "\textit{Solution. }", because \fakecmd{textit\{Solution. \}} is also rather long.
+
+\section{Fancy stuff}
+\problem{The appearance of a problem/example. Command is \fakecmd{problem[]\{\}.}}
+\theorem{Theorems and definitions are this color. (\fakecmd{theorem/definition\{\}})}
+\lemma{Lemmas/claims are this color. (\fakecmd{lemma/claim\{\}})}
+\pro{I do not think proofs need their own box... at least not now. The command for proofs like this one is \fakecmd{pro\{proof text\}}.}
+
+\remark{The tasteless color theme is from Nyan Cat(excluding the rainbows), judge me. Oh, and remarks are called by \fakecmd{remark\{...\}}.}
+
+Oh, and to remove the labeling numbers, use a shortened version of the original command:
+\begin{center}
+\begin{tabular}{c|c|c|c|c|c}
+    \emph{Original}& \fakecmd{(sub)(sub)section} & \fakecmd{problem} & \fakecmd{example}&\fakecmd{theorem}&\texttt{definition}\\\hline
+    \emph{Shortened}& \fakecmd{(sub)(sub)sctn} & \fakecmd{prob} & \fakecmd{exmp}&\fakecmd{theo}&\fakecmd{defn}
+\end{tabular}  
+\end{center}
+
+The other commands do not have abbreviated versions.
+
+\emph{Table of Contents: }it finally worked!!!! Command is \fakecmd{toc}.
+
+\section{Exercises}
+\noindent
+\exercise The bolded problem number and label is called by \fakecmd{exercise}. (who needs inputs lol)
+\exercise[random label] Another exercise. 
+\begin{sol}[argument for label]
+Solution environment, called sol.
+\end{sol}
+\\[4pt]
+That's about all nyan.cls has to it!\\
+
+\remark{This is my first .cls, and in later styles I've improved the color theme and changed up the fonts, see seto.cls.}
+\end{document}
