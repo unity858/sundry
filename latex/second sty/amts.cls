@@ -6,7 +6,7 @@
 %% package name: usamts.cls 
 %% Copyright 2021 by Neal Yan
 %
-% mock usamts sty, basically a modified version of seto.sty that can be used on usamts
+% mock usamts cls, basically a modified version of seto.cls that can be used on usamts
 %
 % This program can redistributed and/or modified under the terms 
 % of the LaTeX Project Public License Distributed from CTAN 
@@ -14,7 +14,7 @@
 % version 1 of the License, or (at your option) any later version.
 %
 %---------------------------------------------
-% info/geometry
+% amts info, geometry
 \RequirePackage[left=1in,right=1in,top=1.2in,bottom=1in]{geometry}
 \newcommand{\realname}[1]{\def\rname{#1}}
 \newcommand{\username}[1]{\def\uname{#1}}
@@ -22,8 +22,9 @@
 \newcommand{\amtsyr}[1]{\def\yr{#1}}
 \newcommand{\amtsround}[1]{\def\round{#1}}
 \newcounter{amtsprob}
-%----------------------------------------
-% page setup, modified version of official file
+%---------------------------------------------
+% page setup, modified version of official;
+% fonts/colors changed to the "seto" style;
 \RequirePackage{fancyhdr}
 \pagestyle{fancy}
 \fancyhf{}
@@ -50,16 +51,16 @@
 \renewcommand{\headrulewidth}{0.5pt}
 \renewcommand{\footrulewidth}{0.5pt}
 \setlength{\textwidth}{6.5in}
-%----------------------------------------
+%---------------------------------------------
 % amtssol env
 \newenvironment{amtssol}{
     \stepcounter{amtsprob}
-    % \setcounter{amtsprob}{#1}
     \setcounter{page}{1}
     \setcounter{equation}{0}
     \setcounter{probnum}{0}
     \setcounter{exmpnum}{0}
     \setcounter{theonum}{0}
     \setcounter{defnum}{0}
-    \section{Problem \theamtsprob}
-}{\eject}
+    \section{Problem \theamtsprob}}
+    {\eject}
+%---------------------------------------------
