@@ -57,7 +57,7 @@ pen thickpink=linewidth(1)+RGB(229,162,155);
 \RequirePackage{ebgaramond-maths}
 \DeclareRobustCommand{\sffamily}{\lato}
 \DeclareRobustCommand{\setogrn}{\color{setogrn}}
-\DeclareRobustcommand{\em}{\setogrn\sffamily\bfseries}
+\DeclareRobustCommand{\em}{\setogrn\sffamily\bfseries}
 \renewcommand{\emph}[1]{{\em #1}}
 %------------------------------------------------------
 % box styles
