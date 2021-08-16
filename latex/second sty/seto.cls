@@ -29,9 +29,11 @@ pen thickpink=linewidth(1)+RGB(229,162,155);
 \newif\ifnormalnums\normalnumstrue
 \newif\ifheader\headertrue
 \newif\ifsetogeo\setogeotrue
+\newif\ifdeffonts\deffontsfalse
 \DeclareOption{labelsBySect}{\normalnumsfalse}
 \DeclareOption{noheader}{\headerfalse}
 \DeclareOption{nogeo}{\setogeofalse}
+\DeclareOption{deffonts}{\deffontstrue}
 %------------------
 \DeclareOption*{\ClassWarning{seto}{Unknown ‘\CurrentOption’}}
 \ProcessOptions\relax
@@ -53,8 +55,10 @@ pen thickpink=linewidth(1)+RGB(229,162,155);
 \definecolor{quotecolor}{HTML}{91B9DC} % slightly darker blue\
 %-------------------------------------------------
 %fonts, text formatting
+\ifdeffonts\else
 \RequirePackage[cmintegrals,cmbraces]{newtxmath}
 \RequirePackage{ebgaramond-maths}
+\fi
 \DeclareRobustCommand{\sffamily}{\lato}
 \DeclareRobustCommand{\setogrn}{\color{setogrn}}
 \DeclareRobustCommand{\em}{\setogrn\sffamily\bfseries}
@@ -149,10 +153,10 @@ pen thickpink=linewidth(1)+RGB(229,162,155);
 \RequirePackage[hypertexnames=false]{hyperref}
 \setcounter{tocdepth}{3}
 \newcommand{\toc}{
-    {\hypersetup{
+    {\em\hypersetup{
 	citecolor=black,filecolor=setogrn,
 	linkcolor=black,urlcolor=black}
-    \emph{\tableofcontents}\newpage}}
+    \tableofcontents}\newpage}
 %---------------------------------------------
 % title customization
 \RequirePackage{titling,titlesec,setspace}
