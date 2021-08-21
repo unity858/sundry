@@ -237,21 +237,24 @@ picture pathticks(path g, int n=1, real r=.5, real spacing=6, real s=8, pen p=cu
 }
 \end{asydef}
 \newif\ifgeo\geotrue
-\newif\ifhyperref\hyperreffalse
+\newif\ifhyperref\hyperreftrue
+\newif\ifimakeidx\imakeidxtrue
 \DeclareOption{nogeo}{\geofalse}
 \DeclareOption{nohyperref}{\hyperreffalse}
+\DeclareOption{noimakeidx}{\imakeidxfalse}
 \DeclareOption*{\PackageWarning{universal}{Unknown ‘\CurrentOption’}}
 \ProcessOptions\relax
 \ifgeo\RequirePackage[margin=1in]{geometry}\fi
 \ifhyperref\RequirePackage[hypertexnames=false]{hyperref}\fi
+\ifmakeidx\RequirePackage{imakeidx}\fi
 %---------------------------------------------
 % pkgs randomly loaded >:)
 \RequirePackage{tikz,tkz-euclide}
 \usetikzlibrary{calc}
 \RequirePackage{babel}
 \RequirePackage[utf8]{inputenc} % inputenc b4 csquotes
-\RequirePackage{amsmath,amssymb,amsthm,enumitem,etoolbox} %csquotes?
-\RequirePackage{graphics,graphicx,xifthen,mathtools,imakeidx,stackrel,svg,xstring,xcolor}
+\RequirePackage{amsmath,amssymb,amsthm,enumitem} %csquotes?
+\RequirePackage{graphics,graphicx,mathtools,stackrel,svg}
 \RequirePackage[symbol]{footmisc}
 \RequirePackage[T1]{fontenc}
 %---------------------------------------------
@@ -303,10 +306,16 @@ picture pathticks(path g, int n=1, real r=.5, real spacing=6, real s=8, pen p=cu
 %----------
 % hpc problem numbering on school hw, because im lazy af
 \newcounter{hpcExe}
-\newcommand{\hpcExe}[1]{\stepcounter{hpcExe}\par\emph{\thehpcExe/#1; }}
+\newcommand{\hpcExe}[1]{\stepcounter{hpcExe}\par\noindent\emph{\thehpcExe/#1; }}
 \newcounter{hpcTopic}
 \newcommand{\hpcTopic}[1]{\stepcounter{hpcTopic}\textit{Topic \thehpcTopic, #1.}}
 \newcommand{\hpcContinueTopic}{\textit{Topic \thehpcTopic, continued.}}
 \newcounter{revSectnum}
 % \newcommand{\hpcRevsect}[1][]{\stepcounter{revSectnum}\textit{Section \#\therevSectnum\ifstrempty{#1}{}{\enskip(#1)}.}} nvm...
+\newcommand{\calcexe}{\par\noindent\stepcounter{calcexe}\emph{\#\thecalcexe.}\enskip}
+\newcommand{\dblstepcntr}[1]{\stepcounter{#1}\stepcounter{#1}}
+\newcommand{\calcoddexe}{\par\noindent\dblstepcntr{calcexe}\emph{\#\thecalcexe.}\enskip}
+\renewcommand{\thesection}{\Alph{section}}
+\newcommand{\dne}{\textup{[DNE]}}
+\newcommand{\ddx}{\frac{d}{dx}}
 %---------------------------------------------
