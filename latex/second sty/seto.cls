@@ -195,6 +195,8 @@ pen thickpink=linewidth(1)+RGB(229,162,155);
     topline=false,bottomline=false,rightline=false,leftline=true,
     linecolor=setogrn,linewidth=3pt,backgroundcolor=white]
     \emph{Solution}{\setogrn\sffamily\optlabel{#1}}\emph{.}\enskip}{\solqed\end{mdframed}}
+%solnoteprob
+\newcommand{\solnoteprob}[1]{\par\noindent{\setogrn\Alegreya\small #1}\par\noindent{\setogrn\hrule\vspace{0.2cm}}\par\noindent}
 %---------------------------------------------
 %quotes
 \newenvironment{quoteBox}{\begin{mdframed}[
