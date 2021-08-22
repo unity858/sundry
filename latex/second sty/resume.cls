@@ -56,3 +56,4 @@
     {\lato\bfseries\cvdarkgrn #1}\hfill {\lato #2}}
 \newcommand{\desc}[1]{\par\noindent {\maincolor #1}}
 \newcommand{\cvRef}[1]{\par\noindent(Reference: #1)}
+%---------------------------------------------
