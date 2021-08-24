@@ -236,6 +236,8 @@ picture pathticks(path g, int n=1, real r=.5, real spacing=6, real s=8, pen p=cu
 	return pict;
 }
 \end{asydef}
+%---------------------------------------------
+% options that exist to serve beamer req's
 \newif\ifgeo\geotrue
 \newif\ifhyperref\hyperreftrue
 \newif\ifimakeidx\imakeidxtrue
@@ -244,6 +246,7 @@ picture pathticks(path g, int n=1, real r=.5, real spacing=6, real s=8, pen p=cu
 \DeclareOption{noimakeidx}{\imakeidxfalse}
 \DeclareOption*{\PackageWarning{universal}{Unknown ‘\CurrentOption’}}
 \ProcessOptions\relax
+%--------------------
 \ifgeo\RequirePackage[margin=1in]{geometry}\fi
 \ifhyperref\RequirePackage[hypertexnames=false]{hyperref}\fi
 \ifimakeidx\RequirePackage{imakeidx}\fi
@@ -300,6 +303,7 @@ picture pathticks(path g, int n=1, real r=.5, real spacing=6, real s=8, pen p=cu
 \newcommand{\F}{\mathbb{F}}
 %---------------------
 \newcommand{\optlabel}[1]{\ifstrempty{#1}{}{\enskip(#1)}}
+\newenvironment{alphenum}{\begin{enumerate}[label=(\alph*)]}{\end{enumerate}}
 %---------------------------------------------
 \newcommand{\pro}[1]{\begin{proof}#1\end{proof}}
 \newcommand{\fakecmd}[1]{\texttt{\textbackslash #1}}
