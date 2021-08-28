@@ -67,38 +67,41 @@ pen thickpink=linewidth(1)+RGB(229,162,155);
 % box styles
 \RequirePackage[framemethod=TikZ]{mdframed}
 \newenvironment{probBox}{\begin{mdframed}[
-	innerleftmargin=0.35cm,innertopmargin=0.25cm,innerbottommargin=0.25cm,innerrightmargin=0.35cm,
+    innerleftmargin=0.35cm,innertopmargin=0.25cm,innerbottommargin=0.25cm,innerrightmargin=0.35cm,
     linecolor=probcolor,linewidth=1.5pt,backgroundcolor=probcolor!25!white,roundcorner=5pt]}
-	{\end{mdframed}}
+    {\end{mdframed}}
 \newenvironment{claimBox}{\begin{mdframed}[
-	innerleftmargin=0.35cm,innertopmargin=0.25cm,innerbottommargin=0.25cm,innerrightmargin=0.35cm,
+    innerleftmargin=0.35cm,innertopmargin=0.25cm,innerbottommargin=0.25cm,innerrightmargin=0.35cm,
     linecolor=claimcolor,linewidth=3pt,backgroundcolor=claimcolor!25!white,
     topline=false,bottomline=false,rightline=false,leftline=true]}
-	{\end{mdframed}}
+    {\end{mdframed}}
 \newenvironment{thmBox}{\begin{mdframed}[
-	innerleftmargin=0.35cm,innertopmargin=0.25cm,innerbottommargin=0.25cm,innerrightmargin=0.35cm,
+    innerleftmargin=0.35cm,innertopmargin=0.25cm,innerbottommargin=0.25cm,innerrightmargin=0.35cm,
     linecolor=theocolor,linewidth=1.5pt,backgroundcolor=theocolor!25!white,roundcorner=2pt]}
-	{\end{mdframed}}
+    {\end{mdframed}}
 \newenvironment{remarkBox}{\begin{mdframed}[
-	innerleftmargin=0.35cm,innertopmargin=0.25cm,innerbottommargin=0.25cm,innerrightmargin=0.35cm,
-	linecolor=remarkcolor,linewidth=1.5pt,backgroundcolor=remarkcolor!20!white,roundcorner=2pt]}
-	{\end{mdframed}}
+    innerleftmargin=0.35cm,innertopmargin=0.25cm,innerbottommargin=0.25cm,innerrightmargin=0.35cm,
+    linecolor=remarkcolor,linewidth=1.5pt,backgroundcolor=remarkcolor!20!white,roundcorner=2pt]}
+    {\end{mdframed}}
 %------------------
 %cmds for convenience, because im still too lazy to define the boxes as envs
 \newcounter{probnum}
 \newcounter{exmpnum}
 \newcounter{theonum}
+\newcounter{propnum}
 \newcounter{defnum}
 \newcounter{item}
 \ifnormalnums
     \newcommand{\problabel}{\theprobnum}
     \newcommand{\exmplabel}{\theexmpnum}
     \newcommand{\thmlabel}{\thetheonum}
+    \newcommand{\proplabel}{\thepropnum}
     \newcommand{\deflabel}{\thedefnum}
 \else
     \newcommand{\problabel}{\thesection.\theitem}
     \newcommand{\exmplabel}{\thesection.\theitem}
     \newcommand{\thmlabel}{\thesection.\theitem}
+    \newcommand{\proplabel}{\thesection.\theitem}
     \newcommand{\deflabel}{\thesection.\theitem}
 \fi
 \newcommand{\problem}[2][]{\begin{probBox}
@@ -117,6 +120,10 @@ pen thickpink=linewidth(1)+RGB(229,162,155);
     {\sffamily\bfseries Theorem \thmlabel.\enskip}#1\end{thmBox}}
 \newcommand{\theo}[1]{\begin{thmBox}
     {\sffamily\bfseries Theorem.\enskip}#1\end{thmBox}}
+\newcommand{\proposition}[1]{\begin{thmBox}
+    {\sffamily\bfseries Proposition \proplabel.\enskip}#1\end{thmBox}}
+\newcommand{\prop}[1]{\begin{thmBox}
+    {\sffamily\bfseries Proposition.\enskip}#1\end{thmBox}}
 \newcommand{\definition}[1]{\begin{thmBox}
     {\sffamily\bfseries Definition \deflabel.\enskip}#1\end{thmBox}}
 \newcommand{\defn}[1]{\begin{thmBox}
@@ -129,11 +136,13 @@ pen thickpink=linewidth(1)+RGB(229,162,155);
     \pretocmd{\problem}{\stepcounter{probnum}}{}{}
     \pretocmd{\example}{\stepcounter{exmplabel}}{}{}
     \pretocmd{\theorem}{\stepcounter{theonum}}{}{}
+    \pretocmd{\proposition}{\stepcounter{propnum}}{}{}
     \pretocmd{\definition}{\stepcounter{defnum}}{}{}
 \else
     \pretocmd{\problem}{\stepcounter{item}}{}{}
     \pretocmd{\example}{\stepcounter{item}}{}{}
     \pretocmd{\theorem}{\stepcounter{item}}{}{}
+    \pretocmd{\proposition}{\stepcounter{item}}{}{}
     \pretocmd{\definition}{\stepcounter{item}}{}{}
 \fi
 %---------------------------------------------
@@ -154,8 +163,8 @@ pen thickpink=linewidth(1)+RGB(229,162,155);
 \setcounter{tocdepth}{3}
 \newcommand{\toc}{
     {\em\hypersetup{
-	citecolor=black,filecolor=setogrn,
-	linkcolor=black,urlcolor=black}
+    citecolor=black,filecolor=setogrn,
+    linkcolor=black,urlcolor=black}
     \tableofcontents}\newpage}
 %---------------------------------------------
 % title customization
@@ -182,7 +191,7 @@ pen thickpink=linewidth(1)+RGB(229,162,155);
     \newcommand{\exelabel}{\thesection.\theitem}
 \fi
 \newcommand{\exercise}[1][]{
-	\par\noindent\emph{Problem \exelabel}{\setogrn\sffamily\optlabel{#1}}\emph{.}\enskip}
+    \par\noindent\emph{Problem \exelabel}{\setogrn\sffamily\optlabel{#1}}\emph{.}\enskip}
 \ifnormalnums
     \pretocmd{\exercise}{\stepcounter{exenum}}{}{}
 \else
@@ -200,11 +209,11 @@ pen thickpink=linewidth(1)+RGB(229,162,155);
 %---------------------------------------------
 %quotes
 \newenvironment{quoteBox}{\begin{mdframed}[
-	innerleftmargin=0.35cm,innertopmargin=0.25cm,innerbottommargin=0.25cm,
-	innerrightmargin=0.35cm,leftmargin=3.25in, skipabove=0cm,skipbelow=0cm,
+    innerleftmargin=0.35cm,innertopmargin=0.25cm,innerbottommargin=0.25cm,innerrightmargin=0.35cm,
+    leftmargin=3.25in,skipabove=0cm,skipbelow=0cm,
     linewidth=2.5pt,linecolor=quotecolor,backgroundcolor=quotecolor!25!white,
     topline=false,bottomline=false,rightline=false,leftline=true]}
-	{\end{mdframed}}
+    {\end{mdframed}}
 \renewcommand{\quote}[2]{\begin{quoteBox} {\Alegreya #1}
     {\begin{flushright}{\setogrn\Alegreya #2}\end{flushright}}\end{quoteBox}}
 %---------------------------------------------
