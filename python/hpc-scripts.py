@@ -3,41 +3,41 @@
 # May future HPC students be fortunate enough to encounter these short programs,
 # and hopefully spend less time on their homework.
 #
-# Neal Yan, 2021
+# tac-nayn06, 2021
 #-----------------------------------------
 # the modules, do not modify
-import math
-import cmath
+import math as m
+import cmath as cm
 import copy
 # im too lazy to solve a quadratic then round the sols, so here's the result:
 def quad_formula(a,b,c):
     delta = b*b - 4 * a * c
-    if (delta >= 0): return {(-b + math.sqrt(delta)) / (2 * a), (-b - math.sqrt(delta)) / (2 * a)}
-    return {(-b + math.sqrt(-delta)*1j) / (2 * a), (-b - math.sqrt(-delta)*1j) / (2 * a)}
+    if (delta >= 0): return {(-b + m.sqrt(delta)) / (2 * a), (-b - m.sqrt(delta)) / (2 * a)}
+    return {(-b + m.sqrt(-delta)*1j) / (2 * a), (-b - m.sqrt(-delta)*1j) / (2 * a)}
 # the repeated problem of tension in which a weight is suspended by two strings/ropes/whatever
 def tension(weight, Langle,Rangle):
     '''angles in degrees'''
-    x=weight/(math.tan(Langle)+math.tan(Rangle))
-    return [x/math.cos(Langle),x/math.cos(Rangle)]
+    x=weight/(m.tan(Langle)+m.tan(Rangle))
+    return [x/m.cos(Langle),x/m.cos(Rangle)]
 #triangle completion, also assigned ad nauseam, thank god these exist
 #the weird '^\circ' exists to allow for direct copypasting into LaTeX compilers
 def trianglesolveAAS(A,B,a):
-    C=math.pi-A-B
-    b= a*math.sin(B)/math.sin(A)
-    c= a*math.sin(C)/math.sin(A)
-    return [b,c,str(180*C/math.pi)+'^{\circ}']
+    C=m.pi-A-B
+    b= a*m.sin(B)/m.sin(A)
+    c= a*m.sin(C)/m.sin(A)
+    return [b,c,str(180*C/m.pi)+'^{\circ}']
 def trianglesolveSSS(a,b,c):
-    A=math.acos((b**2+c**2-a**2)/(2*b*c))
-    B=math.acos((a**2+c**2-b**2)/(2*a*c))
-    C=math.acos((a**2+b**2-c**2)/(2*a*b))
-    return [str(A*180/math.pi)+'^{\circ}',str(B*180/math.pi)+'^{\circ}',str(C*180/math.pi)+'^{\circ}']
+    A=m.acos((b**2+c**2-a**2)/(2*b*c))
+    B=m.acos((a**2+c**2-b**2)/(2*a*c))
+    C=m.acos((a**2+b**2-c**2)/(2*a*b))
+    return [str(A*180/m.pi)+'^{\circ}',str(B*180/m.pi)+'^{\circ}',str(C*180/m.pi)+'^{\circ}']
 def trianglesolveSAS(a,b,C):
-    c=math.sqrt(a**2+b**2-2*a*b*math.cos(C))
+    c=m.sqrt(a*a+b*b-2*a*b*m.cos(C))
     L=trianglesolveSSS(a,b,c)
     return [L[0],L[1],c]
 def trianglesolveSSA(A,a,b):
-    B1=math.asin(b*math.sin(A)/a)
-    B2=math.pi-B1
+    B1=m.asin(b*m.sin(A)/a)
+    B2=m.pi-B1
     C1=B2-A
     C2=B1-A
     c1=trianglesolveAAS(A,B1,a)[1]
@@ -45,7 +45,7 @@ def trianglesolveSSA(A,a,b):
     return [[c1,str(B1*180/math.pi)+'^{\circ}',str(C1*180/math.pi)+'^{\circ}'],[c2,str(B2*180/math.pi)+'^{\circ}',str(C2*180/math.pi)+'^{\circ}']]
 def heron(a,b,c): # (duh)
     s= (a+b+c)/2
-    return math.sqrt(s*(s-a)*(s-b)*(s-c))
+    return m.sqrt(s*(s-a)*(s-b)*(s-c))
 #
 # how common core teaches very very basic linear alg:
 # scripts for matrix operations, theyre too tedious to do manually more than once, no numpy bc im lazy
@@ -148,7 +148,7 @@ def harmonic1(n):
     return ans
 def harmonic2(n):
     gamma=0.577215664901532 #euler-mascheroni const
-    return math.log(n)+gamma+1/(2*n)-1/(12*n*n)+1/(120*(n**4)) #first few terms of series but alr rlly accurate
+    return m.log(n)+gamma+1/(2*n)-1/(12*n*n)+1/(120*(n**4)) #first few terms of series but alr rlly accurate
 #
 #self-explanatory, for use on the stupid riemann sums; when it isn't clear, use highfakeintegral.
 def foo(x): 
