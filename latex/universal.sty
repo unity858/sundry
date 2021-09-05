@@ -315,7 +315,8 @@ picture pathticks(path g, int n=1, real r=.5, real spacing=6, real s=8, pen p=cu
 \newcommand{\hpcTopic}[1]{\stepcounter{hpcTopic}\textit{Topic \thehpcTopic, #1.}}
 \newcommand{\hpcContinueTopic}{\textit{Topic \thehpcTopic, continued.}}
 \newcounter{revSectnum}
-% \newcommand{\hpcRevsect}[1][]{\stepcounter{revSectnum}\textit{Section \#\therevSectnum\ifstrempty{#1}{}{\enskip(#1)}.}} nvm...
+\newcommand{\hpcRevsect}[1][]{\stepcounter{revSectnum}\textit{Section \#\therevSectnum\ifstrempty{#1}{}{\enskip(#1)}.}} % nvm...
+\newcounter{calcexe}
 \newcommand{\calcexe}{\par\noindent\stepcounter{calcexe}\emph{\#\thecalcexe.}\enskip}
 \newcommand{\dblstepcntr}[1]{\stepcounter{#1}\stepcounter{#1}}
 \newcommand{\calcoddexe}{\par\noindent\dblstepcntr{calcexe}\emph{\#\thecalcexe.}\enskip}
