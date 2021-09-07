@@ -1,7 +1,7 @@
 %---------------------------------------------
 %info
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{seto}[2021/07/10]
+\ProvidesClass{seto}[2021/09/06]
 %% Last updated 10 July 2021
 %% package name: seto.cls 
 %% Copyright 2021 by Neal Yan
@@ -56,8 +56,12 @@ pen thickpink=linewidth(1)+RGB(229,162,155);
 %-------------------------------------------------
 %fonts, text formatting
 \ifdeffonts\else
-\RequirePackage[cmintegrals,cmbraces]{newtxmath}
-\RequirePackage{ebgaramond-maths}
+\RequirePackage[T1]{fontenc}
+\RequirePackage{baskervillef}
+\RequirePackage[varqu,varl,var0]{inconsolata}
+\RequirePackage[scale=.95,type1]{cabin}
+\RequirePackage[baskerville,vvarbb]{newtxmath}
+\RequirePackage[cal=boondoxo]{mathalfa}
 \fi
 \DeclareRobustCommand{\sffamily}{\lato}
 \DeclareRobustCommand{\setogrn}{\color{setogrn}}
