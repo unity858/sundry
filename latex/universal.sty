@@ -236,8 +236,6 @@ picture pathticks(path g, int n=1, real r=.5, real spacing=6, real s=8, pen p=cu
 	return pict;
 }
 \end{asydef}
-%---------------------------------------------
-% options that exist to serve beamer req's
 \newif\ifgeo\geotrue
 \newif\ifhyperref\hyperreftrue
 \newif\ifimakeidx\imakeidxtrue
@@ -246,7 +244,6 @@ picture pathticks(path g, int n=1, real r=.5, real spacing=6, real s=8, pen p=cu
 \DeclareOption{noimakeidx}{\imakeidxfalse}
 \DeclareOption*{\PackageWarning{universal}{Unknown ‘\CurrentOption’}}
 \ProcessOptions\relax
-%--------------------
 \ifgeo\RequirePackage[margin=1in]{geometry}\fi
 \ifhyperref\RequirePackage[hypertexnames=false]{hyperref}\fi
 \ifimakeidx\RequirePackage{imakeidx}\fi
@@ -265,9 +262,10 @@ picture pathticks(path g, int n=1, real r=.5, real spacing=6, real s=8, pen p=cu
 \DeclareRobustCommand{\Alegreya}{\fontfamily{Alegreya-LF}\selectfont}
 \DeclareRobustCommand{\AlegreyaMedium}{\fontfamily{Alegreya-LF}\fontseries{mb}\fontshape{n}\selectfont}
 \DeclareRobustCommand{\ebg}{\fontfamily{EBGaramond-LF}\selectfont}
+\DeclareRobustCommand{\bask}{\fontfamily{BaskervilleF-TLF}\selectfont} %thx chennis
 \DeclareRobustCommand{\lato}{\fontfamily{lato-LF}\selectfont}
 \DeclareRobustCommand{\cmss}{\fontfamily{cmss}\selectfont}
-\DeclareRobustCommand{\newpx}{\fontfamily{zpltlf}\selectfont} %thx chennis
+\DeclareRobustCommand{\newpx}{\fontfamily{zpltlf}\selectfont} %thx chennis again
 %---------------------------------------------
 %math operators/commands
 %delimiters
@@ -303,7 +301,8 @@ picture pathticks(path g, int n=1, real r=.5, real spacing=6, real s=8, pen p=cu
 \newcommand{\F}{\mathbb{F}}
 %---------------------
 \newcommand{\optlabel}[1]{\ifstrempty{#1}{}{\enskip(#1)}}
-\newenvironment{alphenum}{\begin{enumerate}[label=(\alph*)]}{\end{enumerate}}
+\newenvironment{alphenum}
+    {\begin{enumerate}[label=(\alph*)]}{\end{enumerate}}
 %---------------------------------------------
 \newcommand{\pro}[1]{\begin{proof}#1\end{proof}}
 \newcommand{\fakecmd}[1]{\texttt{\textbackslash #1}}
@@ -315,7 +314,7 @@ picture pathticks(path g, int n=1, real r=.5, real spacing=6, real s=8, pen p=cu
 \newcommand{\hpcTopic}[1]{\stepcounter{hpcTopic}\textit{Topic \thehpcTopic, #1.}}
 \newcommand{\hpcContinueTopic}{\textit{Topic \thehpcTopic, continued.}}
 \newcounter{revSectnum}
-\newcommand{\hpcRevsect}[1][]{\stepcounter{revSectnum}\textit{Section \#\therevSectnum\ifstrempty{#1}{}{\enskip(#1)}.}} % nvm...
+% \newcommand{\hpcRevsect}[1][]{\stepcounter{revSectnum}\textit{Section \#\therevSectnum\ifstrempty{#1}{}{\enskip(#1)}.}} nvm...
 \newcounter{calcexe}
 \newcommand{\calcexe}{\par\noindent\stepcounter{calcexe}\emph{\#\thecalcexe.}\enskip}
 \newcommand{\dblstepcntr}[1]{\stepcounter{#1}\stepcounter{#1}}
