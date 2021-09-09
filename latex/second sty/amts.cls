@@ -1,7 +1,7 @@
 %---------------------------------------------
 %info
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{usamts}[2021/08/07]
+\ProvidesClass{amts}[2021/08/07]
 \LoadClass[noheader,nogeo]{seto}
 %% package name: usamts.cls 
 %% Copyright 2021 by Neal Yan
