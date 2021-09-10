@@ -62,5 +62,5 @@
     \setcounter{theonum}{0}
     \setcounter{defnum}{0}
     \section{Problem \theamtsprob}}
-    {\eject}
+    {\solqed\eject}
 %---------------------------------------------
