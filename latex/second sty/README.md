@@ -6,4 +6,4 @@ Also I want to see someone's reaction when I name a package after them lululul
 
 **Edit**: I'm proud to have my novel idea of a dark green cls appear in another package: https://github.com/chennisden/texmf/blob/d7b820adc09bde215370b40002bb1472a92fc3d6/tex/latex/forest.sty
 
-**Edit 2**: For some reason Garamond won't work on TeXLive, so one may need to switch to, say, newpx.
+**Edit 2**: For some reason Garamond won't work on TeXLive, so now it's Baskerville as main font.
