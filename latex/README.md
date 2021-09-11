@@ -1,1 +1,2 @@
-xd finished the second sty, its more of a variant of the first for those who dislike the nyan cat color theme.
+seto.cls exists now, as does amts.cls.
+(usamts's started!)
