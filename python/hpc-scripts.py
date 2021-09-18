@@ -22,16 +22,18 @@ def tension(weight, Langle,Rangle):
     return [x/m.cos(Langle),x/m.cos(Rangle)]
 #triangle completion, also assigned ad nauseam, thank god these exist
 #the weird '^\\circ' exists to allow for direct copypasting into LaTeX compilers
+#The many faces of solving triangles...
+import math as m
 def trianglesolveAAS(A,B,a):
     C=m.pi-A-B
     b= a*m.sin(B)/m.sin(A)
     c= a*m.sin(C)/m.sin(A)
-    return [b,c,str(180*C/m.pi)+'^\\circ']
+    return [b,c,str(180*C/m.pi)+"^\\circ"]
 def trianglesolveSSS(a,b,c):
     A=m.acos((b**2+c**2-a**2)/(2*b*c))
     B=m.acos((a**2+c**2-b**2)/(2*a*c))
     C=m.acos((a**2+b**2-c**2)/(2*a*b))
-    return [str(A*180/m.pi)+'^\\circ',str(B*180/m.pi)+'^\\circ',str(C*180/m.pi)+'^\\circ']
+    return [str(A*180/m.pi)+"^\\circ",str(B*180/m.pi)+"^\\circ",str(C*180/m.pi)+"^\\circ"]
 def trianglesolveSAS(a,b,C):
     c=m.sqrt(a*a+b*b-2*a*b*m.cos(C))
     L=trianglesolveSSS(a,b,c)
@@ -43,7 +45,7 @@ def trianglesolveSSA(A,a,b):
     C2=B1-A
     c1=trianglesolveAAS(A,B1,a)[1]
     c2=trianglesolveAAS(A,B2,a)[1]
-    return [[c1,str(B1*180/math.pi)+'^\\circ',str(C1*180/math.pi)+'^\\circ'],[c2,str(B2*180/math.pi)+'^\\circ',str(C2*180/math.pi)+'^\\circ']]
+    return [[c1,str(B1*180/m.pi)+'^\\circ',str(C1*180/math.pi)+'^\\circ'],[c2,str(B2*180/m.pi)+'^\\circ',str(C2*180/m.pi)+'^\\circ']]
 def heron(a,b,c): # (duh)
     s= (a+b+c)/2
     return m.sqrt(s*(s-a)*(s-b)*(s-c))
