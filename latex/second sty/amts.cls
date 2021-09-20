@@ -47,10 +47,13 @@
 \end{tabular}}
 \fancyfoot[L]{}
 \fancyfoot[C]{}
-\fancyfoot[R]{{\setogrn\Alegreya Page \thepage\ of Problem \theamtsprob}}
+\fancyfoot[R]{{\setogrn\Alegreya Page \arabic{page} of Problem \theamtsprob}}
 \renewcommand{\headrulewidth}{0.5pt}
 \renewcommand{\footrulewidth}{0.5pt}
 \setlength{\textwidth}{6.5in}
+%---------------------------------------------
+% page
+\renewcommand{\thepage}{}
 %---------------------------------------------
 % amtssol env
 \newenvironment{amtssol}{
@@ -61,6 +64,6 @@
     \setcounter{exmpnum}{0}
     \setcounter{theonum}{0}
     \setcounter{defnum}{0}
-    \section{Problem \theamtsprob}}
+    \section{USAMTS \yr/\round/\theamtsprob}}
     {\eject}
 %---------------------------------------------
