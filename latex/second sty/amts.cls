@@ -55,7 +55,7 @@
 % page
 \renewcommand{\thepage}{}
 %---------------------------------------------
-\patchcmd{\toc}{\addtocontents{toc}{\protect\thispagestyle{empty}}}
+\apptocmd{\toc}{\addtocontents{toc}{\protect\thispagestyle{empty}}}{}{}
 %---------------------------------------------
 % amtssol env
 \newenvironment{amtssol}{
