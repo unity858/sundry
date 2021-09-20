@@ -55,6 +55,8 @@
 % page
 \renewcommand{\thepage}{}
 %---------------------------------------------
+\patchcmd{\toc}{\addtocontents{toc}{\protect\thispagestyle{empty}}}
+%---------------------------------------------
 % amtssol env
 \newenvironment{amtssol}{
     \stepcounter{amtsprob}
