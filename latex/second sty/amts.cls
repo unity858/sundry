@@ -1,9 +1,9 @@
 %---------------------------------------------
 %info
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{amts}[2021/08/07]
+\ProvidesClass{amts}[2021/09/20]
 \LoadClass[noheader,nogeo]{seto}
-%% package name: usamts.cls 
+%% package name: amts.cls 
 %% Copyright 2021 by Neal Yan
 %
 % mock usamts cls, basically a modified version of seto.cls that can be used on usamts
