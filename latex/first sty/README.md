@@ -4,4 +4,4 @@ To figure out how to use it, one may see https://drive.google.com/file/d/1HFS__b
 
 Questions and commments should be directed via Discord DM to epsilon#8682, or via email to nyyanyn@gmail.com.
 
-(_Remark._ Garish color theme from Nyan Cat, as its name suggests. Just use seto.sty already(if possible)...)
+(_Remark._ Garish color theme from Nyan Cat, as its name suggests. Just use seto.cls already...)
