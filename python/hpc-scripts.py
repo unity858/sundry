@@ -1,4 +1,5 @@
 # HONORS PRECALC SCRIPTS
+#
 # A collection of scripts I used to save time on repetitive procedures;
 # May future HPC students be fortunate enough to encounter these short programs,
 # and hopefully spend less time on their homework.
@@ -41,10 +42,8 @@ def trianglesolveSAS(a,b,C):
 def trianglesolveSSA(A,a,b):
     B1=m.asin(b*m.sin(A)/a)
     B2=m.pi-B1
-    C1=B2-A
-    C2=B1-A
-    c1=trianglesolveAAS(A,B1,a)[1]
-    c2=trianglesolveAAS(A,B2,a)[1]
+    C1,C2=B2-A,B1-A
+    c1,c2=trianglesolveAAS(A,B1,a)[1],trianglesolveAAS(A,B2,a)[1]
     return [[c1,str(B1*180/m.pi)+'^\\circ',str(C1*180/math.pi)+'^\\circ'],[c2,str(B2*180/m.pi)+'^\\circ',str(C2*180/m.pi)+'^\\circ']]
 def heron(a,b,c): # (duh)
     s= (a+b+c)/2
@@ -53,12 +52,10 @@ def heron(a,b,c): # (duh)
 # how common core teaches very very basic linear alg:
 # scripts for matrix operations, theyre too tedious to do manually more than once, no numpy bc im lazy
 def minor(a:int,b:int,M:list):
-    l=len(M)
-    T=[]
+    l,T=len(M),[]
     for i in range(l):
         T.append(tuple(M[i]))
-    T=tuple(T)
-    L=[]
+    T,L=tuple(T),[]
     for j in range(l):
         L.append(list(T[j]))
     L.pop(a)
@@ -66,8 +63,7 @@ def minor(a:int,b:int,M:list):
         L[k].pop(b)
     return L
 def det(M:list):
-    total=0
-    l=len(M)
+    total,l=0,len(M)
     if l==1:
         return M[0][0]
     minor_orig=[]
@@ -80,12 +76,10 @@ def det(M:list):
         total+=((-1)**(i%2))*M[i][0]*det(minor)
     return total
 def inverse(M):
-    l=len(M)
-    T=[]
+    l,T=len(M),[]
     for i in range(l):
         T.append(tuple(M[i]))
-    T=tuple(T)
-    L=[]
+    T,L=tuple(T),[]
     for m in range(l):
         L.append(list(T[m]))
     for p in range(l):
@@ -93,9 +87,7 @@ def inverse(M):
             L[p][q]=det(minor(q,p,M))*(-1)**((p+q)%2)/det(M)
     return L
 def multiply(M1:list,M2:list):
-    rows1=len(M1)
-    cols1=len(M1[0])
-    cols2=len(M2[0])
+    rows1,cols1,cols2=len(M1),len(M1[0]),len(M2[0])
     product=[]
     for s in range(rows1):
         element=[]
@@ -107,8 +99,7 @@ def multiply(M1:list,M2:list):
         product.append(element)
     return product
 def equationsolve(M:list):
-    l=len(M)
-    rhs_vec=[]
+    l,rhs_vec=len(M),[]
     for h in range(l): rhs_vec.append([M[h][-1]])
     print(f"{rhs_vec=}")
     lhs_matrix=[]
@@ -127,8 +118,7 @@ def scale(r,M:list):
     return M1
 def add(M1,M2):
     ans=copy.deepcopy(M1)
-    length1=len(M1[0])
-    height1=len(M1)
+    length1,height1=len(M1[0]),len(M1)
     for i in range(height1):
         for j in range(length1): ans[i][j]+=M2[i][j]
     return ans
@@ -137,8 +127,7 @@ def shoelace(vertices):
     l=len(vertices)
     middle=copy.deepcopy(vertices)
     middle.append(middle[0])
-    left=0
-    right=0
+    left,right=0,0
     for i in range(l):
         left+=middle[i][1]*middle[i+1][0]
         right+=middle[i][0]*middle[i+1][1]
@@ -153,25 +142,13 @@ def harmonic2(n):
     gamma=0.577215664901532 #euler-mascheroni const
     return m.log(n)+gamma+1/(2*n)-1/(12*n*n)+1/(120*(n**4)) #first few terms of series but alr rlly accurate
 #
-#self-explanatory, for use on the stupid riemann sums; when it isn't clear, use highfakeintegral.
-def foo(x): 
-    return x*x*x/2  #change this to your discretion, to be referenced in 'fakeintegral' functions
-def lowfakeintegral(a,b,n):
-    '''a,b are endpts, n is number of sections'''
-    ans,intervalsize=0,(b-a)/n
-    for i in range(n): ans+=foo(a+i*intervalsize)
-    return ans*intervalsize
-def highfakeintegral(a,b,n):
-    '''a,b are endpts, n is number of sections'''
-    ans,intervalsize=0,(b-a)/n
-    for i in range(n): ans+=foo(a+(i+1)*intervalsize)
-    return ans*intervalsize
 # some rlly simple bs
-def g(x): return (1.5/x-1)/x-1 # change as needed
+def f(x): return (1.5/x-1)/x-1 # change as needed
 #local sets often used in hpc textbook
 L1=[4,8,20,50]
 L2=[1,10,100,1000,10000]
 for i in range(len(L2)): print(g(L2[i+1]))
 # in some cases, you may want to replace the L1s in the last loop w/ L2s; 
 # the textbook often uses these sets of numbers for test-evaluation.
-#more will be added as more repetitive tasks appear, but hopefully i saved you some time lel
+#
+# the end, at last !??!?!
