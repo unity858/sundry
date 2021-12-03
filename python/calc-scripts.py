@@ -1,5 +1,6 @@
+# scripts used during ap bc >.<
 import math as m
-def f(x): return x*x-4 # function to be referenced in all below funct's
+def f1(x): return x*x-4 #change this to your discretion, to be referenced in 'fakeintegral' functions;
 def derivative(r,n):
     '''1/n = horizontal length of secant segment'''
     return n*(f(r+1/n)-f(r))
@@ -27,10 +28,18 @@ def simpson(a,b,n):
         ans+=4*f(a+(2*i+1)*intervalsize) + 2*f(a+(2*i+2)*intervalsize)
     return ans*intervalsize/3
 def newton(g,m):
-    '''m iterations, any int m geq 0'''
-    N,guess=10**15,g
+    '''m iterations'''
+    N=10**15
+    guess=g
     for i in range(m):
-        line= [derivative(guess,N),guess*derivative(guess,N)-f(guess)]
-        # tangent line: y=l[0]*x-l[1]
+        line= [derivative(guess,N),guess*derivative(guess,N)-f(guess)] # tangent line: y=l[0]*x-l[1]
         guess=line[1]/line[0]
     return guess
+def f2(x,y): return m.e**(x*y)
+def euler(x,y,n,step):
+    x0,y0=x,y
+    for i in range(n):
+        y0+=f(x0,y0)*step
+        x0+=step
+    return y0
+# more scripts coming soon >:)
