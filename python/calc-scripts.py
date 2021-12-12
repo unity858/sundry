@@ -39,7 +39,7 @@ def f2(x,y): return m.e**(x*y)
 def euler(x,y,n,step):
     x0,y0=x,y
     for i in range(n):
-        y0+=f(x0,y0)*step
+        y0+=f2(x0,y0)*step
         x0+=step
     return y0
 # more scripts coming soon >:)
