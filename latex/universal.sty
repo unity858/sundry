@@ -259,67 +259,67 @@ picture pathticks(path g, int n=1, real r=.5, real spacing=6, real s=8, pen p=cu
 \RequirePackage[T1]{fontenc}
 %---------------------------------------------
 % lazy chennis-type font shortcuts
-\DeclareRobustCommand{\Alegreya}{\fontfamily{Alegreya-LF}\selectfont}
-\DeclareRobustCommand{\AlegreyaMedium}{\fontfamily{Alegreya-LF}\fontseries{mb}\fontshape{n}\selectfont}
-\DeclareRobustCommand{\ebg}{\fontfamily{EBGaramond-LF}\selectfont}
-\DeclareRobustCommand{\bask}{\fontfamily{BaskervilleF-TLF}\selectfont} %thx chennis
-\DeclareRobustCommand{\lato}{\fontfamily{lato-LF}\selectfont}
-\DeclareRobustCommand{\cmss}{\fontfamily{cmss}\selectfont}
-\DeclareRobustCommand{\newpx}{\fontfamily{zpltlf}\selectfont} %thx chennis again
+\DeclareRobustCommand\Alegreya{\fontfamily{Alegreya-LF}\selectfont}
+\DeclareRobustCommand\AlegreyaMedium{\fontfamily{Alegreya-LF}\fontseries{mb}\fontshape{n}\selectfont}
+\DeclareRobustCommand\ebg{\fontfamily{EBGaramond-LF}\selectfont}
+\DeclareRobustCommand\bask{\fontfamily{BaskervilleF-TLF}\selectfont} %thx chennis
+\DeclareRobustCommand\lato{\fontfamily{lato-LF}\selectfont}
+\DeclareRobustCommand\cmss{\fontfamily{cmss}\selectfont}
+\DeclareRobustCommand\newpx{\fontfamily{zpltlf}\selectfont} %thx chennis again
 %---------------------------------------------
 %math operators/commands
 %delimiters
-\newcommand{\parenth}[1]{\left( #1\right)}
-\newcommand{\sqbrack}[1]{\left[ #1\right]}
-\newcommand{\braces}[1]{\left\{ #1\right\}}
-\newcommand{\abs}[1]{\left\lvert #1\right\rvert}
-\newcommand{\norm}[1]{\left\lVert #1\right\rVert}
+\def\parenth#1{\left( #1\right)}
+\def\sqbrack#1{\left[ #1\right]}
+\def\braces#1{\left\{ #1\right\}}
+\def\abs#1{\left\lvert #1\right\rvert}
+\def\norm#1{\left\lVert #1\right\rVert}
 %floor/ceil; im so smart idk what \left and \right are, smh
-\newcommand{\floor}[1]{\left\lfloor #1\right\rfloor}
-\newcommand{\ceil}[1]{\left\lceil #1\right\rceil}
+\def\floor#1{\left\lfloor #1\right\rfloor}
+\def\ceil#1{\left\lceil #1\right\rceil}
 % subsitute for {a \brack b}
-\newcommand{\sqbinom}[2]{\genfrac[]{0pt}{0}{#1}{#2}}
+\newcommand\sqbinom[2]{\genfrac[]{0pt}0{#1}{#2}}
 % operators, first two from lucky.sty, misc otherwise
 \DeclareMathOperator{\cycsum}{\sum_{\text{cyc}}}
 \DeclareMathOperator{\symsum}{\sum_{\text{sym}}}
 \DeclareMathOperator{\cycprod}{\prod{\text{cyc}}}
 \DeclareMathOperator{\symprod}{\prod{\text{sym}}}
 \DeclareMathOperator{\dir}{\text{dir}}
-\newcommand{\ol}[1]{\overline{#1}}
-\renewcommand{\deg}{^\circ}
-\newcommand{\pow}[2]{\text{Pow}_{#1}(#2)}
-\newcommand{\evalat}[2][]{\biggr\rvert_{#2}^{#1}}
-\newcommand{\solqed}{\noindent\hfill$\blacksquare$}
-\newcommand{\hbeq}[1]{\overset{#1}{=}}
-\newcommand{\dangle}{\measuredangle}
+\def\ol#1{\overline{#1}}
+\def\deg{^\circ}
+\newcommand\pow[2]{\text{Pow}_{#1}(#2)}
+\newcommand\evalat[2][]{\biggr\rvert_{#2}^{#1}}
+\def\solqed{\noindent\hfill$\blacksquare$}
+\def\hbeq#1{\overset{#1}=}
+\def\dangle\measuredangle
 %sets
-\newcommand{\N}{\mathbb{N}}
-\newcommand{\Z}{\mathbb{Z}}
-\newcommand{\Q}{\mathbb{Q}}
-\newcommand{\R}{\mathbb{R}}
-\newcommand{\C}{\mathbb{C}}
-\renewcommand{\P}{\mathbb{P}}% for example, PR^2
-\newcommand{\F}{\mathbb{F}}
+\def\N{\mathbb{N}}
+\def\Z{\mathbb{Z}}
+\def\Q{\mathbb{Q}}
+\def\R{\mathbb{R}}
+\def\C{\mathbb{C}}
+\def\P{\mathbb{P}}% for example, PR^2
+\def\F{\mathbb{F}}
 %---------------------
-\newcommand{\optlabel}[1]{\ifstrempty{#1}{}{\enskip(#1)}}
+\def\optlabel#1{\ifstrempty{#1}{}{\enskip(#1)}}
 \newenvironment{alphenum}
     {\begin{enumerate}[label=(\alph*)]}{\end{enumerate}}
 %---------------------------------------------
-\newcommand{\pro}[1]{\begin{proof}#1\end{proof}}
-\newcommand{\fakecmd}[1]{\texttt{\textbackslash #1}}
+\newcommand\pro[1]{\begin{proof}#1\end{proof}}
+\def\fakecmd#1{\texttt{\textbackslash #1}}
 %----------
 % hpc problem numbering on school hw, because im lazy af
 \newcounter{hpcExe}
-\newcommand{\hpcExe}[1]{\stepcounter{hpcExe}\par\noindent\emph{\thehpcExe/#1; }}
+\def\hpcExe#1{\stepcounter{hpcExe}\par\noindent\emph{\thehpcExe/#1; }}
 \newcounter{hpcTopic}
-\newcommand{\hpcTopic}[1]{\stepcounter{hpcTopic}\textit{Topic \thehpcTopic, #1.}}
-\newcommand{\hpcContinueTopic}{\textit{Topic \thehpcTopic, continued.}}
+\def\hpcTopic#1{\stepcounter{hpcTopic}\textit{Topic \thehpcTopic, #1.}}
+\def\hpcContinueTopic{\textit{Topic \thehpcTopic, continued.}}
 \newcounter{revSectnum}
 % \newcommand{\hpcRevsect}[1][]{\stepcounter{revSectnum}\textit{Section \#\therevSectnum\ifstrempty{#1}{}{\enskip(#1)}.}} nvm...
 \newcounter{calcexe}
-\newcommand{\calcexe}{\par\noindent\stepcounter{calcexe}\emph{\#\thecalcexe.}\enskip}
-\newcommand{\dblstepcntr}[1]{\stepcounter{#1}\stepcounter{#1}}
-\newcommand{\calcoddexe}{\par\noindent\dblstepcntr{calcexe}\emph{\#\thecalcexe.}\enskip}
-\newcommand{\dne}{\textup{[DNE]}}
-\newcommand{\ddx}{\frac{d}{dx}}
+\def\calcexe{\par\noindent\stepcounter{calcexe}\emph{\#\thecalcexe.}\enskip}
+\def\dblstepcntr#1{\addtocounter{#1}2}
+\def\calcoddexe{\par\noindent\dblstepcntr{calcexe}\emph{\#\thecalcexe.}\enskip}
+\def\dne{\textup{[DNE]}}
+\def\ddx{\frac{d}{dx}}
 %---------------------------------------------
