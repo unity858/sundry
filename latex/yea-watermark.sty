@@ -1,0 +1,14 @@
+\NeedsTeXFormat{LaTeX2e}
+% YEA watermark on official papers
+\ProvidesPackage{yea-watermark}[2022/01/14]
+\newif\ifmarkdeffont\markdeffontfalse
+\DeclareOption{deffont}\markdeffonttrue
+\ProcessOptions\relax
+
+\RequirePackage[scale=6,color=gray]{background}
+\RequirePackage{universal}
+\ifmarkdeffont
+	\backgroundsetup{contents={Youth EUCLID Association}}
+\else
+	\backgroundsetup{contents={\AlegreyaMedium Youth EUCLID Association}}
+\fi
