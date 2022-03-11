@@ -35,7 +35,7 @@ pen thickpink=linewidth(1)+RGB(229,162,155);
 \DeclareOption{nogeo}{\setogeofalse}
 \DeclareOption{deffonts}{\deffontstrue}
 %------------------
-\DeclareOption*{\ClassWarning{seto}{Unknown ‘\CurrentOption’}}
+\DeclareOption*{\PassOptionsToClass\CurrentOption{article}}
 \ProcessOptions\relax
 %---------------------------------------------
 \ifsetogeo\RequirePackage{universal}
