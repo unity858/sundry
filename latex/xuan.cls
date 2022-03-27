@@ -30,6 +30,6 @@
 % boxes
 \RequirePackage[most]{tcolorbox}
 \RequirePackage[framemethod=TikZ]{mdframed}
-\newenvironment{prob}{\begin{tcolorbox}[title=Problem,colframe=probcolor,arc=1mm,left=5pt,right=5pt,top=4pt,bottom=4pt,colback=probcolor!25!white]}{\end{tcolorbox}}
+% \newenvironment{prob}{\begin{tcolorbox}[title=Problem,colframe=probcolor,arc=1mm,left=5pt,right=5pt,top=4pt,bottom=4pt,colback=probcolor!25!white]}{\end{tcolorbox}}
 \newenvironment{pt}[1][]{\begin{tcolorbox}[title=#1,colframe=setogrn,arc=1mm,left=5pt,right=5pt,top=3pt,bottom=3pt,colback=setogrn!20!white]}{\end{tcolorbox}}
 %-----------------------------
