@@ -1,0 +1,10 @@
+\BOOKMARK [1][-]{section.1}{This is a section header}{}% 1
+\BOOKMARK [2][-]{subsection.2}{Subsection appearance}{section.1}% 2
+\BOOKMARK [3][-]{subsubsection.3}{Just in case!}{subsection.2}% 3
+\BOOKMARK [1][-]{section.4}{Math commands}{}% 4
+\BOOKMARK [2][-]{subsection.6}{Delimiters\(\134left and \134right already included\)}{section.4}% 5
+\BOOKMARK [2][-]{subsection.7}{Floors/ceilings}{section.4}% 6
+\BOOKMARK [2][-]{subsection.9}{Sets}{section.4}% 7
+\BOOKMARK [1][-]{section.10}{Fonts/text formatting}{}% 8
+\BOOKMARK [1][-]{section.11}{Fancy stuff}{}% 9
+\BOOKMARK [1][-]{section.12}{Exercises}{}% 10

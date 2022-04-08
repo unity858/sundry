@@ -57,11 +57,13 @@ pen thickpink=linewidth(1)+RGB(229,162,155);
 %fonts, text formatting
 \ifdeffonts\else
 \RequirePackage[T1]{fontenc}
-\RequirePackage{baskervillef}
-\RequirePackage[varqu,varl,var0]{inconsolata}
-\RequirePackage[scale=.95,type1]{cabin}
-\RequirePackage[baskerville,vvarbb]{newtxmath}
-\RequirePackage[cal=boondoxo]{mathalfa}
+% \RequirePackage{baskervillef}
+%\RequirePackage[varqu,varl,var0]{inconsolata}
+%\RequirePackage[scale=.95,type1]{cabin}
+%\RequirePackage[baskerville,vvarbb]{newtxmath}
+%\RequirePackage[cal=boondoxo]{mathalfa}
+\usepackage[cmintegrals,cmbraces]{newtxmath}
+\RequirePackage{ebgaramond-maths}
 \fi
 \DeclareRobustCommand{\sffamily}{\lato}
 \DeclareRobustCommand{\setogrn}{\color{setogrn}}
