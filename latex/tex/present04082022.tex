@@ -1,0 +1,126 @@
+\documentclass{xuan}
+\title{Dirichlet Potpourri}
+\author{Youth EUCLID}
+\date\today
+\def\ntsum{\sum_{d\mid n}}
+\def\infsum#1{\sum_{#1\ge1}}
+\def\L#1{L(s,\chi_{#1})}
+\begin{document}
+\maketitle
+\begin{frame}{Series}
+\begin{pt}[Dirichlet's arith prog theorem]
+For any $a,b$ with $a\perp b$, there are an infinite number of primes congruent to $a\pmod{b}$.
+\end{pt}
+Recall the Riemann zeta:
+\[\zeta(s)=\sum_{n\ge1}1/n^s.\]
+\[\Rightarrow A(s)=\sum_{n\ge1}a_n/n^s\]
+\end{frame}
+\begin{frame}{Properties}
+Vanilla convolution: $a_n,b_n\to$
+\[\sum_{k\in[0,n]}a_kb_{n-k}\] 
+Convolve $A,B\Rightarrow$
+\[(A*B)(s)=\sum_{n\ge1}n^{-s}\sum_{d\mid n}a_db_{n/d}\]
+\end{frame}
+\begin{frame}{Notable series}
+$\mu$: $\sum_{d\mid n}\mu(d)=[n=1]$
+\[M(s)\zeta(s)=1\Rightarrow M=1/\zeta.\]
+$\sigma(n)=\sum_{d\mid n}d;\to$
+\[\sum_{n\ge1}\sigma(n)/n^s=\zeta(s)\sum_{n\ge1}n/n^s=\zeta(s)\zeta(s-1).\]
+$d(n)=\sum_{d\mid n}1\Rightarrow$
+\[\sum_{n\ge1}d(n)/n^s=\zeta(s)^2.\]
+$\sum_{d\mid n}\phi(d)=n\Rightarrow$
+\[\parenth{\sum_{n\ge1}\phi(n)/n^s}\zeta(s)=\sum_{n\ge1}n/n^s=\zeta(s-1).\]
+\[\Rightarrow \sum_{n\ge1}\phi(n)/n^s=\zeta(s-1)/\zeta(s).\]
+\end{frame}
+\begin{frame}{More functions	}
+Von Mangoldt lambda:
+\[\Lambda(n)=
+\begin{cases}
+\ln p (n=\text{ prime power});\\
+0\text{ otherwise.	}
+\end{cases}\]
+\[\Lambda\to-\zeta '/\zeta.\]
+\end{frame}
+\begin{frame}{Bounding zeta}
+\begin{pt}[Zeta bounds]
+$\forall s>1$,
+$\zeta$:
+\[\zeta(s)=1/(s-1)+O(1).\]
+$\zeta'$:
+\[\zeta'(s)=-1/(s-1)^2+O(1).\]
+$\zeta'/\zeta$:
+\[(-\zeta'/\zeta) (s)=1/(s-1)+O(1).\]
+\end{pt}
+\begin{proof}
+As earlier set real $s>1$.
+Bound term-by-term:
+\[\int_{n-1}^nu^{-s}du\le n^{-s}\le\int_{n-1}^nu^{-s}du+1.\]
+Sum $\forall n\ge1$:
+\[\zeta(s)\ge \int_1^\infty du/u^s+ smth\Rightarrow 1/(s-1)+O(1)\]
+For $\zeta'$, do $d/ds$ and observe that all sides monotonic (decreasing wrt x).
+\end{proof}
+\end{frame}
+\begin{frame}{Characters}
+A {\itshape Dirichlet character mod n} is an NT function $\chi$ such that
+\begin{itemize}
+\item $\chi$ totally multiplicative;
+\item $\chi$ determined by mod n; that is,
+\[a\equiv b\pmod{n}\iff \chi(a)=\chi(b)\]
+\item Hence $\chi\in{0,\pm1}$.
+\item $a\not\perp n\iff\chi(a)=0$
+\end{itemize}
+Basic char mod n: only 0 or 1, no negatives.\\
+L-series:
+\[L(s,\chi)=\infsum\chi(n)/n^s.\]
+Euler's factoring: for totally multiplicative $f$, we have 
+\[F(s)=\prod_p(1+f(p)/p^s).\]
+\end{frame}
+\begin{frame}{Mod 4 example}
+\begin{pt}[Lemma]
+There are $\phi(n)$ characters mod $n$.
+\end{pt}
+Proof left as an exercise for the reader.
+\\[4pt]
+There are two chars mod 4, say the basic/main/principal one, $\chi_0$, and the `other' one, say $\chi_1$.
+\begin{itemize}[label=*]
+\item $(\chi_0+\chi_1)/2=[n\equiv 1\pmod4];$
+\item $(\chi_0-\chi_1)/2=[n\equiv 3\pmod4];$
+\end{itemize}
+Needed result:
+\[\ln\L{}=\infsum\frac{\Lambda(n)}{\ln n}\chi(n)/n^s.\]
+\end{frame}
+\begin{frame}{Proof cont'd}
+\begin{pt}[Claim]
+$\L{0}$ diverges as $s\to1$.
+\end{pt}
+\begin{proof}
+By a known result, $\sum_p\chi(p)/p^s=\ln\L{}+O(1)$, which implies the result.
+\end{proof}
+\begin{pt}[Claim]
+$\L1$ is finite.
+\end{pt}
+\begin{proof}
+Simply apply alternating series test or whatever.
+\end{proof}
+Taking linear combos we get both cases of Dirichlet in one go for $\mod4$.
+\end{frame}
+\begin{frame}{Generalisation to general n}
+\begin{pt}[Lemma]
+For a nonprincipal char $\chi\pmod{n}$, $\sum_{k=1}^n\chi(k)=0.$
+\end{pt}
+\begin{proof}
+Simply observe that all such $\chi$ are totally multiplicative and there is at least one $-1$ val. This implies the result.
+\end{proof}
+Hence $\L{}=O(1)$ for all nonprinicpal $\chi$ and $s>0$ (not 1).
+Finally, it takes a bit more work to show that
+\[L(1,\chi)=\infty\]
+for principal $\chi\pmod{n}$.
+\\[4pt]
+After taking linear combos and using the $O(1)$ bound from earlier, we finally get Dirichlet's arith prog theorem :0
+\end{frame} 	
+\begin{frame}
+\begin{pt}[The end?]
+Have a good sleep everyone :D
+\end{pt}
+\end{frame}
+\end{document}

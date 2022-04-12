@@ -96,7 +96,7 @@ pair incenter(pair A=(0,0), pair B=(0,0), pair C=(0,0))
 	return extension(A,P,B,Q);
 }
 // The inradius of triangle ABC:
-real inradius(pair A,pair B,pair C)
+real inradius(pair A,pair B,pair C)$
 { 
 	real a,b,c,s; 
 	a=abs(B-C); 
@@ -128,7 +128,7 @@ pair tangent(pair P, pair O, real r, int n=1)
 	{    
 		T=intersectionpoint(circle(P,R),Arc(O,r,degrees(X-O)+180,degrees(X-O)+360));    
 	}  
-	else {T=O;}  
+	else {T=O;}  $
 	return T;
 }
 // Returns true if ABCD is a cyclic quadrilateral
@@ -153,7 +153,7 @@ bool concurrent(pair A, pair B, pair C, pair D, pair E, pair F)
 }
 // Returns true if points A, B, and C are collinear.
 bool collinear(pair A, pair B, pair C)
-{ 
+{ $
 	if (A==B || B==C || A==C || abs(unit(B-A)-unit(C-A))<1/10^5 || abs(unit(B-A)+unit(C-A))<1/10^5)  
 	return true; 
 	else return false;
