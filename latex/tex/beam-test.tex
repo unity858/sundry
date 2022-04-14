@@ -1,20 +1,50 @@
-\documentclass{xuan}
-\title{Beamer test file}
+\documentclass{tropical}
+\title{Tropical.cls}
 \author{Nyan}
-\date\today
+\date{Last updated \today}
 \begin{document}
-\maketitle
-\begin{frame}{Test frame}
-Foobar
-\begin{block}{test}
-owo
+\maketitle\outline[Outline called by \fakecmd{outline}.]
+\section{A section}
+\begin{frame}{A frame title :0}
+A demonstration of the appearance (and minor added features) of \texttt{tropical.cls}, a Beamer style by the mentioned author.
+\begin{block}{Block}
+Call by the usual \fakecmd{begin\{block\}}\dots\fakecmd{end\{block\}} environment, this block's the same color as the main theme.
 \end{block}
-\begin{alertblock}{Test alert}
-uwu
-\end{alertblock}
-\begin{exampleblock}{Example}
-exmp owo
-\end{exampleblock}
+\begin{warn}[Alertblock]
+For alertblocks and exampleblocks, names have been shortened; their new appellations are the environments \texttt{warn} and \texttt{exmp}. 
+\end{warn}
 \end{frame}
-
+\section{More things}
+\subsection{A subsection}
+\begin{frame}{Other addendums}
+No font change because it doesn't make any typographical sense. Plus, I'm too lazy to.
+\begin{exmp}[Exampleblock]
+As mentioned earlier this block's name has been shortened to \texttt{exmp}.
+\end{exmp}
+\claim[just in case!]{Might need this during solutions to certain problems? On the other hand, for others, this might just be a write-up mechanic isomorphic to the so-called `extremal principle' in combina-torics.}
+\end{frame}
+\begin{frame}{Comments}
+\begin{block}{Remark}
+The theme used (out of all Beamer defaults) is the middest one, Warsaw.
+\\
+Well, why did I choose it? I guess I liked the boxes having shadows, and the footer not being very corpulent?
+\end{block}
+{\itshape ``Warsaw LMFAO'' -- dennisc}
+\\[4pt]
+Next thing to do: integrate this \texttt{.cls} with Dennis's \texttt{.beam} invention?
+\end{frame}
+\begin{frame}{Other blocks?}
+\begin{warn}[Alertblock for comparison]
+Ok.
+\end{warn}
+\begin{thm}[Thmblock by me]
+For some reason, I wanted to create a fourth block, so instead of being smart and using some variant of \fakecmd{let}, I `mocked' the block code using \texttt{tcolorbox}.\\
+This block's called \texttt{thmblock}, or \texttt{thm} for short also works.\\
+Last thing to do, make the \texttt{colframe} a gradient...
+\end{thm}
+\begin{block}{Block for comparison}
+Not cosmetically perfect, but ehh, close enough!
+\end{block}
+I also just noticed that the alertblock is actually a bit smaller than the regular block :P
+\end{frame}
 \end{document}
