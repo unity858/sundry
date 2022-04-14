@@ -63,6 +63,12 @@
 %----------------------------------------
 % outline
 \newcommand\outline[1][]{\begin{frame}{Outline}#1\tableofcontents\end{frame}}
+% slide numbering
+\newcommand*\oldmacro{}%
+\let\oldmacro\insertshorttitle%
+\renewcommand*\insertshorttitle{%
+   \oldmacro\hfill%
+   \insertframenumber\,/\,\inserttotalframenumber}
 %----------------------------------------
 % boxes
 \RequirePackage[skins,most]{tcolorbox}
