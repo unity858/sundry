@@ -16,11 +16,11 @@
 %---------------------------------------------
 % amts info, geometry
 \RequirePackage[left=1in,right=1in,top=1.2in,bottom=1in]{geometry}
-\newcommand{\realname}[1]{\def\rname{#1}}
-\newcommand{\username}[1]{\def\uname{#1}}
-\newcommand{\amtsid}[1]{\def\id{#1}}
-\newcommand{\amtsyr}[1]{\def\yr{#1}}
-\newcommand{\amtsround}[1]{\def\round{#1}}
+\def\realname#1{\def\rname{#1}}
+\def\username#1{\def\uname{#1}}
+\def\amtsid#1{\def\id{#1}}
+\def\amtsyr#1{\def\yr{#1}}
+\def\amtsround#{\def\round{#1}}
 \newcounter{amtsprob}
 %---------------------------------------------
 % page setup, modified version of official;
@@ -28,14 +28,14 @@
 \RequirePackage{fancyhdr}
 \pagestyle{fancy}
 \fancyhf{}
-\setlength{\headheight}{0.75in}
-\setlength{\oddsidemargin}{0in}
-\setlength{\evensidemargin}{0in}
-\setlength{\voffset}{-.5in}
-\setlength{\headsep}{10pt}
-\setlength{\textwidth}{6.5in}
-\setlength{\headwidth}{6.5in}
-\setlength{\textheight}{9in}
+\setlength\headheight{0.75in}
+\setlength\oddsidemargin{0in}
+\setlength\evensidemargin{0in}
+\setlength\voffset{-.5in}
+\setlength\headsep{10pt}
+\setlength\textwidth{6.5in}
+\setlength\headwidth{6.5in}
+\setlength\textheight{9in}
 \fancyhead[L]{
     {\small\setogrn\Alegreya Student Name:\enskip\rname}\\
     {\small\setogrn\Alegreya Username:\enskip\uname}\\
@@ -48,23 +48,23 @@
 \fancyfoot[L]{}
 \fancyfoot[C]{}
 \fancyfoot[R]{{\setogrn\Alegreya Page \arabic{page} of Problem \theamtsprob}}
-\renewcommand{\headrulewidth}{0.5pt}
-\renewcommand{\footrulewidth}{0.5pt}
-\setlength{\textwidth}{6.5in}
+\renewcommand\headrulewidth{0.5pt}
+\renewcommand\footrulewidth{0.5pt}
+\setlength\textwidth{6.5in}
 %---------------------------------------------
 % page
-\renewcommand{\thepage}{}
+\renewcommand\thepage{}
 %---------------------------------------------
-\apptocmd{\toc}{\addtocontents{toc}{\protect\thispagestyle{empty}}}{}{}
+\apptocmd\toc{\addtocontents{toc}{\protect\thispagestyle{empty}}}{}{}
 %---------------------------------------------
 % amtssol env
 \newenvironment{amtssol}{
     \stepcounter{amtsprob}
-    \setcounter{page}{1}
-    \setcounter{equation}{0}
-    \setcounter{probnum}{0}
-    \setcounter{exmpnum}{0}
-    \setcounter{theonum}{0}
+    \setcounter{page}1
+    \setcounter{equation}0
+    \setcounter{probnum}0
+    \setcounter{exmpnum}0
+    \setcounter{theonum}0
     \setcounter{defnum}{0}
     \section{USAMTS \yr/\round/\theamtsprob}}
     {\eject}
