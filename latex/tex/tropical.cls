@@ -16,9 +16,11 @@
 %----------------------------------------
 % setup
 \RequirePackage[nogeo,nohyperref,noimakeidx]{universal}
+\RequirePackage{pifont}
+\def\labelitemi{\ding{70}}
 \setbeamersize{text margin left=1.3cm,text margin right=1.3cm}
 \addtobeamertemplate{block begin}
-    {\setlength{\textwidth}{1.01\textwidth}}{}
+    {\setlength\textwidth{1.01\textwidth}}{}
 \addtobeamertemplate{block alerted begin}{
   \setlength{\textwidth}{\textwidth}}{}
 \addtobeamertemplate{block example begin}{
