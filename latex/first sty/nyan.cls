@@ -27,9 +27,9 @@
 %fonts, text formatting, the default stuff
 \LoadClass{article}
 \ifnyangeo\RequirePackage{universal}\else\RequirePackage[nogeo]{universal}\fi
-\DeclareRobustCommand{\sffamily}{\cmss}
-\DeclareRobustCommand{\em}{\nyanblue\cmss\bfseries}
-\renewcommand{\emph}[1]{{\em #1}}
+\DeclareRobustCommand\sffamily\cmss
+\DeclareRobustCommand\em{\nyanblue\cmss\bfseries}
+\renewcommand\emph[1]{{\em #1}}
 %---------------------------------------------
 %colors
 % Theme: nyan cat colors
@@ -57,65 +57,65 @@
 \newcounter{defnum}
 \newcounter{item}
 \ifnormalnums
-    \newcommand{\problabel}{\theprobnum}
-    \newcommand{\exmplabel}{\theexmpnum}
-    \newcommand{\thmlabel}{\thetheonum}
-    \newcommand{\deflabel}{\thedefnum}
+    \def\problabel\theprobnum
+    \def\exmplabel\theexmpnum
+    \def\thmlabel\thetheonum
+    \def\deflabel\thedefnum
 \else
-    \newcommand{\problabel}{\thesection.\theitem}
-    \newcommand{\exmplabel}{\thesection.\theitem}
-    \newcommand{\thmlabel}{\thesection.\theitem}
-    \newcommand{\deflabel}{\thesection.\theitem}
+    \def\problabel{\thesection.\theitem}
+    \def\exmplabel{\thesection.\theitem}
+    \def\thmlabel{\thesection.\theitem}
+    \def\deflabel{\thesection.\theitem}
 \fi
-\newcommand{\problem}[2][]{\begin{probBox}
+\newcommand\problem[2][]{\begin{probBox}
     {\cmss\bfseries Problem \problabel{\mdseries\optlabel{#1}}.}\enskip #2\end{probBox}}
-\newcommand{\prob}[2][]{\begin{probBox}
+\newcommand\prob[2][]{\begin{probBox}
     {\cmss\bfseries Problem{\mdseries\optlabel{#1}}.}\enskip #2\end{probBox}}
-\newcommand{\example}[2][]{\begin{probBox}
-	{\cmss\bfseries Example \exmplabel{\mdseries\optlabel{#1}}.}\enskip #2\end{probBox}}
-\newcommand{\exmp}[2][]{\begin{probBox}
+\newcommand\example[2][]{\begin{probBox}
+    {\cmss\bfseries Example \exmplabel{\mdseries\optlabel{#1}}.}\enskip #2\end{probBox}}
+\newcommand\exmp[2][]{\begin{probBox}
     {\cmss\bfseries Example{\mdseries\optlabel{#1}}.}\enskip #2\end{probBox}}
-\newcommand{\claim}[1]{\begin{claimBox}
-	{\cmss\bfseries Claim ---\quad}#1\end{claimBox}} % evan [chen]'s style
-\newcommand{\lemma}[1]{\begin{claimBox}
-	{\cmss\bfseries Lemma ---\enskip}#1\end{claimBox}}
-\newcommand{\remark}[1]{\begin{remarkBox}
-	{\nyanblue\cmss\itshape Remark.\enskip}#1\end{remarkBox}}
-\newcommand{\theorem}[1]{\begin{thmBox}
-	{\cmss\bfseries Theorem \thmlabel.\enskip}#1\end{thmBox}}
-\newcommand{\theo}[1]{\begin{thmBox}
-	{\cmss\bfseries Theorem.\enskip}#1\end{thmBox}}
-\newcommand{\definition}[1]{\begin{thmBox}
-	{\cmss\bfseries Definition \deflabel.\enskip}#1\end{thmBox}}
-\newcommand{\defn}[1]{\begin{thmBox}
-	{\cmss\bfseries Definition.\enskip}#1\end{thmBox}}
-\newcommand{\note}[1]{\begin{remarkBox}
+\newcommand\claim[1]{\begin{claimBox}
+    {\cmss\bfseries Claim ---\quad}#1\end{claimBox}} % evan [chen]'s style
+\newcommand\lemma[1]{\begin{claimBox}
+    {\cmss\bfseries Lemma ---\enskip}#1\end{claimBox}}
+\newcommand\remark[1]{\begin{remarkBox}
+    {\nyanblue\cmss\itshape Remark.\enskip}#1\end{remarkBox}}
+\newcommand\theorem[1]{\begin{thmBox}
+    {\cmss\bfseries Theorem \thmlabel.\enskip}#1\end{thmBox}}
+\newcommand\theo[1]{\begin{thmBox}
+    {\cmss\bfseries Theorem.\enskip}#1\end{thmBox}}
+\newcommand\definition[1]{\begin{thmBox}
+    {\cmss\bfseries Definition \deflabel.\enskip}#1\end{thmBox}}
+\newcommand\defn[1]{\begin{thmBox}
+    {\cmss\bfseries Definition.\enskip}#1\end{thmBox}}
+\newcommand\note[1]{\begin{remarkBox}
     {\nyanblue\cmss\itshape Note.\enskip}#1\end{remarkBox}}
 \ifnormalnums
-    \pretocmd{\problem}{\stepcounter{probnum}}{}{}
-    \pretocmd{\example}{\stepcounter{exmplabel}}{}{}
-    \pretocmd{\theorem}{\stepcounter{theonum}}{}{}
-    \pretocmd{\definition}{\stepcounter{defnum}}{}{}
+    \pretocmd\problem{\stepcounter{probnum}}{}{}
+    \pretocmd\example{\stepcounter{exmplabel}}{}{}
+    \pretocmd\theorem{\stepcounter{theonum}}{}{}
+    \pretocmd\definition{\stepcounter{defnum}}{}{}
 \else
-    \pretocmd{\problem}{\stepcounter{item}}{}{}
-    \pretocmd{\example}{\stepcounter{item}}{}{}
-    \pretocmd{\theorem}{\stepcounter{item}}{}{}
-    \pretocmd{\definition}{\stepcounter{item}}{}{}
+    \pretocmd\problem{\stepcounter{item}}{}{}
+    \pretocmd\example{\stepcounter{item}}{}{}
+    \pretocmd\theorem{\stepcounter{item}}{}{}
+    \pretocmd\definition{\stepcounter{item}}{}{}
 \fi
 %---------------------------------------------
 % exercises
 \newcounter{exenum}
 \ifnormalnums
-    \newcommand{\exelabel}{\theexenum}
+    \newcommand\exelabel\theexenum
 \else
-    \newcommand{\exelabel}{\thesection.\theitem}
+    \newcommand\exelabel{\thesection.\theitem}
 \fi
-\newcommand{\exercise}[1][]{
+\newcommand\exercise[1][]{
 	\par\noindent\emph{Problem \exelabel}{\nyanblue\cmss\optlabel{#1}}\emph{.}\enskip}
 \ifnormalnums
-    \pretocmd{\exercise}{\stepcounter{exenum}}{}{}
+    \pretocmd\exercise{\stepcounter{exenum}}{}{}
 \else
-    \pretocmd{\exercise}{\stepcounter{item}}{}{}
+    \pretocmd\exercise{\stepcounter{item}}{}{}
 \fi
 %---------------------------------------------
 % headers/footers
@@ -123,17 +123,17 @@
 \ifheader
     \pagestyle{fancy}
     \fancyhf{}
-    \renewcommand{\headrulewidth}{0.5pt}
-    \renewcommand{\footrulewidth}{0pt}
+    \renewcommand\headrulewidth{0.5pt}
+    \renewcommand\footrulewidth{0pt}
     \fancyhead[L]{\small\emph{\@title}}
     \fancyhead[R]{\small\emph{\@author, \@date}}
-    \fancyfoot[C]{\thepage}
+    \fancyfoot[C]\thepage
 \else\fi
 %---------
 % toc
 \RequirePackage[hypertexnames=false]{hyperref}
 \setcounter{tocdepth}{3}
-\newcommand{\toc}{
+\newcommand\toc{
 	{\hypersetup{
 	citecolor=black,filecolor=nyanblue,
 	linkcolor=black,urlcolor=black}
@@ -146,12 +146,12 @@
 \patchcmd{\@maketitle}{\@author}{{\nyanblue\cmss\@author}}{}{}
 \patchcmd{\@maketitle}{\@date}{{\cmss\@date}}{}{}
 % sections
-\titleformat{\section}{\nyanblue\Large\cmss\bfseries}{{\S\thesection}}{1em}{}
+\titleformat\section{\nyanblue\Large\cmss\bfseries}{{\S\thesection}}{1em}{}
 \ifnormalnums\else
-\pretocmd{\section}{\setcounter{item}{0}}{}{}
+\pretocmd\section{\setcounter{item}{0}}{}{}
 \fi
-\titleformat{\subsection}{\nyanblue\cmss\large\bfseries}{{\thesubsection}}{1em}{}
-\titleformat{\subsubsection}{\nyanblue\cmss\bfseries}{{\thesubsubsection}}{1em}{}
+\titleformat\subsection{\nyanblue\cmss\large\bfseries}{{\thesubsection}}{1em}{}
+\titleformat\subsubsection{\nyanblue\cmss\bfseries}{{\thesubsubsection}}{1em}{}
 %---------------------------------------------
 % sol
 \newenvironment{sol}[1][]{\vspace{0.1cm}\\\emph{Solution}{\nyanblue\sffamily\optlabel{#1}}\emph{.}\enskip}{\solqed}
