@@ -65,10 +65,10 @@ pen thickpink=linewidth(1)+RGB(229,162,155);
 \usepackage[cmintegrals,cmbraces]{newtxmath}
 \RequirePackage{ebgaramond-maths}
 \fi
-\DeclareRobustCommand{\sffamily}{\lato}
-\DeclareRobustCommand{\setogrn}{\color{setogrn}}
-\DeclareRobustCommand{\em}{\setogrn\sffamily\bfseries}
-\renewcommand{\emph}[1]{{\em #1}}
+\DeclareRobustCommand\sffamily\lato
+\DeclareRobustCommand\setogrn{\color{setogrn}}
+\DeclareRobustCommand\em{\setogrn\sffamily\bfseries}
+\renewcommand\emph[1]{{\em #1}}
 %------------------------------------------------------
 % box styles
 \RequirePackage[framemethod=TikZ]{mdframed}
@@ -98,58 +98,58 @@ pen thickpink=linewidth(1)+RGB(229,162,155);
 \newcounter{defnum}
 \newcounter{item}
 \ifnormalnums
-    \newcommand{\problabel}{\theprobnum}
-    \newcommand{\exmplabel}{\theexmpnum}
-    \newcommand{\thmlabel}{\thetheonum}
-    \newcommand{\proplabel}{\thepropnum}
-    \newcommand{\deflabel}{\thedefnum}
+    \def\problabel\theprobnum
+    \def\exmplabel\theexmpnum
+    \def\thmlabel\thetheonum
+    \def\proplabel\thepropnum
+    \def\deflabel\thedefnum
 \else
-    \newcommand{\problabel}{\thesection.\theitem}
-    \newcommand{\exmplabel}{\thesection.\theitem}
-    \newcommand{\thmlabel}{\thesection.\theitem}
-    \newcommand{\proplabel}{\thesection.\theitem}
-    \newcommand{\deflabel}{\thesection.\theitem}
+    \def\problabel{\thesection.\theitem}
+    \def\exmplabel{\thesection.\theitem}
+    \def\thmlabel{\thesection.\theitem}
+    \def\proplabel{\thesection.\theitem}
+    \def\deflabel{\thesection.\theitem}
 \fi
-\newcommand{\problem}[2][]{\begin{probBox}
+\newcommand\problem[2][]{\begin{probBox}
     {\sffamily\bfseries Problem \problabel{\mdseries\optlabel{#1}}.}\enskip#2\end{probBox}}
-\newcommand{\prob}[2][]{\begin{probBox}
+\newcommand\prob[2][]{\begin{probBox}
     {\sffamily\bfseries Problem{\mdseries\optlabel{#1}}.}\enskip#2\end{probBox}}
-\newcommand{\example}[2][]{\begin{probBox}
+\newcommand\example[2][]{\begin{probBox}
     {\sffamily\bfseries Example \exmplabel{\mdseries\optlabel{#1}}.}\enskip#2\end{probBox}}
-\newcommand{\exmp}[2][]{\begin{probBox}
+\newcommand\exmp[2][]{\begin{probBox}
     {\sffamily\bfseries Example{\mdseries\optlabel{#1}}.}\enskip#2\end{probBox}}
-\newcommand{\claim}[1]{
+\newcommand\claim[1]{
     \begin{claimBox}{\sffamily\bfseries Claim ---\enskip}#1\end{claimBox}}
-\newcommand{\lemma}[1]{
+\newcommand\lemma[1]{
     \begin{claimBox}{\sffamily\bfseries Lemma ---\enskip}#1\end{claimBox}}
-\newcommand{\theorem}[1]{\begin{thmBox}
+\newcommand\theorem[1]{\begin{thmBox}
     {\sffamily\bfseries Theorem \thmlabel.\enskip}#1\end{thmBox}}
-\newcommand{\theo}[1]{\begin{thmBox}
+\newcommand\theo[1]{\begin{thmBox}
     {\sffamily\bfseries Theorem.\enskip}#1\end{thmBox}}
-\newcommand{\proposition}[1]{\begin{thmBox}
+\newcommand\proposition[1]{\begin{thmBox}
     {\sffamily\bfseries Proposition \proplabel.\enskip}#1\end{thmBox}}
-\newcommand{\prop}[1]{\begin{thmBox}
+\newcommand\prop[1]{\begin{thmBox}
     {\sffamily\bfseries Proposition.\enskip}#1\end{thmBox}}
-\newcommand{\definition}[1]{\begin{thmBox}
+\newcommand\definition[1]{\begin{thmBox}
     {\sffamily\bfseries Definition \deflabel.\enskip}#1\end{thmBox}}
-\newcommand{\defn}[1]{\begin{thmBox}
+\newcommand\defn[1]{\begin{thmBox}
     {\sffamily\bfseries Definition.\enskip}#1\end{thmBox}}
-\newcommand{\remark}[1]{\begin{remarkBox}
+\newcommand\remark[1]{\begin{remarkBox}
     {\setogrn\sffamily\itshape Remark.\enskip}#1\end{remarkBox}}
-\newcommand{\note}[1]{\begin{remarkBox}
+\newcommand\note[1]{\begin{remarkBox}
     {\setogrn\sffamily\itshape Note.\enskip}#1\end{remarkBox}}
 \ifnormalnums
-    \pretocmd{\problem}{\stepcounter{probnum}}{}{}
-    \pretocmd{\example}{\stepcounter{exmplabel}}{}{}
-    \pretocmd{\theorem}{\stepcounter{theonum}}{}{}
-    \pretocmd{\proposition}{\stepcounter{propnum}}{}{}
-    \pretocmd{\definition}{\stepcounter{defnum}}{}{}
+    \pretocmd\problem{\stepcounter{probnum}}{}{}
+    \pretocmd\example{\stepcounter{exmplabel}}{}{}
+    \pretocmd\theorem{\stepcounter{theonum}}{}{}
+    \pretocmd\proposition{\stepcounter{propnum}}{}{}
+    \pretocmd\definition{\stepcounter{defnum}}{}{}
 \else
-    \pretocmd{\problem}{\stepcounter{item}}{}{}
-    \pretocmd{\example}{\stepcounter{item}}{}{}
-    \pretocmd{\theorem}{\stepcounter{item}}{}{}
-    \pretocmd{\proposition}{\stepcounter{item}}{}{}
-    \pretocmd{\definition}{\stepcounter{item}}{}{}
+    \pretocmd\problem{\stepcounter{item}}{}{}
+    \pretocmd\example{\stepcounter{item}}{}{}
+    \pretocmd\theorem{\stepcounter{item}}{}{}
+    \pretocmd\proposition{\stepcounter{item}}{}{}
+    \pretocmd\definition{\stepcounter{item}}{}{}
 \fi
 %---------------------------------------------
 % headers/footers
@@ -157,17 +157,17 @@ pen thickpink=linewidth(1)+RGB(229,162,155);
 \ifheader
     \pagestyle{fancy}
     \fancyhf{}
-    \renewcommand{\headrulewidth}{0.5pt}
-    \renewcommand{\footrulewidth}{0pt}
+    \renewcommand\headrulewidth{0.5pt}
+    \renewcommand\footrulewidth{0pt}
     \fancyhead[L]{\small\emph{\@title}}
     \fancyhead[R]{\small\emph{\@author, \@date}}
-    \fancyfoot[C]{\thepage}
+    \fancyfoot[C]\thepage
 \else\fi
 %---------------------------------------------
 % toc
 \RequirePackage[hypertexnames=false]{hyperref}
 \setcounter{tocdepth}{3}
-\newcommand{\toc}{
+\newcommand\toc{
     {\em\hypersetup{
     citecolor=black,filecolor=setogrn,
     linkcolor=black,urlcolor=black}
@@ -180,28 +180,28 @@ pen thickpink=linewidth(1)+RGB(229,162,155);
 \patchcmd{\@maketitle}{\@date}{{\Alegreya\@date}}{}{}
 %---------------------------------------------
 % regular (sub)(sub)sections
-\titleformat{\section}{\AlegreyaMedium\Large\setogrn}{\S\thesection}{1em}{}
+\titleformat\section{\AlegreyaMedium\Large\setogrn}{\S\thesection}{1em}{}
 \ifnormalnums\else
-\pretocmd{\section}{\setcounter{item}{0}}{}{}
+\pretocmd\section{\setcounter{item}{0}}{}{}
 \fi
-\titleformat{\subsection}{\sffamily\bfseries\large\setogrn}{\thesubsection}{1em}{}
-\titleformat{\subsubsection}{\sffamily\bfseries\setogrn}{\thesubsubsection}{1em}{}
+\titleformat\subsection{\sffamily\bfseries\large\setogrn}{\thesubsection}{1em}{}
+\titleforma{\subsubsection{\sffamily\bfseries\setogrn}{\thesubsubsection}{1em}{}
 %---------------------------------------------
 % misc
 %-----------
 % exercises
 \newcounter{exenum}
 \ifnormalnums
-    \newcommand{\exelabel}{\theexenum}
+    \def\exelabel\theexenum
 \else
-    \newcommand{\exelabel}{\thesection.\theitem}
+    \def\exelabel{\thesection.\theitem}
 \fi
-\newcommand{\exercise}[1][]{
+\newcommand\exercise[1][]{
     \par\noindent\emph{Problem \exelabel}{\setogrn\sffamily\optlabel{#1}}\emph{.}\enskip}
 \ifnormalnums
-    \pretocmd{\exercise}{\stepcounter{exenum}}{}{}
+    \pretocmd\exercise{\stepcounter{exenum}}{}{}
 \else
-    \pretocmd{\exercise}{\stepcounter{item}}{}{}
+    \pretocmd\exercise{\stepcounter{item}}{}{}
 \fi
 %---------------------------------------------
 % sol
@@ -211,7 +211,7 @@ pen thickpink=linewidth(1)+RGB(229,162,155);
     linecolor=setogrn,linewidth=3pt,backgroundcolor=white]
     \emph{Solution}{\setogrn\sffamily\optlabel{#1}}\emph{.}\enskip}{\solqed\end{mdframed}}
 %solnoteprob
-\newcommand{\solnoteprob}[1]{\par\noindent{\setogrn\Alegreya\small #1}\par\noindent{\setogrn\hrule\vspace{0.2cm}}\par\noindent}
+\newcommand\solnoteprob[1]{\par\noindent{\setogrn\Alegreya\small #1}\par\noindent{\setogrn\hrule\vspace{0.2cm}}\par\noindent}
 %---------------------------------------------
 %quotes
 \newenvironment{quoteBox}{\begin{mdframed}[
@@ -220,6 +220,6 @@ pen thickpink=linewidth(1)+RGB(229,162,155);
     linewidth=2.5pt,linecolor=quotecolor,backgroundcolor=quotecolor!25!white,
     topline=false,bottomline=false,rightline=false,leftline=true]}
     {\end{mdframed}}
-\renewcommand{\quote}[2]{\begin{quoteBox} {\Alegreya #1}
+\renewcommand\quote[2]{\begin{quoteBox} {\Alegreya #1}
     {\begin{flushright}{\setogrn\Alegreya #2}\end{flushright}}\end{quoteBox}}
 %---------------------------------------------
