@@ -1,2 +1,1 @@
-seto.cls exists now, as does amts.cls.
-(usamts's started!)
+OK, this is too chaotic atm. 'First sty' contains `nyan.cls` and related files, and 'second sty' does the same for `seto.cls`. The folder 'tex' contains `universal.sty` and `tropical.cls`, and the other subdirs dont serve any practical purpose.
