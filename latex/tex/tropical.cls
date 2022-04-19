@@ -19,8 +19,9 @@
 \RequirePackage{pifont}
 \def\labelitemi{\ding{70}}
 \setbeamersize{text margin left=1.3cm,text margin right=1.3cm}
+% Block widths in case I want to change them for some reason
 \addtobeamertemplate{block begin}
-    {\setlength\textwidth{1.01\textwidth}}{}
+    {\setlength\textwidth{\textwidth}}{}
 \addtobeamertemplate{block alerted begin}{
   \setlength{\textwidth}{\textwidth}}{}
 \addtobeamertemplate{block example begin}{
