@@ -185,7 +185,7 @@ pen thickpink=linewidth(1)+RGB(229,162,155);
 \pretocmd\section{\setcounter{item}{0}}{}{}
 \fi
 \titleformat\subsection{\sffamily\bfseries\large\setogrn}{\thesubsection}{1em}{}
-\titleforma{\subsubsection{\sffamily\bfseries\setogrn}{\thesubsubsection}{1em}{}
+\titleformat\subsubsection{\sffamily\bfseries\setogrn}{\thesubsubsection}{1em}{}
 %---------------------------------------------
 % misc
 %-----------
