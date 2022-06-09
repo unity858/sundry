@@ -153,7 +153,7 @@ bool concurrent(pair A, pair B, pair C, pair D, pair E, pair F)
 }
 // Returns true if points A, B, and C are collinear.
 bool collinear(pair A, pair B, pair C)
-{ $
+{
 	if (A==B || B==C || A==C || abs(unit(B-A)-unit(C-A))<1/10^5 || abs(unit(B-A)+unit(C-A))<1/10^5)  
 	return true; 
 	else return false;
@@ -239,10 +239,10 @@ picture pathticks(path g, int n=1, real r=.5, real spacing=6, real s=8, pen p=cu
 \newif\ifgeo\geotrue
 \newif\ifhyperref\hyperreftrue
 \newif\ifimakeidx\imakeidxtrue
-\DeclareOption{nogeo}{\geofalse}
-\DeclareOption{nohyperref}{\hyperreffalse}
-\DeclareOption{noimakeidx}{\imakeidxfalse}
-\DeclareOption*{\PackageWarning{universal}{Unknown ‘\CurrentOption’}}
+\DeclareOption{nogeo}{\geofalse
+\DeclareOption{nohyperref}\hyperreffalse
+\DeclareOption{noimakeidx}\imakeidxfalse
+\DeclareOption*{\PackageWarning{universal}{Unknown option: ‘\CurrentOption’}}
 \ProcessOptions\relax
 \ifgeo\RequirePackage[margin=1in]{geometry}\fi
 \ifhyperref\RequirePackage[hypertexnames=false]{hyperref}\fi
@@ -280,10 +280,10 @@ picture pathticks(path g, int n=1, real r=.5, real spacing=6, real s=8, pen p=cu
 % subsitute for {a \brack b}
 \newcommand\sqbinom[2]{\genfrac[]{0pt}0{#1}{#2}}
 % operators, first two from lucky.sty, misc otherwise
-\DeclareMathOperator{\cycsum}{\sum_{\text{cyc}}}
-\DeclareMathOperator{\symsum}{\sum_{\text{sym}}}
-\DeclareMathOperator{\cycprod}{\prod{\text{cyc}}}
-\DeclareMathOperator{\symprod}{\prod{\text{sym}}}
+\DeclareMathOperator\cycsum{\sum_{\text{cyc}}}
+\DeclareMathOperator\symsum{\sum_{\text{sym}}}
+\DeclareMathOperator\cycprod{\prod{\text{cyc}}}
+\DeclareMathOperator\symprod{\prod{\text{sym}}}
 \DeclareMathOperator{\dir}{\text{dir}}
 \def\ol#1{\overline{#1}}
 \def\deg{^\circ}
@@ -291,7 +291,7 @@ picture pathticks(path g, int n=1, real r=.5, real spacing=6, real s=8, pen p=cu
 \newcommand\evalat[2][]{\biggr\rvert_{#2}^{#1}}
 \def\solqed{\noindent\hfill$\blacksquare$}
 \def\hbeq#1{\overset{#1}=}
-\let\dangle\measuredangle
+\def\dangle\measuredangle
 %sets
 \def\Z{\mathbb{Z}}
 \def\Q{\mathbb{Q}}
@@ -301,7 +301,7 @@ picture pathticks(path g, int n=1, real r=.5, real spacing=6, real s=8, pen p=cu
 \def\F{\mathbb{F}}
 \def\N{\mathbb{N}}
 %---------------------
-\def\optlabel#1{\ifstrempty{#1}{}{\enskip(#1)}}
+\def\optlabel#1{\ifstrempty{#1}{}{{\mdseries\enskip(#1)}}}
 \newenvironment{alphenum}
     {\begin{enumerate}[label=(\alph*)]}{\end{enumerate}}
 %---------------------------------------------
