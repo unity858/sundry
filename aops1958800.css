@@ -1,0 +1,80 @@
+@import url(https://fonts.googleapis.com/css?family=Lato);
+/* "I would not marry someone who puts a newline between a curly brace and the end of a line." -- TheUltimate123 */
+div#page-wrapper{background-image: url(https://raw.githubusercontent.com/tac-nayn06/sundry/main/photography/bigsur5.jpg);
+background-size:cover;
+background-repeat: no-repeat;
+background-attachment:fixed;
+background-position:top;
+height:auto;
+background-color:#e0f4f4;}
+body {width: 100%; vertical-align: middle;
+    background-color: #e0f4f4;	font-family:  Lato, sans-serif; font-size:12pt;
+opacity: 0.88;}
+div#wrapper {
+  background-color: transparent;
+  border-bottom: 0px solid #000000;
+  border-left: 0px solid #000000;
+  border-right: 0px solid #000000;
+  margin-left: 300;
+  margin-right: 300;
+  padding: 0px 0px 0px;
+  opacity: 0.88;
+  text-align: center;
+  width: 1500px;
+}
+
+a:link {color: #64dfd7;
+  background-color: transparent;
+  text-decoration: none;}
+
+a:visited {color: #64dfd7; background-color: transparent; text-decoration: none;}
+a:hover {color: #64dfd7; background-color: transparent; text-decoration: bold;}
+a:active {color: #64dfd7; background-color: transparent; text-decoration: none;}
+/* blogpost block coloring*/
+div .entrywrap, div .entrywrap-hover {border-radius: 5px; border-color: #64dfd7; border-width: medium; background-color : #e0f4f4;}
+/* navbar */
+div#navigation_box {background-color: #e0f4f4; 
+    transition: all 0.5s; -webkit-transition: all 0.5s; -moz-transition: all 0.5s; -o-transition: all 0.5s; box-shadow: 0px 0px 5px 0px #eeeeee;
+    margin-bottom: 40px; border: none; padding: 2px; position: fixed; top: 0px; width: 100%; z-index: 51; height: 19px;} 
+#navigation_box a {font-size:15px; font-family: Lato, sans-serif; color:#64dfd7;}
+#left_navigation_box {font-size:15px; font-family: Lato, sans-serif; color: #64dfd7;}
+#right_navigation_box {font-size:15px; font-family: Lato, sans-serif; color: #64dfd7;}
+.color-me{color:#000000;}
+div#main {
+  width: 1200px;
+  padding: 5px;
+  float: left;
+}
+p {
+  margin: 8px 0;
+font-style: italic;
+}
+/* blog title */
+div#header {
+  background-color: transparent;
+  font-family: Lato, sans-serif;
+  font-weight: bold;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  top: 0px;
+  width: 100%;
+  border: none;
+  left: 0px;
+  height: 140px;
+  z-index: 50;
+  opacity: 1;
+  text-align: left;
+}
+div#header h1 {margin-top: 0px; margin-bottom: 0px;
+        color: #64dfd7; height: 70px; line-height: 2; font-size: 36px; opacity: 0.88;
+text-align:left; padding: 40px; font-weight: bold;}
+h2 {color: #64dfd7; font-family: Lato, sans-serif;}
+
+/* comment box */
+.comment {background-color: #e0f4f4; border-color: #64dfd7; border-radius: 5px; font-size: 10pt;}
+/* hide edit description */
+div#content .cmty-post-edit-info {display: none !important;}
+div#blog-posts-box {background-color: #e0f4f4; border-color: #64dfd7; border-radius: 5px; font-size: 10pt;}
+#side { background-color: transparent;
+    padding-left:0px; padding-right:0px; padding-top: 0px; margin-top: 0px;}
+#contrib-widget.widget-content {color: #64dfd7;}
