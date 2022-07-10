@@ -30,10 +30,10 @@ pen thickpink=linewidth(1)+RGB(229,162,155);
 \newif\ifheader\headertrue
 \newif\ifsetogeo\setogeotrue
 \newif\ifdeffonts\deffontsfalse
-\DeclareOption{labelsBySect}{\normalnumsfalse}
-\DeclareOption{noheader}{\headerfalse}
-\DeclareOption{nogeo}{\setogeofalse}
-\DeclareOption{deffonts}{\deffontstrue}
+\DeclareOption{labelsBySect}\normalnumsfalse
+\DeclareOption{noheader}\headerfalse
+\DeclareOption{nogeo}\setogeofalse
+\DeclareOption{deffonts}\deffontstrue
 %------------------
 \DeclareOption*{\PassOptionsToClass\CurrentOption{article}}
 \ProcessOptions\relax
@@ -41,18 +41,18 @@ pen thickpink=linewidth(1)+RGB(229,162,155);
 \ifsetogeo\RequirePackage{universal}
 \else\RequirePackage[nogeo]{universal}
 \fi
-%colors, for mdframed
-% Theme: big sur
+% PALETTE
 % let's use mdframed already, its capabilities are a superset of those of tcolorbox
 \RequirePackage{xstring,xcolor}
 \definecolor{white}{HTML}{FFFFFF}% do not remove
 \definecolor{black}{HTML}{000000}% do not remove
-\definecolor{setogrn}{HTML}{0D534F}
-\definecolor{probcolor}{HTML}{E5A29B} % brownish red?
+\definecolor{maincolor}{HTML}{0D534F}
+\definecolor{exmpcolor}{HTML}{0d534f} % brownish red?
 \definecolor{theocolor}{HTML}{9BCAE8} % light blu
 \definecolor{claimcolor}{HTML}{E6CE88} % yellow
-\definecolor{remarkcolor}{HTML}{0D534F} % setogrn atm
-\definecolor{quotecolor}{HTML}{91B9DC} % slightly darker blue\
+\definecolor{remarkcolor}{HTML}{0D534F} % maincolor atm
+\definecolor{quotecolor}{HTML}{91B9DC} % slightly darker blue
+\definecolor{trunk}{HTML}{4f282d}
 %-------------------------------------------------
 %fonts, text formatting
 \ifdeffonts\else
@@ -66,15 +66,16 @@ pen thickpink=linewidth(1)+RGB(229,162,155);
 \RequirePackage{ebgaramond-maths}
 \fi
 \DeclareRobustCommand\sffamily\lato
-\DeclareRobustCommand\setogrn{\color{setogrn}}
-\DeclareRobustCommand\em{\setogrn\sffamily\bfseries}
+\DeclareRobustCommand\maincolor{\color{maincolor}}
+\DeclareRobustCommand\em{\maincolor\sffamily\bfseries}
 \renewcommand\emph[1]{{\em #1}}
 %------------------------------------------------------
 % box styles
 \RequirePackage[framemethod=TikZ]{mdframed}
-\newenvironment{probBox}{\begin{mdframed}[
+\RequirePackage[most,skins]{tcolorbox}
+\newenvironment{exmpBox}{\begin{mdframed}[
     innerleftmargin=0.35cm,innertopmargin=0.25cm,innerbottommargin=0.25cm,innerrightmargin=0.35cm,
-    linecolor=probcolor,linewidth=1.5pt,backgroundcolor=probcolor!25!white,roundcorner=5pt]}
+    linecolor=exmpcolor,linewidth=1.5pt,backgroundcolor=exmpcolor!25!white,roundcorner=5pt]}
     {\end{mdframed}}
 \newenvironment{claimBox}{\begin{mdframed}[
     innerleftmargin=0.35cm,innertopmargin=0.25cm,innerbottommargin=0.25cm,innerrightmargin=0.35cm,
@@ -83,121 +84,96 @@ pen thickpink=linewidth(1)+RGB(229,162,155);
     {\end{mdframed}}
 \newenvironment{thmBox}{\begin{mdframed}[
     innerleftmargin=0.35cm,innertopmargin=0.25cm,innerbottommargin=0.25cm,innerrightmargin=0.35cm,
-    linecolor=theocolor,linewidth=1.5pt,backgroundcolor=theocolor!25!white,roundcorner=2pt]}
+    linecolor=theocolor,linewidth=1.5pt,backgroundcolor=theocolor!25!white,leftline=false,rightline=false]}
     {\end{mdframed}}
 \newenvironment{remarkBox}{\begin{mdframed}[
     innerleftmargin=0.35cm,innertopmargin=0.25cm,innerbottommargin=0.25cm,innerrightmargin=0.35cm,
-    linecolor=remarkcolor,linewidth=1.5pt,backgroundcolor=remarkcolor!20!white,roundcorner=2pt]}
+    linecolor=remarkcolor,linewidth=1.5pt,backgroundcolor=remarkcolor!20!white,topline=false,bottomline=false]}
     {\end{mdframed}}
 %------------------
 %cmds for convenience, because im still too lazy to define the boxes as envs
-\newcounter{probnum}
-\newcounter{exmpnum}
-\newcounter{theonum}
-\newcounter{propnum}
-\newcounter{defnum}
 \newcounter{item}
-\ifnormalnums
-    \def\problabel\theprobnum
-    \def\exmplabel\theexmpnum
-    \def\thmlabel\thetheonum
-    \def\proplabel\thepropnum
-    \def\deflabel\thedefnum
-\else
-    \def\problabel{\thesection.\theitem}
-    \def\exmplabel{\thesection.\theitem}
-    \def\thmlabel{\thesection.\theitem}
-    \def\proplabel{\thesection.\theitem}
-    \def\deflabel{\thesection.\theitem}
-\fi
-\newcommand\problem[2][]{\begin{probBox}
-    {\sffamily\bfseries Problem \problabel{\mdseries\optlabel{#1}}.}\enskip#2\end{probBox}}
-\newcommand\prob[2][]{\begin{probBox}
-    {\sffamily\bfseries Problem{\mdseries\optlabel{#1}}.}\enskip#2\end{probBox}}
-\newcommand\example[2][]{\begin{probBox}
-    {\sffamily\bfseries Example \exmplabel{\mdseries\optlabel{#1}}.}\enskip#2\end{probBox}}
-\newcommand\exmp[2][]{\begin{probBox}
-    {\sffamily\bfseries Example{\mdseries\optlabel{#1}}.}\enskip#2\end{probBox}}
-\newcommand\claim[1]{
-    \begin{claimBox}{\sffamily\bfseries Claim ---\enskip}#1\end{claimBox}}
-\newcommand\lemma[1]{
-    \begin{claimBox}{\sffamily\bfseries Lemma ---\enskip}#1\end{claimBox}}
-\newcommand\theorem[1]{\begin{thmBox}
-    {\sffamily\bfseries Theorem \thmlabel.\enskip}#1\end{thmBox}}
-\newcommand\theo[1]{\begin{thmBox}
-    {\sffamily\bfseries Theorem.\enskip}#1\end{thmBox}}
-\newcommand\proposition[1]{\begin{thmBox}
-    {\sffamily\bfseries Proposition \proplabel.\enskip}#1\end{thmBox}}
-\newcommand\prop[1]{\begin{thmBox}
-    {\sffamily\bfseries Proposition.\enskip}#1\end{thmBox}}
-\newcommand\definition[1]{\begin{thmBox}
-    {\sffamily\bfseries Definition \deflabel.\enskip}#1\end{thmBox}}
-\newcommand\defn[1]{\begin{thmBox}
-    {\sffamily\bfseries Definition.\enskip}#1\end{thmBox}}
-\newcommand\remark[1]{\begin{remarkBox}
-    {\setogrn\sffamily\itshape Remark.\enskip}#1\end{remarkBox}}
-\newcommand\note[1]{\begin{remarkBox}
-    {\setogrn\sffamily\itshape Note.\enskip}#1\end{remarkBox}}
-\ifnormalnums
-    \pretocmd\problem{\stepcounter{probnum}}{}{}
-    \pretocmd\example{\stepcounter{exmplabel}}{}{}
-    \pretocmd\theorem{\stepcounter{theonum}}{}{}
-    \pretocmd\proposition{\stepcounter{propnum}}{}{}
-    \pretocmd\definition{\stepcounter{defnum}}{}{}
-\else
-    \pretocmd\problem{\stepcounter{item}}{}{}
-    \pretocmd\example{\stepcounter{item}}{}{}
-    \pretocmd\theorem{\stepcounter{item}}{}{}
-    \pretocmd\proposition{\stepcounter{item}}{}{}
-    \pretocmd\definition{\stepcounter{item}}{}{}
-\fi
+\newenvironment{block}[1][Block]{\begin{tcolorbox}[enhanced,
+    arc=1mm,left=.27cm,right=.3cm,top=3pt,bottom=3pt,
+    colframe=maincolor,colback=maincolor!17!white, 
+    title=#1,fonttitle={\bfseries\sffamily},boxrule=0mm,toprule=0pt,
+    toptitle=1pt,bottomtitle=1pt,titlerule=0pt,drop fuzzy shadow=black]}
+    {\end{tcolorbox}}
+\newenvironment{thm}[1][Theorem]{\begin{thmBox}{\sffamily\bfseries #1}\\}{\end{thmBox}}
+\newenvironment{exmp}[1][Example]{\begin{exmpBox}{\sffamily\bfseries #1}\\}{\end{exmpBox}}
+\newenvironment{remark}[1][Remark]{\begin{remarkBox}
+	{\maincolor\sffamily\itshape #1.}}{\end{remarkBox}}
+\newcommand\claim[2][Claim]
+	{\begin{claimBox}{\sffamily\bfseries #1 --\enskip}#2\end{claimBox}}
 %---------------------------------------------
 % headers/footers
 \RequirePackage{fancyhdr}
+\newcommand\insertdisplaytitle\@title
+\newcommand\insertdisplayauthor\@author
+\newcommand\insertdisplaydate\@date
+\def\displaytitle#1{\renewcommand\insertdisplaytitle{#1}}
+\def\displayauthor#1{\renewcommand\insertdisplayauthor{#1}}
+\def\displaydate#1{\renewcomand\insertdisplaydate{#1}}
 \ifheader
     \pagestyle{fancy}
     \fancyhf{}
     \renewcommand\headrulewidth{0.5pt}
     \renewcommand\footrulewidth{0pt}
-    \fancyhead[L]{\small\emph{\@title}}
-    \fancyhead[R]{\small\emph{\@author, \@date}}
+    \fancyhead[L]{{\small\emph\insertdisplaytitle}}
+    \fancyhead[R]{{\small\em\insertdisplayauthor\ {\mdseries(\insertdisplaydate)}}}
     \fancyfoot[C]\thepage
 \else\fi
 %---------------------------------------------
 % toc
 \RequirePackage[hypertexnames=false]{hyperref}
-\setcounter{tocdepth}{3}
+\setcounter{tocdepth}3
 \newcommand\toc{
     {\em\hypersetup{
-    citecolor=black,filecolor=setogrn,
+    citecolor=black,filecolor=maincolor,
     linkcolor=black,urlcolor=black}
     \tableofcontents}\newpage}
 %---------------------------------------------
 % title customization
 \RequirePackage{titling,titlesec,setspace}
-\patchcmd{\@maketitle}{\@title}{{\AlegreyaMedium\setogrn\@title}}{}{}
-\patchcmd{\@maketitle}{\@author}{{\Alegreya\setogrn\@author}}{}{}
-\patchcmd{\@maketitle}{\@date}{{\Alegreya\@date}}{}{}
+\patchcmd\@maketitle\@title{{\AlegreyaMedium\maincolor\@title}}{}{}
+\patchcmd\@maketitle\@author{{\Alegreya\maincolor\@author}}{}{}
+\patchcmd\@maketitle\@date{{\Alegreya\@date}}{}{}
 %---------------------------------------------
 % regular (sub)(sub)sections
-\titleformat\section{\AlegreyaMedium\Large\setogrn}{\S\thesection}{1em}{}
+\titleformat{\section}{\AlegreyaMedium\Large\maincolor}{
+\begin{tikzpicture}[scale=0.035]
+    \filldraw[] (0,0)--(1,0)--(1,2)--(3.5,2)--(2,4)--(3,4)--(1.5,6)--(2.5,6)--(1,8)--(2,8)--(0,11);
+    \filldraw[] (0,0)--(-1,0)--(-1,2)--(-3.5,2)--(-2,4)--(-3,4)--(-1.5,6)--(-2.5,6)--(-1,8)--(-2,8)--(0,11);
+\filldraw[trunk](-1,0)--(1,0)--(1,2)--(-1,2)--(-1,0);
+\end{tikzpicture}
+    \thesection}{1em}{}
 \ifnormalnums\else
 \pretocmd\section{\setcounter{item}{0}}{}{}
 \fi
-\titleformat\subsection{\sffamily\bfseries\large\setogrn}{\thesubsection}{1em}{}
-\titleformat\subsubsection{\sffamily\bfseries\setogrn}{\thesubsubsection}{1em}{}
+\titleformat\subsection{\sffamily\bfseries\large\maincolor}{\begin{tikzpicture}[scale=0.03]
+    \filldraw[] (0,0)--(1,0)--(1,2)--(3.5,2)--(2,4)--(3,4)--(1.5,6)--(2.5,6)--(1,8)--(2,8)--(0,11);
+    \filldraw[] (0,0)--(-1,0)--(-1,2)--(-3.5,2)--(-2,4)--(-3,4)--(-1.5,6)--(-2.5,6)--(-1,8)--(-2,8)--(0,11);
+\filldraw[trunk](-1,0)--(1,0)--(1,2)--(-1,2)--(-1,0);
+\end{tikzpicture}
+\thesubsection}{1em}{}
+\titleformat\subsubsection{\sffamily\bfseries\maincolor}{\begin{tikzpicture}[scale=0.027]
+    \filldraw[] (0,0)--(1,0)--(1,2)--(3.5,2)--(2,4)--(3,4)--(1.5,6)--(2.5,6)--(1,8)--(2,8)--(0,11);
+    \filldraw[] (0,0)--(-1,0)--(-1,2)--(-3.5,2)--(-2,4)--(-3,4)--(-1.5,6)--(-2.5,6)--(-1,8)--(-2,8)--(0,11);
+\filldraw[trunk](-1,0)--(1,0)--(1,2)--(-1,2)--(-1,0);
+\end{tikzpicture}
+\thesubsubsection}{1em}{}
 %---------------------------------------------
 % misc
 %-----------
 % exercises
 \newcounter{exenum}
 \ifnormalnums
-    \def\exelabel\theexenum
+    \newcommand\exelabel\theexenum
 \else
-    \def\exelabel{\thesection.\theitem}
+    \newcommand\exelabel{\thesection.\theitem}
 \fi
 \newcommand\exercise[1][]{
-    \par\noindent\emph{Problem \exelabel}{\setogrn\sffamily\optlabel{#1}}\emph{.}\enskip}
+    \par\noindent\emph{Problem \exelabel}{\maincolor\sffamily\optlabel{#1}}\emph{.}\enskip}
 \ifnormalnums
     \pretocmd\exercise{\stepcounter{exenum}}{}{}
 \else
@@ -208,10 +184,10 @@ pen thickpink=linewidth(1)+RGB(229,162,155);
 \newenvironment{sol}[1][]{\begin{mdframed}[
     innerleftmargin=0.35cm,innertopmargin=0.15cm,innerbottommargin=0.15cm,innerrightmargin=0cm,
     topline=false,bottomline=false,rightline=false,leftline=true,
-    linecolor=setogrn,linewidth=3pt,backgroundcolor=white]
-    \emph{Solution}{\setogrn\sffamily\optlabel{#1}}\emph{.}\enskip}{\solqed\end{mdframed}}
+    linecolor=maincolor,linewidth=3pt,backgroundcolor=white]
+    \emph{Solution}{\maincolor\sffamily\optlabel{#1}}\emph{.}\enskip}{\solqed\end{mdframed}}
 %solnoteprob
-\newcommand\solnoteprob[1]{\par\noindent{\setogrn\Alegreya\small #1}\par\noindent{\setogrn\hrule\vspace{0.2cm}}\par\noindent}
+\newcommand\solnoteprob[1]{\par\noindent{\maincolor\Alegreya\small #1}\par\noindent{\maincolor\hrule\vspace{0.2cm}}\par\noindent}
 %---------------------------------------------
 %quotes
 \newenvironment{quoteBox}{\begin{mdframed}[
@@ -221,5 +197,5 @@ pen thickpink=linewidth(1)+RGB(229,162,155);
     topline=false,bottomline=false,rightline=false,leftline=true]}
     {\end{mdframed}}
 \renewcommand\quote[2]{\begin{quoteBox} {\Alegreya #1}
-    {\begin{flushright}{\setogrn\Alegreya #2}\end{flushright}}\end{quoteBox}}
+    {\begin{flushright}{\maincolor\Alegreya #2}\end{flushright}}\end{quoteBox}}
 %---------------------------------------------
