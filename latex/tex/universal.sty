@@ -55,7 +55,7 @@ pair bisectorpoint(pair A ... pair[] BC)
 		B=BC[0];  
 		M=midpoint(A--B);  
 		P=unit(rotate(90,M)*A-M)+M; 
-	} 
+	} }
 	else if (BC.length==2) 
 	{  
 		B=BC[0];  
@@ -96,7 +96,7 @@ pair incenter(pair A=(0,0), pair B=(0,0), pair C=(0,0))
 	return extension(A,P,B,Q);
 }
 // The inradius of triangle ABC:
-real inradius(pair A,pair B,pair C)$
+real inradius(pair A,pair B,pair C)
 { 
 	real a,b,c,s; 
 	a=abs(B-C); 
@@ -128,7 +128,7 @@ pair tangent(pair P, pair O, real r, int n=1)
 	{    
 		T=intersectionpoint(circle(P,R),Arc(O,r,degrees(X-O)+180,degrees(X-O)+360));    
 	}  
-	else {T=O;}  $
+	else {T=O;}  
 	return T;
 }
 // Returns true if ABCD is a cyclic quadrilateral
@@ -239,7 +239,7 @@ picture pathticks(path g, int n=1, real r=.5, real spacing=6, real s=8, pen p=cu
 \newif\ifgeo\geotrue
 \newif\ifhyperref\hyperreftrue
 \newif\ifimakeidx\imakeidxtrue
-\DeclareOption{nogeo}{\geofalse
+\DeclareOption{nogeo}\geofalse
 \DeclareOption{nohyperref}\hyperreffalse
 \DeclareOption{noimakeidx}\imakeidxfalse
 \DeclareOption*{\PackageWarning{universal}{Unknown option: ‘\CurrentOption’}}
@@ -265,6 +265,7 @@ picture pathticks(path g, int n=1, real r=.5, real spacing=6, real s=8, pen p=cu
 \DeclareRobustCommand\bask{\fontfamily{BaskervilleF-TLF}\selectfont} %thx chennis
 \DeclareRobustCommand\lato{\fontfamily{lato-LF}\selectfont}
 \DeclareRobustCommand\cmss{\fontfamily{cmss}\selectfont}
+\DeclareRobustCommand\lmss{\fontfamily{lmss}\selectfont}
 \DeclareRobustCommand\newpx{\fontfamily{zpltlf}\selectfont} %thx chennis again
 %---------------------------------------------
 %math operators/commands
@@ -284,7 +285,7 @@ picture pathticks(path g, int n=1, real r=.5, real spacing=6, real s=8, pen p=cu
 \DeclareMathOperator\symsum{\sum_{\text{sym}}}
 \DeclareMathOperator\cycprod{\prod{\text{cyc}}}
 \DeclareMathOperator\symprod{\prod{\text{sym}}}
-\DeclareMathOperator{\dir}{\text{dir}}
+\DeclareMathOperator\dir{\text{dir}}
 \def\ol#1{\overline{#1}}
 \def\deg{^\circ}
 \newcommand\pow[2]{\text{Pow}_{#1}(#2)}
@@ -301,25 +302,10 @@ picture pathticks(path g, int n=1, real r=.5, real spacing=6, real s=8, pen p=cu
 \def\F{\mathbb{F}}
 \def\N{\mathbb{N}}
 %---------------------
-\def\optlabel#1{\ifstrempty{#1}{}{{\mdseries\enskip(#1)}}}
+\newcommand\optlabel[1]{\ifstrempty{#1}{}{{\mdseries\enskip(#1)}}}
 \newenvironment{alphenum}
     {\begin{enumerate}[label=(\alph*)]}{\end{enumerate}}
 %---------------------------------------------
 \newcommand\pro[1]{\begin{proof}#1\end{proof}}
-\def\fakecmd#1{\texttt{\textbackslash #1}}
-%----------
-% hpc problem numbering on school hw, because im lazy af
-\newcounter{hpcExe}
-\def\hpcExe#1{\stepcounter{hpcExe}\par\noindent\emph{\thehpcExe/#1; }}
-\newcounter{hpcTopic}
-\def\hpcTopic#1{\stepcounter{hpcTopic}\textit{Topic \thehpcTopic, #1.}}
-\def\hpcContinueTopic{\textit{Topic \thehpcTopic, continued.}}
-\newcounter{revSectnum}
-% \newcommand{\hpcRevsect}[1][]{\stepcounter{revSectnum}\textit{Section \#\therevSectnum\ifstrempty{#1}{}{\enskip(#1)}.}} nvm...
-\newcounter{calcexe}
-\def\calcexe{\par\noindent\stepcounter{calcexe}\emph{\#\thecalcexe.}\enskip}
-\def\dblstepcntr#1{\addtocounter{#1}2}
-\def\calcoddexe{\par\noindent\dblstepcntr{calcexe}\emph{\#\thecalcexe.}\enskip}
-\def\dne{\textup{[DNE]}}
-\def\ddx{\frac{d}{dx}}
+\newcommand\fakecmd[1]{\texttt{\textbackslash #1}}
 %---------------------------------------------
