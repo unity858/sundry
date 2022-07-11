@@ -1,2 +1,2 @@
-# personal
-This's a place for my personal code. If you come across this, have fun using it! Open-source is nice indeed.
+# sundry
+random code i have nowhere better to place, as the name suggests.
