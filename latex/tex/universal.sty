@@ -270,14 +270,13 @@ picture pathticks(path g, int n=1, real r=.5, real spacing=6, real s=8, pen p=cu
 %---------------------------------------------
 %math operators/commands
 %delimiters
-\def\parenth#1{\left( #1\right)}
-\def\sqbrack#1{\left[ #1\right]}
-\def\braces#1{\left\{ #1\right\}}
-\def\abs#1{\left\lvert #1\right\rvert}
-\def\norm#1{\left\lVert #1\right\rVert}
-%floor/ceil; im so smart idk what \left and \right are, smh
-\def\floor#1{\left\lfloor #1\right\rfloor}
-\def\ceil#1{\left\lceil #1\right\rceil}
+\newcommand\parenth[1]{\left( #1\right)}
+\newcomand\sqbrack[1]{\left[ #1\right]}
+\def\braces[1]{\left\{ #1\right\}}
+\def\abs[1]{\left\lvert #1\right\rvert}
+\def\norm[1]{\left\lVert #1\right\rVert}
+\def\floor[1]{\left\lfloor #1\right\rfloor}
+\def\ceil[1]{\left\lceil #1\right\rceil}
 % subsitute for {a \brack b}
 \newcommand\sqbinom[2]{\genfrac[]{0pt}0{#1}{#2}}
 % operators, first two from lucky.sty, misc otherwise
@@ -292,20 +291,18 @@ picture pathticks(path g, int n=1, real r=.5, real spacing=6, real s=8, pen p=cu
 \newcommand\evalat[2][]{\biggr\rvert_{#2}^{#1}}
 \def\solqed{\noindent\hfill$\blacksquare$}
 \def\hbeq#1{\overset{#1}=}
-\def\dangle\measuredangle
+\newcommand\dangle\measuredangle
 %sets
-\def\Z{\mathbb{Z}}
-\def\Q{\mathbb{Q}}
-\def\R{\mathbb{R}}
-\def\C{\mathbb{C}}
-\def\P{\mathbb{P}}% for example, PR^2
-\def\F{\mathbb{F}}
-\def\N{\mathbb{N}}
+\def\ZZ{\mathbb{Z}}
+\def\QQ{\mathbb{Q}}
+\def\RR{\mathbb{R}}
+\def\CC{\mathbb{C}}
+\def\PP{\mathbb{P}}% for example, PR^2
+\def\FF{\mathbb{F}}
+\def\NN{\mathbb{N}}
 %---------------------
 \newcommand\optlabel[1]{\ifstrempty{#1}{}{{\mdseries\enskip(#1)}}}
-\newenvironment{alphenum}
+\newenvironment{parts}
     {\begin{enumerate}[label=(\alph*)]}{\end{enumerate}}
-%---------------------------------------------
-\newcommand\pro[1]{\begin{proof}#1\end{proof}}
 \newcommand\fakecmd[1]{\texttt{\textbackslash #1}}
 %---------------------------------------------
