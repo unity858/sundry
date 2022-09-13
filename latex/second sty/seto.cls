@@ -102,7 +102,7 @@ pen thickpink=linewidth(1)+RGB(229,162,155);
 \newenvironment{thm}[1][Theorem]{\begin{thmBox}{\sffamily\bfseries #1}\\}{\end{thmBox}}
 \newenvironment{exmp}[1][Example]{\begin{exmpBox}{\sffamily\bfseries #1}\\}{\end{exmpBox}}
 \newenvironment{remark}[1][Remark]{\begin{remarkBox}
-	{\maincolor\sffamily\itshape #1.}}{\end{remarkBox}}
+	{\maincolor\sffamily\itshape #1.\enskip}}{\end{remarkBox}}
 \newcommand\claim[2][Claim]
 	{\begin{claimBox}{\sffamily\bfseries #1 --\enskip}#2\end{claimBox}}
 %---------------------------------------------
@@ -173,7 +173,7 @@ pen thickpink=linewidth(1)+RGB(229,162,155);
     \newcommand\exelabel{\thesection.\theitem}
 \fi
 \newcommand\exercise[1][]{
-    \par\noindent\emph{Problem \exelabel}{\maincolor\sffamily\optlabel{#1}}\emph{.}\enskip}
+    \\[5pt]\emph{Problem \exelabel}{\maincolor\sffamily\optlabel{#1}}\emph{.}\enskip}
 \ifnormalnums
     \pretocmd\exercise{\stepcounter{exenum}}{}{}
 \else
