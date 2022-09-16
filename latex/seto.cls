@@ -14,16 +14,8 @@
 % version 1 of the License, or (at your option) any later version.
 %
 %---------------------------------------------
-\LoadClass{article}
-\RequirePackage[inline]{asymptote}
-\begin{asydef}
-/////// Personal pens //////
-pen darkgrn=RGB(13,83,76);
-pen thickgrn=linewidth(1)+RGB(13,83,76);
-pen redpink=RGB(229,162,155);
-pen thickpink=linewidth(1)+RGB(229,162,155);
-////////////////////////////
-\end{asydef}
+\LoadClass[11pt]{article}
+\RequirePackage{asymptote}
 %---------------------------------------------
 %options
 \newif\ifnormalnums\normalnumstrue
