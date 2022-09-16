@@ -132,7 +132,7 @@
 \patchcmd\@maketitle\@date{{\Alegreya\@date}}{}{}
 %---------------------------------------------
 % regular (sub)(sub)sections
-\titleformat{\section}{\AlegreyaMedium\Large\maincolor}{
+\titleformat\section{\AlegreyaMedium\Large\maincolor}{
 \begin{tikzpicture}[scale=0.035]
     \filldraw[] (0,0)--(1,0)--(1,2)--(3.5,2)--(2,4)--(3,4)--(1.5,6)--(2.5,6)--(1,8)--(2,8)--(0,11);
     \filldraw[] (0,0)--(-1,0)--(-1,2)--(-3.5,2)--(-2,4)--(-3,4)--(-1.5,6)--(-2.5,6)--(-1,8)--(-2,8)--(0,11);
