@@ -12,6 +12,8 @@
 %
 %---------------------------------------------
 \LoadClass[12pt]{exam}
+% universal.sty at:::
+% https://raw.githubusercontent.com/tac-nayn06/sundry/main/latex/tex/universal.sty
 \RequirePackage[exam]{universal}
 \RequirePackage[inline]{asymptote}
 \begin{asydef}
@@ -34,9 +36,7 @@ texpreamble("\def\V#1{\bm{#1}}");
 %---------------------------------------------
 % PALETTE
 % let's use mdframed already, its capabilities are a superset of those of tcolorbox
-\RequirePackage{xstring,xcolor,lmodern}
-% universal.sty at:::
-% https://raw.githubusercontent.com/tac-nayn06/sundry/main/latex/tex/universal.sty
+\RequirePackage{xstring,xcolor,lmodern} % color and font packages because lmodern > cmodern
 \definecolor{main}{HTML}{ab3a42} % ommc cube maroon-- top face
 \DeclareRobustCommand\sffamily\lmss
 \DeclareRobustCommand\main{\color{main}}
