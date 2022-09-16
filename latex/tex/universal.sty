@@ -239,9 +239,11 @@ picture pathticks(path g, int n=1, real r=.5, real spacing=6, real s=8, pen p=cu
 \newif\ifgeo\geotrue
 \newif\ifhyperref\hyperreftrue
 \newif\ifimakeidx\imakeidxtrue
+\newif\ifexam\examfalse
 \DeclareOption{nogeo}\geofalse
 \DeclareOption{nohyperref}\hyperreffalse
 \DeclareOption{noimakeidx}\imakeidxfalse
+\DeclareOption{exam}\examtrue
 \DeclareOption*{\PackageWarning{universal}{Unknown option: ‘\CurrentOption’}}
 \ProcessOptions\relax
 \ifgeo\RequirePackage[margin=1in]{geometry}\fi
@@ -301,8 +303,9 @@ picture pathticks(path g, int n=1, real r=.5, real spacing=6, real s=8, pen p=cu
 \newcommand\FF{\mathbb{F}}
 \newcommand\NN{\mathbb{N}}
 %---------------------
-\newcommand\optlabel[1]{\ifstrempty{#1}{}{{\mdseries\enskip(#1)}}}
-\renewenvironment{parts}
-    {\begin{enumerate}[label=(\alph*)]}{\end{enumerate}}
+\newcommand\optlabel[1]{\ifstrempty#1{}{{\mdseries\enskip(#1)}}}
+\ifexam
+\renewenvironment{parts}{\begin{enumerate}[label=(\alph*)]}{\end{enumerate}}\else
+\newenvironment{parts}{\begin{enumerate}[label=(\alph*)]}{\end{enumerate}}\fi
 \newcommand\fakecmd[1]{\texttt{\textbackslash #1}}
 %---------------------------------------------
