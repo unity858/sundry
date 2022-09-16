@@ -34,7 +34,7 @@ texpreamble("\def\V#1{\bm{#1}}");
 %---------------------------------------------
 % PALETTE
 % let's use mdframed already, its capabilities are a superset of those of tcolorbox
-\RequirePackage{xstring,xcolor,lmodern,universal}
+\RequirePackage{xstring,xcolor,lmodern}
 % universal.sty at:::
 % https://raw.githubusercontent.com/tac-nayn06/sundry/main/latex/tex/universal.sty
 \definecolor{main}{HTML}{ab3a42} % ommc cube maroon-- top face
