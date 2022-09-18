@@ -165,7 +165,7 @@
     \newcommand\exelabel{\thesection.\theitem}
 \fi
 \newcommand\exercise[1][]{
-    \\[5pt]\emph{Problem \exelabel}{\maincolor\sffamily\optlabel{#1}}\emph{.}\enskip}
+    \\[7pt]\emph{Problem \exelabel}{\maincolor\sffamily\optlabel{#1}}\emph{.}\enskip}
 \ifnormalnums
     \pretocmd\exercise{\stepcounter{exenum}}{}{}
 \else
