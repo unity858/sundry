@@ -2,11 +2,9 @@
 %info
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesClass{seto}[2021/09/06]
-%% Last updated 10 July 2021
+%% Last updated 21 Nov '22
 %% package name: seto.cls 
 %% Copyright 2021 by Neal Yan
-%
-% *shhhh im stealing a friend's name lolollololol*
 %
 % This program can redistributed and/or modified under the terms 
 % of the LaTeX Project Public License Distributed from CTAN 
@@ -165,7 +163,7 @@
     \newcommand\exelabel{\thesection.\theitem}
 \fi
 \newcommand\exercise[1][]{
-    \\[7pt]\emph{Problem \exelabel}{\maincolor\sffamily\optlabel{#1}}\emph{.}\enskip}
+    \vspace{7pt}\emph{Problem \exelabel}{\maincolor\sffamily\optlabel{#1}}\emph{.}\enskip}
 \ifnormalnums
     \pretocmd\exercise{\stepcounter{exenum}}{}{}
 \else
