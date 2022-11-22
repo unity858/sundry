@@ -163,7 +163,7 @@
     \newcommand\exelabel{\thesection.\theitem}
 \fi
 \newcommand\exercise[1][]{
-    \par\noindent\vspace{7pt}\emph{Problem \exelabel}{\maincolor\sffamily\optlabel{#1}}\emph{.}\enskip}
+    \vspace{7pt}\par\noindent\emph{Problem \exelabel}{\maincolor\sffamily\optlabel{#1}}\emph{.}\enskip}
 \ifnormalnums
     \pretocmd\exercise{\stepcounter{exenum}}{}{}
 \else
