@@ -74,7 +74,7 @@ texpreamble("\def\V#1{\bm{#1}}");
     linecolor=main,linewidth=1.5pt,backgroundcolor=main!20!white,topline=false,bottomline=false]}
     {\end{mdframed}}
 \newenvironment{remark}[1][Remark]{\begin{remarkBox}
-	{\maincolor\sffamily\itshape #1.\enskip}}{\end{remarkBox}}
+	{\main\sffamily\itshape #1.\enskip}}{\end{remarkBox}}
 %---------------------------------------------
 % headers/footers
 \ifinternal\else
