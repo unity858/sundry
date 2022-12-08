@@ -67,6 +67,14 @@ texpreamble("\def\V#1{\bm{#1}}");
     topline=false,bottomline=false,rightline=false,leftline=true]{\em#1 --\enskip}}
     {\end{mdframed}}
 \newcommand\claim[2][Claim]{\begin{blocktwo}[#1]#2\end{blocktwo}}
+
+% remarks
+\newenvironment{remarkBox}{\begin{mdframed}[
+    innerleftmargin=0.35cm,innertopmargin=0.25cm,innerbottommargin=0.25cm,innerrightmargin=0.35cm,
+    linecolor=main,linewidth=1.5pt,backgroundcolor=main!20!white,topline=false,bottomline=false]}
+    {\end{mdframed}}
+\newenvironment{remark}[1][Remark]{\begin{remarkBox}
+	{\maincolor\sffamily\itshape #1.\enskip}}{\end{remarkBox}}
 %---------------------------------------------
 % headers/footers
 \ifinternal\else
