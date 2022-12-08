@@ -11,7 +11,10 @@
 % version 1 of the License, or (at your option) any later version.
 %
 %---------------------------------------------
-\LoadClass[12pt]{exam}
+\newif\ifinternal\internalfalse
+\DeclareOption{internal}\internaltrue
+\ifinternal\LoadClass[11pt]{article}
+\else\LoadClass[12pt]{exam}\fi
 % universal.sty at:::
 % https://raw.githubusercontent.com/tac-nayn06/sundry/main/latex/tex/universal.sty
 \RequirePackage[exam]{universal}
@@ -88,3 +91,11 @@ texpreamble("\def\V#1{\bm{#1}}");
 \newcommand\embellish[1]{\noindent\makebox[\linewidth]{\rule\textwidth{0.4pt}}\vspace{2mm}
     \begin{center}{\em\centering\LARGE#1}\end{center}
     \noindent\makebox[\linewidth]{\rule\textwidth{0.4pt}}}
+
+% from seto.cls
+\newcounter{exenum}
+\newcommand\exelabel\theexenum
+\newcommand\exercise[1][]{
+    \vspace{7pt}\par\noindent\emph{Problem \exelabel}{\main\sffamily\optlabel{#1}}\emph{.}\enskip}
+ \pretocmd\exercise{\stepcounter{exenum}}{}{}
+%----------------------------------
