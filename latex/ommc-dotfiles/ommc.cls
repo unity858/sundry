@@ -13,6 +13,8 @@
 %---------------------------------------------
 \newif\ifinternal\internalfalse
 \DeclareOption{internal}\internaltrue
+\ProcessOptions\relax
+
 \ifinternal\LoadClass[11pt]{article}
 \else\LoadClass[12pt]{exam}\fi
 % universal.sty at:::
