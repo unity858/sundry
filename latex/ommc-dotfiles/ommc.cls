@@ -74,8 +74,11 @@ texpreamble("\def\V#1{\bm{#1}}");
 %---------------------------------------------
 % toc
 \RequirePackage[hypertexnames=false]{hyperref}
+\newcommand\toc{
+    {\em\hypersetup{citecolor=black,filecolor=main,linkcolor=main,urlcolor=black}
+    \tableofcontents}\newpage}
 % renaming this bc lazy
-\renewcommand\a[2]{\emph{\href#1#2}}
+\renewcommand\a[2]{\href#1{\emph#2}}
 %---------------------------------------------
 % title customization
 \RequirePackage{titling,titlesec,setspace}
