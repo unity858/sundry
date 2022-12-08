@@ -16,11 +16,12 @@
 \ProcessOptions\relax
 
 \ifinternal\LoadClass[11pt]{article}
-\else\LoadClass[12pt]{exam}\fi
+\RequirePackage{universal}
+\else\LoadClass[12pt]{exam}
+\RequirePackage[exam]{universal}\fi
 % universal.sty at:::
 % https://raw.githubusercontent.com/tac-nayn06/sundry/main/latex/tex/universal.sty
-\RequirePackage[exam]{universal}
-\RequirePackage[inline]{asymptote}
+\RequirePackage{asymptote}
 \begin{asydef}
 //
 // Global Asymptote definitions can be put here.
@@ -67,8 +68,9 @@ texpreamble("\def\V#1{\bm{#1}}");
     {\end{mdframed}}
 %---------------------------------------------
 % headers/footers
+\ifinternal\else
 \renewcommand\thepage{}
-\cfoot{}
+\cfoot{}\fi
 %---------------------------------------------
 % toc
 \RequirePackage[hypertexnames=false]{hyperref}
