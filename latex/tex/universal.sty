@@ -305,8 +305,9 @@ picture pathticks(path g, int n=1, real r=.5, real spacing=6, real s=8, pen p=cu
 \newcommand\NN{\mathbb{N}}
 %---------------------
 \newcommand\optlabel[1]{\ifstrempty{#1}{}{{\mdseries\enskip(#1)}}}
-\ifexam
-\renewenvironment{parts}{\begin{enumerate}[label=(\alph*)]}{\end{enumerate}}\else
-\newenvironment{parts}{\begin{enumerate}[label=(\alph*)]}{\end{enumerate}}\fi
+\ifexam\renewenvironment{parts}{\begin{enumerate}[label=(\alph*)]}{\end{enumerate}}
+\else\newenvironment{parts}{\begin{enumerate}[label=(\alph*)]}{\end{enumerate}}\fi
 \newcommand\fakecmd[1]{\texttt{\textbackslash #1}}
 %---------------------------------------------
+\ifexam\else
+\newenvironment{parts}{\begin{enumerate}[label=(\alph*)]}{\end{enumerate}}\fi
