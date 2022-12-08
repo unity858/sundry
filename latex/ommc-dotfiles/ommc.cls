@@ -64,8 +64,9 @@ texpreamble("\def\V#1{\bm{#1}}");
 \newenvironment{blocktwo}[1][BlockTwo]{\begin{mdframed}[
     innerleftmargin=0.35cm,innertopmargin=0.25cm,innerbottommargin=0.25cm,innerrightmargin=0.35cm,
     linecolor=main,linewidth=3pt,backgroundcolor=main!25!white,
-    topline=false,bottomline=false,rightline=false,leftline=true]{\em#1:\enskip}}
+    topline=false,bottomline=false,rightline=false,leftline=true]{\em#1 --\enskip}}
     {\end{mdframed}}
+\newcommand\claim[2][Claim]{\begin{blocktwo}[#1]#2\end{blocktwo}}
 %---------------------------------------------
 % headers/footers
 \ifinternal\else
