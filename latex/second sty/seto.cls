@@ -115,12 +115,13 @@
 \else\fi
 %---------------------------------------------
 % toc
+\usepackage[tocindentauto]{tocstyle}\usetocstyle{KOMAlike}
 \RequirePackage[hypertexnames=false]{hyperref}
 \setcounter{tocdepth}3
-\newcommand\toc{
-    {\em\hypersetup{
-    citecolor=black,filecolor=maincolor,
-    linkcolor=black,urlcolor=black}
+\newcommand\toc{\sffamily\maincolor
+    {\hypersetup{
+    citecolor=maincolor,filecolor=maincolor,
+    linkcolor=maincolor,urlcolor=maincolor}
     \tableofcontents}\newpage}
 %---------------------------------------------
 % title customization
