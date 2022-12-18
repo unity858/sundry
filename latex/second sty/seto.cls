@@ -111,18 +111,19 @@
     \renewcommand\footrulewidth{0pt}
     \fancyhead[L]{{\small\emph\insertdisplaytitle}}
     \fancyhead[R]{{\small\em\insertdisplayauthor\ {\mdseries(\insertdisplaydate)}}}
-    \fancyfoot[C]\thepage
+    \fancyfoot[C]{\arabic{page}}
 \else\fi
 %---------------------------------------------
 % toc
-\usepackage[tocindentauto]{tocstyle}\usetocstyle{KOMAlike}
+\renewcommand\thepage{{\maincolor\sffamily\arabic{page}}}
 \RequirePackage[hypertexnames=false]{hyperref}
 \setcounter{tocdepth}3
-\newcommand\toc{\sffamily\maincolor
-    {\hypersetup{
-    citecolor=maincolor,filecolor=maincolor,
-    linkcolor=maincolor,urlcolor=maincolor}
-    \tableofcontents}\newpage}
+\newcommand\toc{{\sffamily\maincolor
+    \hypersetup{
+    citecolor=maincolor,filecolor=black,
+    linkcolor=black,urlcolor=maincolor}
+    \tableofcontents}
+    \renewcommand\thepage{\arabic{page}}\newpage}
 %---------------------------------------------
 % title customization
 \RequirePackage{titling,titlesec,setspace}
