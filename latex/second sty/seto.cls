@@ -111,19 +111,20 @@
     \renewcommand\footrulewidth{0pt}
     \fancyhead[L]{{\small\emph\insertdisplaytitle}}
     \fancyhead[R]{{\small\em\insertdisplayauthor\ {\mdseries(\insertdisplaydate)}}}
-    \fancyfoot[C]{\arabic{page}}
+    \fancyfoot[C]\thepage
 \else\fi
 %---------------------------------------------
 % toc
-\renewcommand\thepage{{\maincolor\sffamily\arabic{page}}}
 \RequirePackage[hypertexnames=false]{hyperref}
 \setcounter{tocdepth}3
-\newcommand\toc{{\sffamily\maincolor
+\newcommand\toc{
+    \renewcommand\thepage{{\maincolor\sffamily\arabic{page}}}
+    {\sffamily\maincolor
     \hypersetup{
     citecolor=maincolor,filecolor=black,
     linkcolor=black,urlcolor=maincolor}
     \tableofcontents}
-    \renewcommand\thepage{\arabic{page}}\newpage}
+ \newpage}
 %---------------------------------------------
 % title customization
 \RequirePackage{titling,titlesec,setspace}
