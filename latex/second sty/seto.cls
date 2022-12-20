@@ -118,7 +118,7 @@
 \RequirePackage[hypertexnames=false]{hyperref}
 \setcounter{tocdepth}3
 \newcommand\toc{
-    \renewcommand\thepage{{\maincolor\sffamily\arabic{page}}}
+%    \renewcommand\thepage{{\maincolor\sffamily\arabic{page}}}
     {\sffamily\maincolor
     \hypersetup{
     citecolor=maincolor,filecolor=black,
